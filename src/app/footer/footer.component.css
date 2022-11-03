@@ -1,0 +1,43 @@
+footer {
+  width: 100%;
+}
+
+footer .info {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer .info .credentials {
+  font-size: 18px;
+  padding-right: 20px;
+}
+
+footer .info .socials {
+  display: flex;
+  gap: 30px;
+}
+
+footer .info .socials .social-link {
+  font-size: 20px;
+}
+
+footer .info .socials .social-link i.fa-github {
+  color: black;
+  scale: 1;
+  transition: scale 300ms ease-in-out;
+}
+
+footer .info .socials .social-link i.fa-linkedin {
+  color: blue;
+  scale: 1;
+  transition: scale 300ms ease-in-out;
+}
+
+footer .info .socials .social-link i.fa-github:hover,
+footer .info .socials .social-link i.fa-linkedin:hover {
+  scale: 1.5;
+}
