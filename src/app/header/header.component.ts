@@ -12,8 +12,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleLoginClick($event: MouseEvent): void {
-    $event.preventDefault();
+  handleLoginClick(event: MouseEvent): void {
+    event.preventDefault();
     this.isAuth = !this.isAuth;
   }
 
