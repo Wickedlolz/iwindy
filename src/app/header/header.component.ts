@@ -17,8 +17,8 @@ export class HeaderComponent implements OnInit {
     this.isAuth = !this.isAuth;
   }
 
-  handleLogOutClick(event: MouseEvent): void {
-    event.preventDefault();
+  handleLogOutClick($event: MouseEvent): void {
+    $event.preventDefault();
     this.isAuth = !this.isAuth;
   }
 }
