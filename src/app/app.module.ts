@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { IvyCarouselModule } from 'angular14-responsive-carousel';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +18,12 @@ import { HomeComponent } from './home/home.component';
     FooterComponent,
     HomeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, IvyCarouselModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    IvyCarouselModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
