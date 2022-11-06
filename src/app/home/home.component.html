@@ -1,17 +1,22 @@
-<section class="latest">
-  <img
-    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-    alt=""
-  />
-  <div class="layout"></div>
-  <div class="content">
-    <h2 class="content__title">
-      <span class="new">NEW</span> iPhone 14 Pro Max
-    </h2>
-    <button class="content__btn">View Details</button>
-  </div>
-</section>
 <p class="loading" *ngIf="isLoading">Loading&hellip;</p>
+
+<section class="latest" *ngIf="!isLoading">
+  <carousel
+    [height]="400"
+    [cellWidth]="'100%'"
+    [borderRadius]="14"
+    [loop]="true"
+    [dots]="true"
+    [arrows]="true"
+    [autoplay]="true"
+  >
+    <div class="carousel-cell" *ngFor="let image of images">
+      <a [href]="'/products/' + image.name" class="image-link">
+        <img [src]="image.path" alt="brand logo" />
+      </a>
+    </div>
+  </carousel>
+</section>
 <h2 class="title" *ngIf="!isLoading">Apple Products</h2>
 <section class="container" *ngIf="!isLoading">
   <carousel [height]="310" [cellWidth]="300" [borderRadius]="14" [loop]="true">

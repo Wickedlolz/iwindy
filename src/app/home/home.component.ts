@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin, tap } from 'rxjs';
-import { IProduct, ProductService } from '../services/product.service';
+import { IProduct } from '../interfaces';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,20 @@ export class HomeComponent implements OnInit {
   samsungProducts: IProduct[] = [];
   huaweiProducts: IProduct[] = [];
   isLoading: boolean = true;
+  images: { path: string; name: string }[] = [
+    {
+      path: '/assets/images/apple-products.jpg',
+      name: 'apple',
+    },
+    {
+      path: '/assets/images/samsung_en.png',
+      name: 'samsung',
+    },
+    {
+      path: 'assets/images/huawei.jpeg',
+      name: 'huawei',
+    },
+  ];
 
   constructor(private productService: ProductService) {}
 
