@@ -1,10 +1,12 @@
 <header class="header">
   <a href="">
-    <h2 class="header__title"><span class="logo-clr">iW</span>indy</h2>
+    <h2 class="header__title">
+      <a routerLink="/"><span class="logo-clr">iW</span>indy</a>
+    </h2>
   </a>
   <nav>
     <ul class="nav-list" role="list">
-      <li class="nav-list__item"><a href="">Home</a></li>
+      <li class="nav-list__item"><a routerLink="/home">Home</a></li>
       <li class="nav-list__item" *ngIf="!isAuth">
         <a href="" (click)="handleLoginClick($event)">Login</a>
       </li>

@@ -1,6 +1,6 @@
 <p class="loading" *ngIf="isLoading">Loading&hellip;</p>
 
-<section class="latest" *ngIf="!isLoading">
+<section class="products" *ngIf="!isLoading">
   <carousel
     [height]="400"
     [cellWidth]="'100%'"
@@ -9,12 +9,8 @@
     [dots]="true"
     [arrows]="true"
     [autoplay]="true"
+    [images]="images"
   >
-    <div class="carousel-cell" *ngFor="let image of images">
-      <a [href]="'/products/' + image.name" class="image-link">
-        <img [src]="image.path" alt="brand logo" />
-      </a>
-    </div>
   </carousel>
 </section>
 <h2 class="title" *ngIf="!isLoading">Apple Products</h2>

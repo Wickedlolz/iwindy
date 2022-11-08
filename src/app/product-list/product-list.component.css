@@ -1,0 +1,146 @@
+.container {
+  width: 90%;
+  margin-inline: auto;
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  gap: 10px;
+}
+
+.container .aside .title {
+  font-size: 20px;
+  line-height: 2.5;
+  text-align: center;
+  letter-spacing: 1px;
+  border-bottom: 1px solid lightgray;
+
+  margin-bottom: 15px;
+}
+
+.container .aside .input {
+  width: 70%;
+  border: 1px solid gray;
+  border-radius: 10px;
+  outline: none;
+  padding: 3px;
+  caret-color: #0071e7;
+}
+
+.container .aside .search-btn {
+  width: 25%;
+  border: 1px solid #0071e7;
+  border-radius: 10px;
+  background-color: #0071e7;
+  color: #fff;
+  padding: 3px 8px;
+  margin-left: 3px;
+  cursor: pointer;
+
+  transition: background-color 300ms ease-in-out;
+}
+
+.container .aside .search-btn:hover {
+  background-color: #2585eb;
+}
+
+.container .aside .categories .category button {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background-color: transparent;
+  cursor: pointer;
+
+  transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.container .aside .categories .category button:hover {
+  background-color: #0071e7;
+  color: #fff;
+}
+
+.container .products-container {
+  width: 100%;
+}
+
+.container .products-container .products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+/* Card Component */
+
+.container .products-container .products .card {
+  width: 280px;
+  height: 300px;
+  margin-top: 15px;
+  background-color: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transform: scale(1);
+  transition: all 300ms ease-in-out;
+  position: relative;
+  cursor: pointer;
+}
+
+.container .products-container .products .card::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.container .products-container .products .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  z-index: 2;
+}
+
+.container .products-container .products .card .card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.container .products-container .products .card .head {
+  position: relative;
+  height: 40%;
+}
+
+.container .products-container .products .card .head,
+.container .products-container .products .card .content {
+  z-index: 1;
+  position: relative;
+}
+
+.container .products-container .products .card .head .head__tag {
+  position: absolute;
+  left: 18px;
+  top: 24px;
+  right: unset;
+
+  padding: 4px 12px;
+  border-radius: 6px;
+  background-color: #845ec2;
+  color: #fff;
+  letter-spacing: 1.1px;
+}
+
+.container .products-container .products .card .content {
+  padding: 18px;
+  height: 60%;
+}
+
+.container .products-container .products .card .content .content__title {
+  color: #fff;
+}
