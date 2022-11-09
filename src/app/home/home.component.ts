@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin, tap } from 'rxjs';
-import { IProduct } from '../interfaces';
+import { forkJoin } from 'rxjs';
+import { IImage, IProduct } from '../interfaces';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   samsungProducts: IProduct[] = [];
   huaweiProducts: IProduct[] = [];
   isLoading: boolean = true;
-  images: { path: string; name: string }[] = [
+  images: IImage[] = [
     {
       path: '/assets/images/apple-products.jpg',
       name: 'apple',
@@ -35,12 +35,11 @@ export class HomeComponent implements OnInit {
       this.productService.getByCategory('apple'),
       this.productService.getAll(),
       this.productService.getAll(),
-    ])
-      .pipe(tap((results) => (this.isLoading = false)))
-      .subscribe(([apple, samsung, huawei]) => {
-        this.appleProducts = apple;
-        this.samsungProducts = samsung;
-        this.huaweiProducts = huawei;
-      });
+    ]).subscribe(([apple, samsung, huawei]) => {
+      this.isLoading = false;
+      this.appleProducts = apple;
+      this.samsungProducts = samsung;
+      this.huaweiProducts = huawei;
+    });
   }
 }

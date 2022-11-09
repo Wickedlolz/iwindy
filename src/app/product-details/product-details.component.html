@@ -1,0 +1,136 @@
+<!-- <app-loading *ngIf="isLoading"></app-loading> -->
+
+<section class="details" *ngIf="!isLoading">
+  <div class="article-info">
+    <h1 class="article-info__title">Apple iPhone 14 Pro Max</h1>
+    <div class="article-info__image">
+      <img
+        loading="lazy"
+        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+        alt="iPhone 14"
+      />
+    </div>
+    <ul class="features" role="list">
+      <li class="features__specs">
+        <span class="features__specs-release"
+          ><i class="fa-regular fa-calendar"></i> Released 2022, September
+          16</span
+        >
+        <span class="features__specs-weight">
+          <i class="fa-solid fa-mobile-screen"></i> 240g, 7.9mm thickness
+        </span>
+        <span class="features__specs-system">
+          <i class="fa-solid fa-code"></i> iOS 16, up to iOS 16.0.3
+        </span>
+        <span class="features__specs-storage">
+          <i class="fa-solid fa-memory"></i>
+          128GB/256GB/1TB storage, no card slot
+        </span>
+      </li>
+      <li class="features__rating">
+        <strong><i class="fa-solid fa-chart-line"></i> 65%</strong>
+        <span>2,987,559 hits</span>
+      </li>
+      <li class="features__likes">
+        <a href="#">
+          <strong> <i class="fa-solid fa-heart"></i> 400 </strong>
+          <span>Become a fan</span>
+        </a>
+      </li>
+      <li class="features__display">
+        <i class="fa-solid fa-mobile-screen"></i>
+        <strong>6.7"</strong>
+        <span>1290x2796 pixels</span>
+      </li>
+      <li class="features__camera">
+        <i class="fa-solid fa-camera"></i>
+        <strong>48MP</strong>
+        <span>2160p</span>
+      </li>
+      <li class="features__ram">
+        <i class="fa-solid fa-microchip"></i>
+        <strong>6GB RAM</strong>
+        <span>Apple A16 Bionic</span>
+      </li>
+      <li class="features__battery">
+        <i class="fa-solid fa-battery-full"></i>
+        <strong>4323mAh</strong>
+        <span>Li-Ion</span>
+      </li>
+    </ul>
+  </div>
+  <div class="actions">
+    <ul class="list" role="list">
+      <li class="list__item">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <a href="#">Add to Cart</a>
+      </li>
+      <li class="list__item">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <a href="#">Edit</a>
+      </li>
+      <li class="list__item">
+        <i class="fa-sharp fa-solid fa-trash"></i>
+        <a href="#">Delete</a>
+      </li>
+    </ul>
+  </div>
+  <div class="video">
+    <iframe
+      src="https://www.youtube.com/embed/H4SXsmXZlwk"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <form class="form" method="post">
+    <label for="comment">Commnet</label>
+    <input
+      type="text"
+      name="comment"
+      id="comment"
+      placeholder="What's your opinion?"
+    />
+    <button>Send <i class="fa-regular fa-paper-plane"></i></button>
+  </form>
+  <div class="reviews">
+    <h3 class="reviews__title">
+      APPLE IPHONE 14 PRO MAX - USER OPINIONS AND REVIEWS
+    </h3>
+    <ul role="list" class="list">
+      <li class="list__item">
+        <div class="comment-header">
+          <span class="comment-header__author"
+            ><i class="fa-solid fa-user"></i> blazko95</span
+          >
+          <span class="comment-header__time"
+            ><i class="fa-regular fa-clock"></i>15 hours ago</span
+          >
+        </div>
+        <p>
+          The older iphone models like the iphone 6/7/8 all had the battery
+          percentage indicator. Apple just removed it on the iphone x series.
+          and again readded it with ios 16. Your only argument is that they will
+          copy the battery % indicator, like lol w...
+        </p>
+      </li>
+      <li class="list__item">
+        <div class="comment-header">
+          <span class="comment-header__author"
+            ><i class="fa-solid fa-user"></i> blazko95</span
+          >
+          <span class="comment-header__time"
+            ><i class="fa-regular fa-clock"></i>15 hours ago</span
+          >
+        </div>
+        <p>
+          The older iphone models like the iphone 6/7/8 all had the battery
+          percentage indicator. Apple just removed it on the iphone x series.
+          and again readded it with ios 16. Your only argument is that they will
+          copy the battery % indicator, like lol w...
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>

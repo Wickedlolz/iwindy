@@ -1,0 +1,301 @@
+.details {
+  background-color: gray;
+  width: 90%;
+  height: 100%;
+  margin-inline: auto;
+  margin-bottom: 20px;
+  background-image: linear-gradient(
+    to right,
+    #fdfdfd,
+    #e7ddfc,
+    #d8bcf8,
+    #cf99ed,
+    #cb71de
+  );
+}
+
+.details .article-info {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas:
+    "title title title title title"
+    "img specs specs specs specs"
+    "img specs specs specs specs";
+  grid-template-rows: 50px 1fr;
+
+  background-color: #cb71de;
+}
+
+.details .article-info .article-info__title {
+  grid-area: title;
+  background-color: #cb71de;
+}
+
+.details .article-info .features {
+  grid-area: specs;
+  display: grid;
+  grid-template-columns: repeat(4, 33%);
+  grid-template-areas:
+    "list list rating likes"
+    "display camera ram battery";
+
+  grid-template-rows: 200px 150px;
+}
+
+.details .article-info .article-info__image {
+  grid-area: img;
+  width: 100%;
+  overflow: hidden;
+}
+
+.details .article-info .features li:nth-child(1),
+.details .article-info .features li:nth-child(2),
+.details .article-info .features li:nth-child(4),
+.details .article-info .features li:nth-child(5),
+.details .article-info .features li:nth-child(6) {
+  border-right: 1px solid hsla(0, 0%, 100%, 0.5);
+}
+
+.details .article-info .features .features__specs {
+  grid: list;
+  grid-column: span 2;
+  height: 100px;
+}
+
+.details .article-info .features .features__rating {
+  grid-area: rating;
+  height: 100px;
+}
+
+.details .article-info .features .features__likes {
+  grid-area: likes;
+  height: 100px;
+}
+
+.details .article-info .features .features__display {
+  grid-area: display;
+  height: 100px;
+}
+
+.details .article-info .features .features__camera {
+  grid-area: camera;
+  height: 100px;
+}
+
+.details .article-info .features .features__ram {
+  grid-area: ram;
+  height: 100px;
+}
+
+.details .article-info .features .features__battery {
+  grid-area: battery;
+  height: 100px;
+}
+
+.details .article-info .article-info__title {
+  width: 100%;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgb(0 0 0 / 40%);
+  padding-top: 5px;
+  padding-left: 15px;
+  margin-bottom: 9px;
+}
+
+.details .article-info .article-info__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.details .article-info .features {
+  width: 75%;
+  background-image: linear-gradient(
+    to right,
+    #fdfdfd,
+    #e7ddfc,
+    #d8bcf8,
+    #cf99ed,
+    #cb71de
+  );
+  padding-left: 10px;
+}
+
+.details .article-info .features .features__specs {
+  overflow: hidden;
+}
+
+.details .article-info .features .features__specs span {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.details .article-info .features .features__rating strong,
+.details .article-info .features .features__rating span,
+.details .article-info .features .features__likes strong,
+.details .article-info .features .features__likes span {
+  display: block;
+  padding-top: 7px;
+  text-align: center;
+  font-size: 25px;
+  color: #fff;
+}
+
+.details .article-info .features .features__likes a {
+  text-decoration: none;
+}
+
+.details .article-info .features .features__display i,
+.details .article-info .features .features__display strong,
+.details .article-info .features .features__display span,
+.details .article-info .features .features__camera i,
+.details .article-info .features .features__camera strong,
+.details .article-info .features .features__camera span,
+.details .article-info .features .features__ram i,
+.details .article-info .features .features__ram strong,
+.details .article-info .features .features__ram span,
+.details .article-info .features .features__battery i,
+.details .article-info .features .features__battery strong,
+.details .article-info .features .features__battery span {
+  display: block;
+  text-align: center;
+  font-size: 25px;
+}
+
+/* Action  */
+.details .actions .list {
+  background-color: #cb71de;
+  background-image: linear-gradient(
+    to right,
+    #fdfdfd,
+    #e7ddfc,
+    #d8bcf8,
+    #cf99ed,
+    #cb71de
+  );
+}
+
+.details .actions .list .list__item:nth-child(1),
+.details .actions .list .list__item:nth-child(2) {
+  border-right: 1px solid #fff;
+}
+
+.details .actions .list .list__item {
+  display: inline-block;
+  width: calc((100% / 3) - 3px);
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+
+  transition: background-color 300ms ease-in-out;
+}
+
+.details .actions .list .list__item a {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.details .actions .list .list__item:hover {
+  background-color: #d50000;
+}
+
+/* Video  */
+
+.details .video {
+  width: 100%;
+  height: 500px;
+}
+
+.details .video iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* Form  */
+
+.details .form {
+  width: 100%;
+  height: 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 20px;
+}
+
+.details .form label {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1.1px;
+  margin-bottom: 20px;
+}
+
+.details .form input {
+  width: 50%;
+  height: 30%;
+  margin-bottom: 20px;
+  background-color: transparent;
+  border: 1px solid #000;
+  outline: none;
+  caret-color: #3ea6ff;
+  font-size: 24px;
+  border-radius: 7px;
+}
+
+.details .form input::placeholder {
+  font-size: 24px;
+  color: rgb(173, 172, 172);
+}
+
+.details .form button {
+  width: 150px;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+
+  transition: background-color 300ms ease-in-out;
+}
+
+.details .form button:hover {
+  background-color: rgba(241, 239, 239, 0.2);
+}
+
+/* Reviews */
+
+.details .reviews .reviews__title {
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+.details .reviews .list .list__item {
+  border-bottom: 2px solid #ddd;
+  padding: 10px;
+}
+
+.details .reviews .list .list__item .comment-header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.details .reviews .list .list__item .comment-header .comment-header__author {
+  font-weight: bold;
+}
+
+.details .reviews .list .list__item .comment-header .comment-header__time i {
+  margin-right: 5px;
+}
