@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
   constructor() {}
 
