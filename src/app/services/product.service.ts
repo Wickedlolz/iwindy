@@ -1,27 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { IProduct } from '../interfaces';
+
+const apiUrl = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl: string = 'http://localhost:5000/api';
-
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.baseUrl + '/products');
+    return this.http.get<IProduct[]>(apiUrl + '/products');
   }
 
   getByCategory(category: string): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(
-      `${this.baseUrl}/products/category/${category}`
-    );
+    return this.http.get<IProduct[]>(`${apiUrl}/products/category/${category}`);
   }
 
   getById(productId: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.baseUrl}/products/${productId}`);
+    return this.http.get<IProduct>(`${apiUrl}/products/${productId}`);
   }
 }

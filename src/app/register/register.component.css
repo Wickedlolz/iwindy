@@ -1,0 +1,102 @@
+.register {
+  width: 40%;
+  margin-top: 100px;
+  margin-inline: auto;
+  margin-bottom: 15%;
+  border: 1px solid gray;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #eee;
+}
+
+.register .title {
+  width: 90%;
+  margin-inline: auto;
+  line-height: 2;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 30px;
+  margin-top: 10px;
+
+  border-bottom: 1px solid gray;
+}
+
+.register .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 20px;
+}
+
+.register .form label {
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.register .form input {
+  margin-bottom: 20px;
+  outline: none;
+  border-radius: 10px;
+  padding: 8px 10px;
+  width: 90%;
+}
+
+.register .form input:last-of-type {
+  margin-bottom: 50px;
+}
+
+.register .form button {
+  margin-bottom: 20px;
+  width: 90%;
+  background-color: #0071e7;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: none;
+  padding: 8px 10px;
+
+  transition: background-color 300ms ease-in-out;
+}
+
+.register .form button:hover {
+  background-color: #2585eb;
+}
+
+.register .link {
+  display: inline-block;
+  margin-left: 32px;
+  text-decoration: none;
+  margin-bottom: 10px;
+
+  transition: text-decoration 300ms ease-in-out;
+}
+
+.register .link:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 1300px) {
+  .register {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .register {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .register {
+    width: 90%;
+  }
+}

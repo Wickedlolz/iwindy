@@ -18,7 +18,7 @@
 }
 
 .container .aside .input {
-  width: 70%;
+  width: 80%;
   border: 1px solid gray;
   border-radius: 10px;
   outline: none;
@@ -27,13 +27,13 @@
 }
 
 .container .aside .search-btn {
-  width: 25%;
+  /* width: 25%; */
   border: 1px solid #0071e7;
-  border-radius: 10px;
+  border-radius: 50%;
   background-color: #0071e7;
   color: #fff;
   padding: 3px 8px;
-  margin-left: 3px;
+  margin-left: 15px;
   cursor: pointer;
 
   transition: background-color 300ms ease-in-out;
@@ -67,14 +67,13 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: space-between;
 }
 
 /* Card Component */
 
 .container .products-container .products .card {
-  width: 280px;
-  height: 300px;
+  width: 220px;
+  height: 250px;
   margin-top: 15px;
   background-color: #fff;
   border-radius: 14px;

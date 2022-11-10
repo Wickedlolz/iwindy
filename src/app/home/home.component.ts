@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, zip } from 'rxjs';
 import { IImage, IProduct } from '../interfaces';
 import { ProductService } from '../services/product.service';
 
@@ -31,11 +31,11 @@ export class HomeComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    forkJoin([
+    zip(
       this.productService.getByCategory('apple'),
       this.productService.getAll(),
-      this.productService.getAll(),
-    ]).subscribe(([apple, samsung, huawei]) => {
+      this.productService.getAll()
+    ).subscribe(([apple, samsung, huawei]) => {
       this.isLoading = false;
       this.appleProducts = apple;
       this.samsungProducts = samsung;

@@ -1,6 +1,6 @@
 <section class="container">
   <div class="aside">
-    <form class="search-form">
+    <form class="search-form" (submit)="handleSearch($event)">
       <h2 class="title">Search</h2>
       <input
         type="search"
@@ -8,187 +8,50 @@
         class="input"
         placeholder="Search product"
       />
-      <button class="search-btn">Search</button>
+      <button class="search-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
     </form>
     <h2 class="title">Categories</h2>
     <ul class="categories" role="list">
       <li class="category">
-        <button>Apple</button>
+        <button (click)="handleChangeCategory('apple')">Apple</button>
       </li>
       <li class="category">
-        <button>Samgung</button>
+        <button (click)="handleChangeCategory('samsung')">Samgung</button>
       </li>
       <li class="category">
-        <button>Huawei</button>
+        <button (click)="handleChangeCategory('huawei')">Huawei</button>
       </li>
       <li class="category">
-        <button>Xiomi</button>
+        <button (click)="handleChangeCategory('xiomi')">Xiomi</button>
       </li>
       <li class="category">
-        <button>Nokia</button>
+        <button (click)="handleChangeCategory('nokia')">Nokia</button>
       </li>
       <li class="category">
-        <button>Other</button>
+        <button (click)="handleChangeCategory('other')">Other</button>
       </li>
     </ul>
-    <form class="price-form">
-      <h2 class="title">Price</h2>
-      <input type="text" name="price" class="input" placeholder="Enter price" />
-      <button class="search-btn">Search</button>
-    </form>
   </div>
   <div class="products-container">
-    <ul class="products" role="list">
-      <li class="product">
+    <ul class="products" role="list" *ngIf="products">
+      <li class="product" *ngFor="let product of products">
         <article class="card">
           <img
             loading="lazy"
             class="card__img"
-            src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="iPhone"
+            [src]="product.image"
+            [alt]="product.model"
           />
           <div class="head">
-            <span class="head__tag">iPhone</span>
+            <span class="head__tag">{{
+              product.category.toLocaleUpperCase()
+            }}</span>
           </div>
 
           <div class="content">
-            <h2 class="content__title">iPhone 12</h2>
-          </div>
-        </article>
-      </li>
-      <li class="product">
-        <article class="card">
-          <img
-            loading="lazy"
-            class="card__img"
-            src="https://images.unsplash.com/photo-1597762470488-3877b1f538c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="iPhone"
-          />
-          <div class="head">
-            <span class="head__tag">Samsung</span>
-          </div>
-
-          <div class="content">
-            <h2 class="content__title">Samsung Galaxy Note 20 Ultra</h2>
-          </div>
-        </article>
-      </li>
-      <li class="product">
-        <article class="card">
-          <img
-            loading="lazy"
-            class="card__img"
-            src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="iPhone"
-          />
-          <div class="head">
-            <span class="head__tag">Huawei</span>
-          </div>
-
-          <div class="content">
-            <h2 class="content__title">Huawei P40 Pro</h2>
-          </div>
-        </article>
-      </li>
-      <li class="product">
-        <article class="card">
-          <img
-            loading="lazy"
-            class="card__img"
-            src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="iPhone"
-          />
-          <div class="head">
-            <span class="head__tag">Huawei</span>
-          </div>
-
-          <div class="content">
-            <h2 class="content__title">Huawei P40 Pro</h2>
-          </div>
-        </article>
-      </li>
-      <li class="product">
-        <article class="card">
-          <img
-            loading="lazy"
-            class="card__img"
-            src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="iPhone"
-          />
-          <div class="head">
-            <span class="head__tag">Huawei</span>
-          </div>
-
-          <div class="content">
-            <h2 class="content__title">Huawei P40 Pro</h2>
-          </div>
-        </article>
-      </li>
-      <li class="product">
-        <article class="card">
-          <img
-            loading="lazy"
-            class="card__img"
-            src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="iPhone"
-          />
-          <div class="head">
-            <span class="head__tag">Huawei</span>
-          </div>
-
-          <div class="content">
-            <h2 class="content__title">Huawei P40 Pro</h2>
-          </div>
-        </article>
-      </li>
-      <li class="product">
-        <article class="card">
-          <img
-            loading="lazy"
-            class="card__img"
-            src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="iPhone"
-          />
-          <div class="head">
-            <span class="head__tag">Huawei</span>
-          </div>
-
-          <div class="content">
-            <h2 class="content__title">Huawei P40 Pro</h2>
-          </div>
-        </article>
-      </li>
-      <li class="product">
-        <article class="card">
-          <img
-            loading="lazy"
-            class="card__img"
-            src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="iPhone"
-          />
-          <div class="head">
-            <span class="head__tag">Huawei</span>
-          </div>
-
-          <div class="content">
-            <h2 class="content__title">Huawei P40 Pro</h2>
-          </div>
-        </article>
-      </li>
-      <li class="product">
-        <article class="card">
-          <img
-            loading="lazy"
-            class="card__img"
-            src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="iPhone"
-          />
-          <div class="head">
-            <span class="head__tag">Huawei</span>
-          </div>
-
-          <div class="content">
-            <h2 class="content__title">Huawei P40 Pro</h2>
+            <h2 class="content__title">{{ product.model }}</h2>
           </div>
         </article>
       </li>

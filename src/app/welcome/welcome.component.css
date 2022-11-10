@@ -43,10 +43,10 @@
   padding: 15px;
   cursor: pointer;
 
-  border: 2px solid #ff8066;
+  border: none;
   border-radius: 15px;
-  background-color: #ff8066;
-  color: #000;
+  background-color: #095fb2;
+  color: #fff;
 
   font-size: 16px;
   font-weight: bold;
@@ -57,6 +57,5 @@
 }
 
 .container .content .content__btn:hover {
-  background: #b6e5fe;
-  border: 2px solid #b6e5fe;
+  background-color: #1f7cd3;
 }
