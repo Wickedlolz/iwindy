@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin, zip } from 'rxjs';
-import { IImage, IProduct } from '../interfaces';
-import { ProductService } from '../services/product.service';
+import { zip } from 'rxjs';
+import { IImage, IProduct } from '../core/interfaces';
+import { ProductService } from '../core/product.service';
 
 @Component({
   selector: 'app-home',
@@ -32,9 +32,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     zip(
-      this.productService.getByCategory('apple'),
-      this.productService.getAll(),
-      this.productService.getAll()
+      this.productService.loadByCategory$('apple'),
+      this.productService.loadProducts$(),
+      this.productService.loadProducts$()
     ).subscribe(([apple, samsung, huawei]) => {
       this.isLoading = false;
       this.appleProducts = apple;

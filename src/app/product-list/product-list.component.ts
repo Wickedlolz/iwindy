@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from '../interfaces';
-import { ProductService } from '../services/product.service';
+import { IProduct } from '../core/interfaces';
+import { ProductService } from '../core/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getAll().subscribe({
+    this.productService.loadProducts$().subscribe({
       next: (products) => {
         this.products = products;
       },
@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit {
   }
 
   handleChangeCategory(category: string): void {
-    this.productService.getByCategory(category).subscribe({
+    this.productService.loadByCategory$(category).subscribe({
       next: (products) => {
         this.products = products;
       },
