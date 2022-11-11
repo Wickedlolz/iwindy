@@ -71,6 +71,10 @@
 
 /* Card Component */
 
+.container .products-container .products .product a {
+  text-decoration: none;
+}
+
 .container .products-container .products .card {
   width: 220px;
   height: 250px;

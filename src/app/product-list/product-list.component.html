@@ -37,23 +37,25 @@
   <div class="products-container">
     <ul class="products" role="list" *ngIf="products">
       <li class="product" *ngFor="let product of products">
-        <article class="card">
-          <img
-            loading="lazy"
-            class="card__img"
-            [src]="product.image"
-            [alt]="product.model"
-          />
-          <div class="head">
-            <span class="head__tag">{{
-              product.category.toLocaleUpperCase()
-            }}</span>
-          </div>
+        <a [href]="'/products/' + product._id">
+          <article class="card">
+            <img
+              loading="lazy"
+              class="card__img"
+              [src]="product.image"
+              [alt]="product.model"
+            />
+            <div class="head">
+              <span class="head__tag">{{
+                product.category.toLocaleUpperCase()
+              }}</span>
+            </div>
 
-          <div class="content">
-            <h2 class="content__title">{{ product.model }}</h2>
-          </div>
-        </article>
+            <div class="content">
+              <h2 class="content__title">{{ product.model }}</h2>
+            </div>
+          </article>
+        </a>
       </li>
     </ul>
   </div>

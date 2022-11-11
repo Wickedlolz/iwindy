@@ -1,0 +1,69 @@
+.create {
+  width: 90%;
+  margin-inline: auto;
+}
+
+.create .title {
+  width: 300px;
+  margin-inline: auto;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 2;
+  margin-bottom: 30px;
+
+  border-bottom: 1px solid rgb(138, 134, 134);
+}
+
+.create .create-form {
+  width: 50%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 20% 79%;
+  gap: 10px;
+}
+
+.create .create-form label {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.create .create-form input {
+  outline: none;
+  border-radius: 10px;
+  padding: 3px;
+  caret-color: blue;
+}
+
+.create .create-form select {
+  outline: none;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.create .create-form select:last-of-type {
+  margin-bottom: 20px;
+}
+
+.create .create-form .create-btn {
+  grid-column: span 2;
+  width: 20%;
+  margin-inline: auto;
+  margin-bottom: 100px;
+
+  padding: 7px 10px;
+  background-color: #0071e7;
+  color: #fff;
+  font-size: 22px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  transition: background-color 300ms ease-in-out;
+}
+
+.create .create-form .create-btn:hover {
+  background-color: #2585eb;
+}
