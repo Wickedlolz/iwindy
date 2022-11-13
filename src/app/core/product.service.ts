@@ -30,4 +30,10 @@ export class ProductService {
       withCredentials: true,
     });
   }
+
+  create$(productData: IProduct): Observable<IProduct> {
+    return this.http.post<IProduct>(apiUrl + '/products', productData, {
+      withCredentials: true,
+    });
+  }
 }

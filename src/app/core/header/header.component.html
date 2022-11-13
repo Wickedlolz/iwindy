@@ -8,21 +8,27 @@
     <ul class="nav-list" role="list">
       <li class="nav-list__item"><a routerLink="/home">Home</a></li>
       <li class="nav-list__item" *ngIf="!isAuth">
-        <a href="" (click)="handleLoginClick($event)">Login</a>
+        <a routerLink="/login" (click)="handleLoginClick($event)">Login</a>
       </li>
-      <li class="nav-list__item" *ngIf="!isAuth"><a href="">Register</a></li>
-      <li class="nav-list__item" *ngIf="isAuth"><a href="">Products</a></li>
-      <li class="nav-list__item" *ngIf="isAuth"><a href="">Create</a></li>
+      <li class="nav-list__item" *ngIf="!isAuth">
+        <a routerLink="/register">Register</a>
+      </li>
       <li class="nav-list__item" *ngIf="isAuth">
-        <a href="" (click)="handleLogOutClick($event)">Log Out</a>
+        <a routerLink="/products">Products</a>
+      </li>
+      <li class="nav-list__item" *ngIf="isAuth">
+        <a routerLink="/products/create">Create</a>
+      </li>
+      <li class="nav-list__item" *ngIf="isAuth">
+        <a routerLink="/logout" (click)="handleLogOutClick($event)">Log Out</a>
       </li>
       <li class="nav-list__item cart" *ngIf="isAuth">
-        <a href="">
+        <a routerLink="/profile/:userId">
           <i class="fa-solid fa-circle-user"></i>
         </a>
       </li>
       <li class="nav-list__item cart" *ngIf="isAuth">
-        <a href="">
+        <a routerLink="/cart/:userId">
           <i class="fa-solid fa-cart-shopping"></i>
         </a>
       </li>

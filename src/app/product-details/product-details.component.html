@@ -1,30 +1,26 @@
 <!-- <app-loading *ngIf="isLoading"></app-loading> -->
 
-<section class="details" *ngIf="!isLoading">
+<section class="details" *ngIf="!isLoading; else loadingIndicator">
   <div class="article-info">
-    <h1 class="article-info__title">Apple iPhone 14 Pro Max</h1>
+    <h1 class="article-info__title">{{ product.model }}</h1>
     <div class="article-info__image">
-      <img
-        loading="lazy"
-        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-        alt="iPhone 14"
-      />
+      <img loading="lazy" [src]="product.image" [alt]="product.model" />
     </div>
     <ul class="features" role="list">
       <li class="features__specs">
         <span class="features__specs-release"
-          ><i class="fa-regular fa-calendar"></i> Released 2022, September
-          16</span
+          ><i class="fa-regular fa-calendar"></i> Released
+          {{ product.released }}</span
         >
         <span class="features__specs-weight">
-          <i class="fa-solid fa-mobile-screen"></i> 240g, 7.9mm thickness
+          <i class="fa-solid fa-mobile-screen"></i> {{ product.weight }}
         </span>
         <span class="features__specs-system">
-          <i class="fa-solid fa-code"></i> iOS 16, up to iOS 16.0.3
+          <i class="fa-solid fa-code"></i> {{ product.os }}
         </span>
         <span class="features__specs-storage">
           <i class="fa-solid fa-memory"></i>
-          128GB/256GB/1TB storage, no card slot
+          {{ product.memory }}
         </span>
       </li>
       <li class="features__rating">
@@ -39,23 +35,23 @@
       </li>
       <li class="features__display">
         <i class="fa-solid fa-mobile-screen"></i>
-        <strong>6.7"</strong>
-        <span>1290x2796 pixels</span>
+        <strong>{{ product.displaySize }}"</strong>
+        <span>{{ product.displayResolutions }}</span>
       </li>
       <li class="features__camera">
         <i class="fa-solid fa-camera"></i>
-        <strong>48MP</strong>
-        <span>2160p</span>
+        <strong>{{ product.cameraMP }}MP</strong>
+        <span>{{ product.cameraVideo }}p</span>
       </li>
       <li class="features__ram">
         <i class="fa-solid fa-microchip"></i>
-        <strong>6GB RAM</strong>
-        <span>Apple A16 Bionic</span>
+        <strong>{{ product.ram }}GB RAM</strong>
+        <span>{{ product.chipset }}</span>
       </li>
       <li class="features__battery">
         <i class="fa-solid fa-battery-full"></i>
-        <strong>4323mAh</strong>
-        <span>Li-Ion</span>
+        <strong>{{ product.batteryMAH }}mAh</strong>
+        <span>{{ product.batteryType.toLocaleUpperCase() }}</span>
       </li>
     </ul>
   </div>
@@ -96,7 +92,7 @@
   </form>
   <div class="reviews">
     <h3 class="reviews__title">
-      APPLE IPHONE 14 PRO MAX - USER OPINIONS AND REVIEWS
+      {{ product.model.toLocaleUpperCase() }} - USER OPINIONS AND REVIEWS
     </h3>
     <ul role="list" class="list">
       <li class="list__item">
@@ -134,3 +130,9 @@
     </ul>
   </div>
 </section>
+
+<ng-template #loadingIndicator>
+  <div>
+    <h2 class="loading">Loading&hellip;</h2>
+  </div>
+</ng-template>

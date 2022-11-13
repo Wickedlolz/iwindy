@@ -4,10 +4,6 @@
   overflow: hidden;
 }
 
-.image-link img {
-  object-fit: cover !important;
-}
-
 .title {
   width: 90%;
   margin-top: 15px;

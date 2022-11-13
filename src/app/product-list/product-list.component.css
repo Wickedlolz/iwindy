@@ -69,6 +69,11 @@
   gap: 10px;
 }
 
+.active {
+  background-color: #0071e7 !important;
+  color: #fff;
+}
+
 /* Card Component */
 
 .container .products-container .products .product a {

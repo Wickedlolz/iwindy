@@ -17,7 +17,7 @@
 <section class="container" *ngIf="!isLoading">
   <carousel [height]="310" [cellWidth]="300" [borderRadius]="14" [loop]="true">
     <div class="carousel-cell" *ngFor="let product of appleProducts">
-      <a href="/{{ product._id }}" class="card-link">
+      <a [routerLink]="['/products', product._id]" class="card-link">
         <article class="card">
           <img
             class="card__img"
@@ -41,7 +41,7 @@
 <section class="container" *ngIf="!isLoading">
   <carousel [height]="310" [cellWidth]="300" [borderRadius]="14" [loop]="true">
     <div class="carousel-cell" *ngFor="let product of samsungProducts">
-      <a href="/{{ product._id }}" class="card-link">
+      <a [routerLink]="['/products', product._id]" class="card-link">
         <article class="card">
           <img
             class="card__img"
@@ -65,7 +65,7 @@
 <section class="container" *ngIf="!isLoading">
   <carousel [height]="310" [cellWidth]="300" [borderRadius]="14" [loop]="true">
     <div class="carousel-cell" *ngFor="let product of huaweiProducts">
-      <a href="/{{ product._id }}" class="card-link">
+      <a [routerLink]="['/products', product._id]" class="card-link">
         <article class="card">
           <img
             class="card__img"

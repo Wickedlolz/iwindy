@@ -9,6 +9,7 @@ import { ProductService } from '../core/product.service';
 })
 export class ProductListComponent implements OnInit {
   products!: IProduct[];
+  selectedCategory: string = 'all';
 
   constructor(private productService: ProductService) {}
 
@@ -22,12 +23,22 @@ export class ProductListComponent implements OnInit {
   }
 
   handleChangeCategory(category: string): void {
-    this.productService.loadByCategory$(category).subscribe({
-      next: (products) => {
-        this.products = products;
-      },
-      error: (error) => alert(error),
-    });
+    if (category === 'all') {
+      this.productService.loadProducts$().subscribe({
+        next: (products) => {
+          this.products = products;
+          this.selectedCategory = category;
+        },
+      });
+    } else {
+      this.productService.loadByCategory$(category).subscribe({
+        next: (products) => {
+          this.products = products;
+          this.selectedCategory = category;
+        },
+        error: (error) => alert(error),
+      });
+    }
   }
 
   handleSearch($event: SubmitEvent): void {

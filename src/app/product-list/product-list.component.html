@@ -15,29 +15,67 @@
     <h2 class="title">Categories</h2>
     <ul class="categories" role="list">
       <li class="category">
-        <button (click)="handleChangeCategory('apple')">Apple</button>
+        <button
+          [ngClass]="selectedCategory === 'all' ? 'active' : ''"
+          (click)="handleChangeCategory('all')"
+        >
+          All
+        </button>
       </li>
       <li class="category">
-        <button (click)="handleChangeCategory('samsung')">Samgung</button>
+        <button
+          [ngClass]="selectedCategory === 'apple' ? 'active' : ''"
+          (click)="handleChangeCategory('apple')"
+        >
+          Apple
+        </button>
       </li>
       <li class="category">
-        <button (click)="handleChangeCategory('huawei')">Huawei</button>
+        <button
+          [ngClass]="selectedCategory === 'samsung' ? 'active' : ''"
+          (click)="handleChangeCategory('samsung')"
+        >
+          Samsung
+        </button>
       </li>
       <li class="category">
-        <button (click)="handleChangeCategory('xiomi')">Xiomi</button>
+        <button
+          [ngClass]="selectedCategory === 'huawei' ? 'active' : ''"
+          (click)="handleChangeCategory('huawei')"
+        >
+          Huawei
+        </button>
       </li>
       <li class="category">
-        <button (click)="handleChangeCategory('nokia')">Nokia</button>
+        <button
+          [ngClass]="selectedCategory === 'xiomi' ? 'active' : ''"
+          (click)="handleChangeCategory('xiomi')"
+        >
+          Xiomi
+        </button>
       </li>
       <li class="category">
-        <button (click)="handleChangeCategory('other')">Other</button>
+        <button
+          [ngClass]="selectedCategory === 'nokia' ? 'active' : ''"
+          (click)="handleChangeCategory('nokia')"
+        >
+          Nokia
+        </button>
+      </li>
+      <li class="category">
+        <button
+          [ngClass]="selectedCategory === 'other' ? 'active' : ''"
+          (click)="handleChangeCategory('other')"
+        >
+          Other
+        </button>
       </li>
     </ul>
   </div>
   <div class="products-container">
     <ul class="products" role="list" *ngIf="products">
       <li class="product" *ngFor="let product of products">
-        <a [href]="'/products/' + product._id">
+        <a [routerLink]="['/products', product._id]">
           <article class="card">
             <img
               loading="lazy"

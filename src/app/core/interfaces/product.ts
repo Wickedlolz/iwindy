@@ -1,11 +1,11 @@
 export interface IProduct {
-  _id: string;
+  _id?: string;
   model: string;
   price: number;
   released: string;
-  weigth: string;
+  weight: string;
   os: string;
-  memory: number;
+  memory: string;
   displaySize: number;
   displayResolutions: string;
   cameraMP: number;

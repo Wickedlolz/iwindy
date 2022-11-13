@@ -168,7 +168,7 @@
   background-color: #cb71de;
   background-image: linear-gradient(
     to right,
-    #fdfdfd,
+    #d8bcf8,
     #e7ddfc,
     #d8bcf8,
     #cf99ed,
@@ -298,4 +298,10 @@
 
 .details .reviews .list .list__item .comment-header .comment-header__time i {
   margin-right: 5px;
+}
+
+.loading {
+  font-size: 32px;
+  letter-spacing: 1px;
+  text-align: center;
 }
