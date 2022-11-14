@@ -36,7 +36,7 @@
   display: grid;
   grid-template-columns: repeat(4, 33%);
   grid-template-areas:
-    "list list rating likes"
+    "list list price likes"
     "display camera ram battery";
 
   grid-template-rows: 200px 150px;
@@ -62,8 +62,8 @@
   height: 100px;
 }
 
-.details .article-info .features .features__rating {
-  grid-area: rating;
+.details .article-info .features .features__price {
+  grid-area: price;
   height: 100px;
 }
 
@@ -131,8 +131,14 @@
   font-weight: bold;
 }
 
-.details .article-info .features .features__rating strong,
-.details .article-info .features .features__rating span,
+.details .article-info .features .features__price strong {
+  display: block;
+  padding-top: 25px;
+  text-align: center;
+  font-size: 25px;
+  color: #fff;
+}
+
 .details .article-info .features .features__likes strong,
 .details .article-info .features .features__likes span {
   display: block;

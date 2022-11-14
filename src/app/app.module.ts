@@ -33,7 +33,7 @@ import { ProfileComponent } from './profile/profile.component';
     AppRoutingModule,
     HttpClientModule,
     IvyCarouselModule,
-    CoreModule,
+    CoreModule.forRoot(),
     SharedModule,
   ],
   providers: [],
