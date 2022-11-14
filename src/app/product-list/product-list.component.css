@@ -152,3 +152,8 @@
 .container .products-container .products .card .content .content__title {
   color: #fff;
 }
+
+.loading p {
+  text-align: center;
+  font-size: 24px;
+}

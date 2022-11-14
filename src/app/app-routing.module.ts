@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { WelcomeComponent } from './shared/welcome/welcome.component';
 
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'profile/:userId',
+    component: ProfileComponent,
   },
   {
     path: 'home',

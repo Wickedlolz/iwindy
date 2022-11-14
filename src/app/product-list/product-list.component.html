@@ -73,7 +73,7 @@
     </ul>
   </div>
   <div class="products-container">
-    <ul class="products" role="list" *ngIf="products">
+    <ul class="products" role="list" *ngIf="!isLoading">
       <li class="product" *ngFor="let product of products">
         <a [routerLink]="['/products', product._id]">
           <article class="card">
@@ -96,5 +96,8 @@
         </a>
       </li>
     </ul>
+    <div class="loading" *ngIf="isLoading">
+      <p>Loading&hellip;</p>
+    </div>
   </div>
 </section>

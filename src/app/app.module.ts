@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductCreateComponent } from './product-create/product-create.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProductCreateComponent } from './product-create/product-create.componen
     LoginComponent,
     RegisterComponent,
     ProductCreateComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

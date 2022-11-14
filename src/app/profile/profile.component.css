@@ -1,0 +1,108 @@
+.profile {
+  width: 90%;
+  margin-inline: auto;
+  border-radius: 4px;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.profile .account {
+  border: 1px solid #fff;
+  background-color: #eee;
+  width: 40%;
+  max-width: 40%;
+  height: 180px;
+  padding: 10px 20px;
+}
+
+.profile .account .title {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.profile .account .account-info {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.profile .account .account-info .info .info__item p {
+  font-weight: bold;
+}
+
+.profile .items {
+  width: 60%;
+  background-color: #eee;
+  padding: 10px 20px;
+}
+
+.profile .items .title {
+  margin-bottom: 10px;
+}
+
+.profile .items .products-list .products-list__item {
+  background-color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  scale: 1;
+
+  transition: scale 300ms ease-in-out;
+}
+
+.profile .items .products-list .products-list__item:hover {
+  scale: 1.02;
+}
+
+.profile .items .products-list .products-list__item .product .product__img {
+  width: 150px;
+  height: 150px;
+  border-radius: 4px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.profile .items .products-list .products-list__item .product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile
+  .items
+  .products-list
+  .products-list__item
+  .product
+  .details
+  .details__price,
+.profile
+  .items
+  .products-list
+  .products-list__item
+  .product
+  .details
+  .details__createdAt {
+  color: gray;
+  font-weight: bold;
+}
+
+.profile .items .products-list .products-list__item .product .actions .view {
+  padding: 5px 15px;
+  background-color: yellow;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.profile .items .products-list .products-list__item .product .actions .edit {
+  padding: 5px 15px;
+  background-color: #ff0026;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 22px;
+  cursor: pointer;
+  margin-left: 5px;
+}
