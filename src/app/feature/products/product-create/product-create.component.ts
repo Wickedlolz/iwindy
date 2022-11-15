@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from '../core/interfaces';
-import { ProductService } from '../core/product.service';
+import { IProduct } from '../../../core/interfaces';
+import { ProductService } from '../../../core/product.service';
 
 @Component({
   selector: 'app-product-create',

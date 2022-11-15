@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { zip } from 'rxjs';
-import { IImage, IProduct } from '../core/interfaces';
-import { ProductService } from '../core/product.service';
+import { IImage, IProduct } from '../../../core/interfaces';
+import { ProductService } from '../../../core/product.service';
 
 @Component({
   selector: 'app-home',

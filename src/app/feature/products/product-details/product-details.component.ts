@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap, switchMap, tap } from 'rxjs';
-import { IProduct } from '../core/interfaces';
-import { ProductService } from '../core/product.service';
+import { IProduct } from '../../../core/interfaces';
+import { ProductService } from '../../../core/product.service';
 
 @Component({
   selector: 'app-product-details',
