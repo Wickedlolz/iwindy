@@ -1,6 +1,6 @@
 <section class="login">
   <h2 class="title"><i class="fa-solid fa-right-to-bracket"></i> Login</h2>
-  <form class="form">
+  <form class="form" (submit)="handleLogin($event)">
     <label for="email">Email</label>
     <input type="email" name="email" class="email" placeholder="Email adress" />
     <label for="password">Password</label>

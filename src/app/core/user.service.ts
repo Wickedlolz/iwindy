@@ -2,18 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { IUser } from './interfaces';
 
 const apiUrl = environment.apiUrl;
-
-interface IUser {
-  _id: string;
-  email: string;
-}
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  user: IUser | null = null;
+
   constructor(private http: HttpClient) {}
 
   login$(email: string, password: string): Observable<IUser> {
@@ -30,5 +28,9 @@ export class UserService {
       { email, password },
       { withCredentials: true }
     );
+  }
+
+  logout$(): Observable<{ message: string }> {
+    return this.http.get<{ message: string }>(apiUrl + '/users/logout');
   }
 }

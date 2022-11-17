@@ -5,11 +5,12 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ProductService } from './product.service';
 import { UserService } from './user.service';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, WelcomeComponent, FooterComponent],
   imports: [CommonModule, RouterModule],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, WelcomeComponent, FooterComponent],
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule> {
