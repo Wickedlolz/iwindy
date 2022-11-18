@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ProductsModule } from './feature/products/products.module';
 import { AuthModule } from './auth/auth.module';
-import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './feature/pages/pages.module';
 
 @NgModule({

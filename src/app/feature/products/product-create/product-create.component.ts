@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { IProduct } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 
@@ -8,9 +9,14 @@ import { ProductService } from '../../../core/product.service';
   styleUrls: ['./product-create.component.css'],
 })
 export class ProductCreateComponent implements OnInit {
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private titleService: Title
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.titleService.setTitle('Create | iWindy');
+  }
 
   handleCreate($event: SubmitEvent): void {
     $event.preventDefault();

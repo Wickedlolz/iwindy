@@ -17,7 +17,8 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +34,7 @@ export class ProductDetailsComponent implements OnInit {
       )
       .subscribe({
         next: (product) => {
+          this.titleService.setTitle(product.model + ' | iWindy');
           this.product = product;
           this.isLoading = false;
         },

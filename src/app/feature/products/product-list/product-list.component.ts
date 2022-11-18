@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { IProduct } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 
@@ -12,9 +13,13 @@ export class ProductListComponent implements OnInit {
   selectedCategory: string = 'all';
   isLoading: boolean = true;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Products | iWindy');
     this.productService.loadProducts$().subscribe({
       next: (products) => {
         this.isLoading = false;

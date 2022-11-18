@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-header',
@@ -6,19 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  isAuth: boolean = false;
+  isAuth!: boolean;
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {}
 
   handleLoginClick(event: MouseEvent): void {
     event.preventDefault();
-    this.isAuth = !this.isAuth;
+    this.userService.login();
+    this.isAuth = this.userService.isAuth;
   }
 
   handleLogOutClick($event: MouseEvent): void {
     $event.preventDefault();
-    this.isAuth = !this.isAuth;
+    this.userService.logout();
+    this.isAuth = this.userService.isAuth;
   }
 }

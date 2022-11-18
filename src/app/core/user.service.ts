@@ -11,8 +11,17 @@ const apiUrl = environment.apiUrl;
 })
 export class UserService {
   user: IUser | null = null;
+  isAuth: boolean = false;
 
   constructor(private http: HttpClient) {}
+
+  login(): void {
+    this.isAuth = true;
+  }
+
+  logout(): void {
+    this.isAuth = false;
+  }
 
   login$(email: string, password: string): Observable<IUser> {
     return this.http.post<IUser>(

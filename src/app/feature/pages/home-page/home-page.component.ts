@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { zip } from 'rxjs';
 import { IProduct, IImage } from 'src/app/core/interfaces';
 import { ProductService } from 'src/app/core/product.service';
@@ -28,9 +29,13 @@ export class HomePageComponent implements OnInit {
     },
   ];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Home | iWindy');
     zip(
       this.productService.loadByCategory$('apple'),
       this.productService.loadProducts$(),
