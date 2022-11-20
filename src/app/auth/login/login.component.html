@@ -1,16 +1,59 @@
 <section class="login">
   <h2 class="title"><i class="fa-solid fa-right-to-bracket"></i> Login</h2>
-  <form class="form" (submit)="handleLogin($event)">
+  <form class="form" (ngSubmit)="handleLogin()" [formGroup]="loginForm">
     <label for="email">Email</label>
-    <input type="email" name="email" class="email" placeholder="Email adress" />
+    <ng-container
+      *ngIf="
+        loginForm.controls['email'].touched &&
+        loginForm.controls['email'].invalid
+      "
+    >
+      <p class="alert" *ngIf="loginForm.controls['email'].errors?.['required']">
+        Email is required!
+      </p>
+      <p
+        class="alert"
+        *ngIf="!loginForm.controls['email'].errors?.['required'] && loginForm.controls['email'].errors?.['email']"
+      >
+        Email is not valid!
+      </p>
+    </ng-container>
+    <input
+      formControlName="email"
+      type="email"
+      name="email"
+      required
+      class="email"
+      placeholder="Email adress"
+    />
     <label for="password">Password</label>
+    <ng-container
+      *ngIf="
+        loginForm.controls['password'].touched &&
+        loginForm.controls['password'].invalid
+      "
+    >
+      <p
+        class="alert"
+        *ngIf="loginForm.controls['password'].errors?.['required']"
+      >
+        Password is required!
+      </p>
+      <p
+        class="alert"
+        *ngIf="loginForm.controls['password'].errors?.['minlength']"
+      >
+        Password must be at least 5 characters long.
+      </p>
+    </ng-container>
     <input
       type="password"
       name="password"
       class="password"
+      formControlName="password"
       placeholder="Password"
     />
-    <button>Log In</button>
+    <button [disabled]="loginForm.invalid">Log In</button>
   </form>
   <a routerLink="/register" class="link">Don't have an account? Register</a>
 </section>

@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/user.service';
+import { emailValidator } from '../util';
 
 @Component({
   selector: 'app-login',
@@ -9,28 +16,26 @@ import { UserService } from 'src/app/core/user.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup = this.formBuilder.group({
+    email: new FormControl('', [Validators.required, emailValidator]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+  });
+
   constructor(
     private userService: UserService,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.titleService.setTitle('Login | iWindy');
   }
 
-  handleLogin($event: SubmitEvent): void {
-    $event.preventDefault();
-    const formData = new FormData($event.target as HTMLFormElement);
-    const email = formData.get('email')?.toString() || '';
-    const password = formData.get('password')?.toString() || '';
-
-    this.userService.login$(email, password).subscribe({
-      next: (user) => {
-        this.userService.user = user;
-        this.router.navigate(['/home']);
-      },
-      error: (error) => alert(error),
-    });
+  handleLogin(): void {
+    console.log(this.loginForm);
   }
 }

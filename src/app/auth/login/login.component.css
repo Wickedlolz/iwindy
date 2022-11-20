@@ -49,6 +49,23 @@
   margin-bottom: 50px;
 }
 
+.login .form input.ng-valid {
+  border-left: 8px solid #42a948;
+}
+
+.login .form input.ng-invalid.ng-touched {
+  border-left: 8px solid #ff0026;
+}
+
+.alert {
+  background-color: #ff0026;
+  color: #fff;
+  width: 90%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
 .login .form button {
   margin-bottom: 20px;
   width: 90%;
@@ -68,6 +85,11 @@
 
 .login .form button:hover {
   background-color: #2585eb;
+}
+
+.login .form button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
 
 .login .link {

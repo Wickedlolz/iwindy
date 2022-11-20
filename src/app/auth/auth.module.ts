@@ -7,6 +7,7 @@ import { CartComponent } from './cart/cart.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,13 @@ import { AuthRoutingModule } from './auth-routing.module';
     ProfileComponent,
     CartComponent,
   ],
-  imports: [CommonModule, RouterModule, SharedModule, AuthRoutingModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    AuthRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AuthModule {}
