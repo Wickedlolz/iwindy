@@ -9,18 +9,13 @@
       <li class="nav-list__item">
         <a routerLink="/home" routerLinkActive="active">Home</a>
       </li>
-      <li class="nav-list__item" *ngIf="!isAuth">
-        <a
-          routerLink="/login"
-          routerLinkActive="active"
-          (click)="handleLoginClick($event)"
-          >Login</a
-        >
+      <li class="nav-list__item" *ngIf="!isLoggedIn">
+        <a routerLink="/login" routerLinkActive="active">Login</a>
       </li>
-      <li class="nav-list__item" *ngIf="!isAuth">
+      <li class="nav-list__item" *ngIf="!isLoggedIn">
         <a routerLink="/register" routerLinkActive="active">Register</a>
       </li>
-      <li class="nav-list__item" *ngIf="isAuth">
+      <li class="nav-list__item" *ngIf="isLoggedIn">
         <a
           routerLink="/products"
           routerLinkActive="active"
@@ -28,7 +23,7 @@
           >Products</a
         >
       </li>
-      <li class="nav-list__item" *ngIf="isAuth">
+      <li class="nav-list__item" *ngIf="isLoggedIn">
         <a
           routerLink="/products/create"
           routerLinkActive="active"
@@ -36,16 +31,16 @@
           >Create</a
         >
       </li>
-      <li class="nav-list__item" *ngIf="isAuth">
-        <a routerLink="/logout" (click)="handleLogOutClick($event)">Log Out</a>
+      <li class="nav-list__item" *ngIf="isLoggedIn">
+        <a (click)="handleLogOutClick($event)">Log Out</a>
       </li>
-      <li class="nav-list__item cart" *ngIf="isAuth">
-        <a routerLink="/profile/:userId" routerLinkActive="active">
+      <li class="nav-list__item cart" *ngIf="isLoggedIn">
+        <a routerLink="/profile" routerLinkActive="active">
           <i class="fa-solid fa-circle-user"></i>
         </a>
       </li>
-      <li class="nav-list__item cart" *ngIf="isAuth">
-        <a routerLink="/cart/:userId" routerLinkActive="active">
+      <li class="nav-list__item cart" *ngIf="isLoggedIn">
+        <a routerLink="/cart" routerLinkActive="active">
           <i class="fa-solid fa-cart-shopping"></i>
         </a>
       </li>

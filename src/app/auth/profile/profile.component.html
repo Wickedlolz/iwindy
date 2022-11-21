@@ -1,13 +1,14 @@
-<section class="profile">
+<app-loading *ngIf="isLoading"></app-loading>
+<section class="profile" *ngIf="!isLoading">
   <article class="account">
     <h2 class="title">Account information</h2>
     <div class="account-info">
       <ul class="info" role="list">
         <li class="info__item">
-          <p>Email adress: [username]@localdomain.com</p>
+          <p>Email adress: {{ currentUser.email }}</p>
         </li>
         <li class="info__item">
-          <p>Created At: 03.11.2022</p>
+          <p>Created At: {{ currentUser.createdAt }}</p>
         </li>
         <li class="info__item">
           <p>Listed products: 11</p>

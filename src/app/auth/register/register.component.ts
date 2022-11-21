@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/core/user.service';
 import { emailValidator, passwordMath } from '../util';
 
 @Component({
@@ -13,7 +15,7 @@ import { emailValidator, passwordMath } from '../util';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit, AfterViewInit {
+export class RegisterComponent implements OnInit {
   passwordControl = new FormControl('', [
     Validators.required,
     Validators.minLength(5),
@@ -34,17 +36,28 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     }),
   });
 
-  constructor(private titleService: Title, private formBuilder: FormBuilder) {}
+  constructor(
+    private titleService: Title,
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.titleService.setTitle('Register | iWindy');
   }
 
-  ngAfterViewInit(): void {
-    console.log(this.registerFormGroup);
-  }
-
   handleOnSubmit(): void {
-    console.log(this.registerFormGroup.value);
+    const body = {
+      email: this.registerFormGroup.value.email,
+      password: this.registerFormGroup.value.passwords.password,
+    };
+
+    this.userService.register$(body.email, body.password).subscribe({
+      next: (user) => {
+        this.router.navigate(['/home']);
+      },
+      error: (error) => alert(error),
+    });
   }
 }

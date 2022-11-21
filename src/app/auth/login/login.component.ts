@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
     ]),
   });
 
+  errorMessage: string = '';
+
   constructor(
     private userService: UserService,
     private router: Router,
@@ -36,6 +38,16 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin(): void {
-    console.log(this.loginForm);
+    const body = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password,
+    };
+
+    this.userService.login$(body.email, body.password).subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: (error) => (this.errorMessage = error.error.message),
+    });
   }
 }

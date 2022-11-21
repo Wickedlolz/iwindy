@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { IProduct } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 
@@ -11,7 +12,8 @@ import { ProductService } from '../../../core/product.service';
 export class ProductCreateComponent implements OnInit {
   constructor(
     private productService: ProductService,
-    private titleService: Title
+    private titleService: Title,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -65,5 +67,9 @@ export class ProductCreateComponent implements OnInit {
       next: (product) => alert('Product Created'),
       error: (error) => alert(error.message),
     });
+  }
+
+  navigateToHome(): void {
+    this.router.navigate(['/home']);
   }
 }

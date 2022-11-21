@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IUser } from '../interfaces';
 import { UserService } from '../user.service';
 
 @Component({
@@ -7,21 +9,25 @@ import { UserService } from '../user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  isAuth!: boolean;
+  get isLoggedIn(): boolean {
+    return this.userService.isLoggedIn;
+  }
 
-  constructor(private userService: UserService) {}
+  get currentUser(): IUser | null {
+    return this.userService.user;
+  }
+
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {}
 
-  handleLoginClick(event: MouseEvent): void {
-    // event.preventDefault();
-    // this.userService.login();
-    // this.isAuth = this.userService.isAuth;
-  }
-
   handleLogOutClick($event: MouseEvent): void {
     $event.preventDefault();
-    this.userService.logout();
-    this.isAuth = this.userService.isAuth;
+    this.userService.logout$().subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: (error) => alert(error),
+    });
   }
 }

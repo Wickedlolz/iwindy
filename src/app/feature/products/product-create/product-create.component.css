@@ -46,9 +46,13 @@
   margin-bottom: 20px;
 }
 
-.create .create-form .create-btn {
+.create .create-form .buttons {
   grid-column: span 2;
-  width: 20%;
+  display: flex;
+}
+
+.create .create-form .buttons .create-btn {
+  width: 30%;
   margin-inline: auto;
   margin-bottom: 100px;
 
@@ -64,6 +68,27 @@
   transition: background-color 300ms ease-in-out;
 }
 
-.create .create-form .create-btn:hover {
+.create .create-form .buttons .cancel-btn {
+  width: 30%;
+  margin-inline: auto;
+  margin-bottom: 100px;
+
+  padding: 7px 10px;
+  background-color: gray;
+  color: #fff;
+  font-size: 22px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  transition: background-color 300ms ease-in-out;
+}
+
+.create .create-form .buttons .cancel-btn:hover {
+  background-color: #707377;
+}
+
+.create .create-form .buttons .create-btn:hover {
   background-color: #2585eb;
 }

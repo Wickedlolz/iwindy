@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { IUser } from 'src/app/core/interfaces';
 import { UserService } from 'src/app/core/user.service';
 
 @Component({
@@ -9,18 +9,22 @@ import { UserService } from 'src/app/core/user.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  constructor(
-    private userService: UserService,
-    private activatedRoute: ActivatedRoute,
-    private titleService: Title
-  ) {}
+  currentUser!: IUser;
+  isLoading: boolean = true;
+
+  constructor(private userService: UserService, private titleService: Title) {}
 
   ngOnInit(): void {
     this.titleService.setTitle('Profile | iWindy');
-    this.activatedRoute.params.subscribe((params) => {
-      const userId = params['userId'];
-
-      console.log(userId);
+    this.userService.getProfile$().subscribe({
+      next: (user) => {
+        this.currentUser = user;
+        this.isLoading = false;
+        console.log(this.currentUser);
+      },
+      error: (error) => {
+        console.error(error);
+      },
     });
   }
 }
