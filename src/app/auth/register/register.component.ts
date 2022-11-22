@@ -8,7 +8,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/user.service';
-import { emailValidator, passwordMath } from '../util';
+import { emailValidator, passwordMatch } from '../util';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
       password: this.passwordControl,
       rePassword: new FormControl('', [
         Validators.required,
-        passwordMath(this.passwordControl),
+        passwordMatch(this.passwordControl),
       ]),
     }),
   });

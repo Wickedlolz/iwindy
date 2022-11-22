@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { zip } from 'rxjs';
+import { Subscription, zip } from 'rxjs';
 import { IProduct, IImage } from 'src/app/core/interfaces';
 import { ProductService } from 'src/app/core/product.service';
 
@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/core/product.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
   appleProducts: IProduct[] = [];
   samsungProducts: IProduct[] = [];
   huaweiProducts: IProduct[] = [];
@@ -34,9 +34,11 @@ export class HomePageComponent implements OnInit {
     private titleService: Title
   ) {}
 
+  private subscription!: Subscription;
+
   ngOnInit(): void {
     this.titleService.setTitle('Home | iWindy');
-    zip(
+    this.subscription = zip(
       this.productService.loadByCategory$('apple'),
       this.productService.loadProducts$(),
       this.productService.loadProducts$()
@@ -46,5 +48,9 @@ export class HomePageComponent implements OnInit {
       this.samsungProducts = samsung;
       this.huaweiProducts = huawei;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

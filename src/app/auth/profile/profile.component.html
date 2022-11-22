@@ -8,21 +8,31 @@
           <p>Email adress: {{ currentUser.email }}</p>
         </li>
         <li class="info__item">
-          <p>Created At: {{ currentUser.createdAt }}</p>
+          <p>Created At: {{ currentUser.createdAt | date: "fullDate" }}</p>
         </li>
         <li class="info__item">
-          <p>Listed products: 11</p>
+          <p>Listed products: {{ currentUser.myProducts.length }}</p>
         </li>
         <li class="info__item">
-          <p>Buyed products: 3</p>
+          <p>Buyed products: 0</p>
         </li>
       </ul>
     </div>
   </article>
   <div class="items">
     <h2 class="title">My Products</h2>
-    <ul class="products-list" role="list">
-      <li class="products-list__item">
+    <h3 class="title" *ngIf="currentUser.myProducts.length === 0">
+      No added products yet.
+    </h3>
+    <ul
+      class="products-list"
+      role="list"
+      *ngIf="currentUser.myProducts.length > 0"
+    >
+      <li
+        class="products-list__item"
+        *ngFor="let product of currentUser.myProducts"
+      >
         <article class="product">
           <img
             src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"

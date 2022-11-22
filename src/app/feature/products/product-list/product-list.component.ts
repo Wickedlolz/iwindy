@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { IProduct } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 
@@ -8,10 +9,12 @@ import { ProductService } from '../../../core/product.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
   products!: IProduct[];
   selectedCategory: string = 'all';
   isLoading: boolean = true;
+
+  private subscription!: Subscription;
 
   constructor(
     private productService: ProductService,
@@ -20,7 +23,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Products | iWindy');
-    this.productService.loadProducts$().subscribe({
+    this.subscription = this.productService.loadProducts$().subscribe({
       next: (products) => {
         this.isLoading = false;
         this.products = products;
@@ -58,5 +61,9 @@ export class ProductListComponent implements OnInit {
     const formData = new FormData($event.target as HTMLFormElement);
     const searchText = formData.get('search');
     console.log(searchText);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

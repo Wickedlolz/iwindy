@@ -7,4 +7,5 @@ export interface IUser {
   updatedAt: string;
   _id: string;
   myProducts: IProduct[];
+  buyed: IProduct[];
 }

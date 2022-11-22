@@ -5,12 +5,6 @@ export function emailValidator(
 ): ValidationErrors | null {
   const value = control.value;
 
-  //   if (!/.{6,}@gmail\.(com|bg)/.test(value)) {
-  //     return {
-  //       email: true,
-  //     };
-  //   }
-
   if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)) {
     return {
       email: true,
@@ -20,7 +14,7 @@ export function emailValidator(
   return null;
 }
 
-export function passwordMath(passwordFormControl: AbstractControl) {
+export function passwordMatch(passwordFormControl: AbstractControl) {
   return (rePasswordFormControl: AbstractControl) => {
     if (passwordFormControl.value !== rePasswordFormControl.value) {
       return {

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { mergeMap, switchMap, tap } from 'rxjs';
+import { mergeMap, Subscription, switchMap, tap } from 'rxjs';
 import { IProduct } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 
@@ -10,10 +10,12 @@ import { ProductService } from '../../../core/product.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   productId!: string;
   product!: IProduct;
+
+  private subscription!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +24,7 @@ export class ProductDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params
+    this.subscription = this.route.params
       .pipe(
         tap((params) => {
           this.productId = params['productId'];
@@ -43,5 +45,9 @@ export class ProductDetailsComponent implements OnInit {
           alert(error);
         },
       });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
