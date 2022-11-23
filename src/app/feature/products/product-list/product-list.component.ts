@@ -25,8 +25,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.titleService.setTitle('Products | iWindy');
     this.subscription = this.productService.loadProducts$().subscribe({
       next: (products) => {
-        this.isLoading = false;
         this.products = products;
+        this.isLoading = false;
       },
       error: (error) => alert(error),
     });

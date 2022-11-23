@@ -1,0 +1,28 @@
+.container {
+  width: 90%;
+  margin-inline: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container .notification {
+  width: 300px;
+  height: 80px;
+  border: 1px solid red;
+  border-radius: 10px;
+  padding: 0px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ff0026;
+  color: #fff;
+}
+
+.container .notification .message {
+  letter-spacing: 1px;
+}
+
+.container .notification i {
+  font-size: 20px;
+  cursor: pointer;
+}

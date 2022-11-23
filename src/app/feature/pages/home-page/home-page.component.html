@@ -1,5 +1,8 @@
 <app-loading *ngIf="isLoading"></app-loading>
-
+<app-notification
+  *ngIf="hasError"
+  [errorMessage]="errorMessage"
+></app-notification>
 <section class="products" *ngIf="!isLoading">
   <img
     class="products__img"
@@ -7,7 +10,9 @@
     alt="iPhone"
   />
   <div class="content">
-    <h1 class="content__title"><span class="logo-clr">iW</span>indy</h1>
+    <h1 class="content__title" (click)="makeErrorHandler()">
+      <span class="logo-clr">iW</span>indy
+    </h1>
     <p class="content_desc">Welcome to iWindy eCommerce Shop.</p>
     <p class="content_desc">
       Here you can find device you looking for or device you will want.

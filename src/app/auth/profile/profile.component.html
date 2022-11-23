@@ -35,36 +35,16 @@
       >
         <article class="product">
           <img
-            src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="samsung phone"
+            [src]="product.image"
+            [alt]="product.model"
             class="product__img"
           />
           <div class="details">
-            <h3 class="details__title">iPhone 14 Pro Max</h3>
-            <p class="details__price">1600$</p>
-            <p class="details__createdAt">Created at: 03.11.2022</p>
-          </div>
-          <div class="actions">
-            <button class="view">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <button class="edit">
-              <i class="fa-solid fa-pen-to-square"></i>
-            </button>
-          </div>
-        </article>
-      </li>
-      <li class="products-list__item">
-        <article class="product">
-          <img
-            src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="samsung phone"
-            class="product__img"
-          />
-          <div class="details">
-            <h3 class="details__title">iPhone 14 Pro Max</h3>
-            <p class="details__price">1600$</p>
-            <p class="details__createdAt">Created at: 03.11.2022</p>
+            <h3 class="details__title">{{ product.model }}</h3>
+            <p class="details__price">{{ product.price }}$</p>
+            <p class="details__createdAt">
+              Created at: {{ product.createdAt | date: "fullDate" }}
+            </p>
           </div>
           <div class="actions">
             <button class="view">

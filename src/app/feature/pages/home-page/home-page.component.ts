@@ -29,6 +29,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
     },
   ];
 
+  hasError: boolean = false;
+  errorMessage: string = '';
+
   constructor(
     private productService: ProductService,
     private titleService: Title
@@ -52,5 +55,10 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  makeErrorHandler(): void {
+    this.hasError = !this.hasError;
+    this.errorMessage = 'Some error message goes here..';
   }
 }

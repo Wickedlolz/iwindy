@@ -18,4 +18,6 @@ export interface IProduct {
   video: string;
   creator: string;
   category: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

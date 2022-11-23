@@ -92,3 +92,38 @@
 .create .create-form .buttons .create-btn:hover {
   background-color: #2585eb;
 }
+
+.alert {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  background-color: #ff0026;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .create .create-form {
+    display: unset;
+  }
+
+  .create .create-form label,
+  .create .create-form input,
+  .create .create-form select {
+    display: block;
+    margin-inline: auto;
+    width: 90%;
+  }
+
+  .create .create-form .buttons {
+    display: unset;
+    margin-inline: auto;
+  }
+
+  .create .create-form .buttons .create-btn,
+  .create .create-form .buttons .cancel-btn {
+    display: block;
+    margin-bottom: 10px;
+  }
+}

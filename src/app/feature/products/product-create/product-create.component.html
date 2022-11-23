@@ -1,35 +1,93 @@
 <section class="create">
   <h1 class="title">List a Product</h1>
-  <form class="create-form" (submit)="handleCreate($event)">
+  <form
+    class="create-form"
+    #productCreateGroup="ngForm"
+    (ngSubmit)="handleCreate(productCreateGroup)"
+  >
+    <ng-container *ngIf="productModel.touched && productModel.invalid">
+      <p class="alert" *ngIf="productModel.errors?.['required']">
+        Model is required!
+      </p>
+      <p class="alert" *ngIf="productModel.errors?.['minlength']">
+        Model must be at least 5 characters long.
+      </p>
+    </ng-container>
     <label for="model">Model</label>
     <input
       type="text"
       name="model"
+      #productModel="ngModel"
+      ngModel
       class="model"
+      required
+      minlength="5"
       placeholder="iPhone 14 Pro Max"
     />
+    <ng-container *ngIf="productPrice.touched && productPrice.invalid">
+      <p class="alert" *ngIf="productPrice.errors?.['required']">
+        Price is required!
+      </p>
+    </ng-container>
     <label for="price">Price</label>
-    <input type="number" name="price" class="price" placeholder="1500" />
+    <input
+      type="number"
+      name="price"
+      #productPrice="ngModel"
+      ngModel
+      required
+      class="price"
+      placeholder="1500"
+    />
+    <ng-container *ngIf="productRelease.touched && productRelease.invalid">
+      <p class="alert" *ngIf="productRelease.errors?.['required']">
+        Release is required!
+      </p>
+      <p class="alert" *ngIf="productRelease.errors?.['minlength']">
+        Release should be at least 15 characters long.
+      </p>
+    </ng-container>
     <label for="released">Released Date</label>
     <input
       type="text"
       name="released"
       class="released"
+      #productRelease="ngModel"
+      ngModel
+      required
+      minlength="15"
       placeholder="2022, September 16"
     />
     <label for="weight">Weight</label>
     <input
       type="text"
       name="weight"
+      #productWeight="ngModel"
+      ngModel
+      required
+      minlength="11"
       class="weight"
       placeholder="240g, 7.9mm thickness"
     />
     <label for="os">OS</label>
-    <input type="text" name="os" class="os" placeholder="iOS" />
+    <input
+      type="text"
+      name="os"
+      #productOs="ngModel"
+      ngModel
+      required
+      minlength="3"
+      class="os"
+      placeholder="iOS"
+    />
     <label for="memory">External Memory</label>
     <input
       type="text"
       name="memory"
+      #productMemory="ngModel"
+      ngModel
+      required
+      minlength="3"
       class="memory"
       placeholder="128GB/256GB/1TB storage, no card slot"
     />
@@ -37,6 +95,10 @@
     <input
       type="text"
       name="displaySize"
+      #productDisplaySize="ngModel"
+      ngModel
+      required
+      minlength="3"
       class="displaySize"
       placeholder="6.7"
     />
@@ -44,24 +106,54 @@
     <input
       type="text"
       name="displayResolutions"
+      #productDisplayResulutions="ngModel"
+      ngModel
+      required
+      minlength="9"
       class="displayResolutions"
       placeholder="1290x2796 pixels"
     />
     <label for="cameraMP">Camera MP</label>
-    <input type="number" name="cameraMP" class="cameraMP" placeholder="48" />
+    <input
+      type="number"
+      name="cameraMP"
+      #productCameraMP="ngModel"
+      ngModel
+      required
+      minlength="2"
+      class="cameraMP"
+      placeholder="48"
+    />
     <label for="cameraVideo">Camera Video Pixels</label>
     <input
       type="text"
       name="cameraVideo"
+      #productCameraVideo="ngModel"
+      ngModel
+      required
+      minlength="3"
       class="cameraVideo"
       placeholder="2160"
     />
     <label for="ram">RAM Memory</label>
-    <input type="number" name="ram" class="ram" placeholder="6" />
+    <input
+      type="number"
+      name="ram"
+      #productRam="ngModel"
+      ngModel
+      required
+      minlength="1"
+      class="ram"
+      placeholder="6"
+    />
     <label for="chipset">Chipset</label>
     <input
       type="text"
       name="chipset"
+      #productChipset="ngModel"
+      ngModel
+      required
+      minlength="4"
       class="chipset"
       placeholder="Apple A16 Bionic"
     />
@@ -69,26 +161,51 @@
     <input
       type="number"
       name="batteryMAH"
+      #productMah="ngModel"
+      ngModel
+      required
+      minlength="3"
       class="batteryMAH"
       placeholder="4323"
     />
     <label for="batteryType">Battery Type</label>
-    <select name="batteryType" class="batteryType">
+    <select
+      name="batteryType"
+      #productBatteryType="ngModel"
+      [ngModel]="'li-ion'"
+      class="batteryType"
+    >
       <option value="li-ion" selected>Li-Ion</option>
       <option value="li-po">Li-Po</option>
     </select>
     <label for="image">Product Image</label>
     <!-- <input type="file" name="image" class="image" /> -->
-    <input type="url" name="image" class="image" placeholder="Image URL here" />
+    <input
+      type="url"
+      name="image"
+      #productImage="ngModel"
+      ngModel
+      required
+      class="image"
+      placeholder="Image URL here"
+    />
     <label for="video">YouTube Review</label>
     <input
       type="url"
       name="video"
+      #productVideo="ngModel"
+      ngModel
+      required
       class="image"
       placeholder="YouTube URL here"
     />
     <label for="category">Select Category</label>
-    <select name="category" class="category">
+    <select
+      name="category"
+      #productCategory="ngModel"
+      [ngModel]="'samsung'"
+      class="category"
+    >
       <option value="samsung" selected>Samsung</option>
       <option value="apple">Apple</option>
       <option value="huawei">Huawei</option>
@@ -101,7 +218,9 @@
       <button class="cancel-btn" type="button" (click)="navigateToHome()">
         Cancel
       </button>
-      <button class="create-btn">Create</button>
+      <button class="create-btn" [disabled]="productCreateGroup.invalid">
+        Create
+      </button>
     </div>
   </form>
 </section>

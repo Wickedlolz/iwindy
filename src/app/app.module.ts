@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { ProductsModule } from './feature/products/products.module';
 import { AuthModule } from './auth/auth.module';
 import { PagesModule } from './feature/pages/pages.module';
 
@@ -16,7 +15,6 @@ import { PagesModule } from './feature/pages/pages.module';
     AppRoutingModule,
     HttpClientModule,
     CoreModule.forRoot(),
-    ProductsModule,
     AuthModule,
     PagesModule,
   ],

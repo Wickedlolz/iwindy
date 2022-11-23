@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { IvyCarouselModule } from 'angular14-responsive-carousel';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductsRoutingModule } from './products-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProductsRoutingModule } from './products-routing.module';
     IvyCarouselModule,
     SharedModule,
     ProductsRoutingModule,
+    FormsModule,
   ],
 })
 export class ProductsModule {}

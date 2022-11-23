@@ -61,6 +61,7 @@
 
 .container .products-container {
   width: 100%;
+  position: relative;
 }
 
 .container .products-container .products {

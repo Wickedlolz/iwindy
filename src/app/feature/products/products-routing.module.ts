@@ -6,16 +6,17 @@ import { ProductListComponent } from './product-list/product-list.component';
 
 const routes: Routes = [
   {
-    path: 'products',
+    path: '',
+    pathMatch: 'full',
     component: ProductListComponent,
   },
   {
-    path: 'products/create',
+    path: 'create',
     // canActivate: [AuthGuard],
     component: ProductCreateComponent,
   },
   {
-    path: 'products/:productId',
+    path: ':productId',
     component: ProductDetailsComponent,
   },
 ];

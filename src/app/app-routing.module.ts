@@ -13,6 +13,13 @@ const routes: Routes = [
     component: HomePageComponent,
   },
   {
+    path: 'products',
+    loadChildren: () =>
+      import('./feature/products/products.module').then(
+        (m) => m.ProductsModule
+      ),
+  },
+  {
     path: '**',
     component: NotFoundPageComponent,
   },
