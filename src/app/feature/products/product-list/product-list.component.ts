@@ -14,6 +14,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
   selectedCategory: string = 'all';
   isLoading: boolean = true;
 
+  hasError: boolean = false;
+  errorMessage: string = '';
+
   private subscription!: Subscription;
 
   constructor(
@@ -28,7 +31,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.products = products;
         this.isLoading = false;
       },
-      error: (error) => alert(error),
+      error: (error) => {
+        this.hasError = true;
+        this.errorMessage = error.message;
+        this.isLoading = false;
+      },
     });
   }
 
@@ -42,7 +49,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
           this.selectedCategory = category;
           this.isLoading = false;
         },
-        error: (error) => alert(error),
+        error: (error) => {
+          this.hasError = true;
+          this.errorMessage = error.message;
+          this.isLoading = false;
+        },
       });
     } else {
       this.productService.loadByCategory$(category).subscribe({
@@ -51,7 +62,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
           this.selectedCategory = category;
           this.isLoading = false;
         },
-        error: (error) => alert(error),
+        error: (error) => {
+          this.hasError = true;
+          this.errorMessage = error.message;
+          this.isLoading = false;
+        },
       });
     }
   }

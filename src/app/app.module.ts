@@ -15,7 +15,7 @@ import { PagesModule } from './feature/pages/pages.module';
     AppRoutingModule,
     HttpClientModule,
     CoreModule.forRoot(),
-    AuthModule,
+    AuthModule.forRoot(),
     PagesModule,
   ],
   providers: [],

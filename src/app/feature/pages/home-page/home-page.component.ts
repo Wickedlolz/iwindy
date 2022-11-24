@@ -45,20 +45,22 @@ export class HomePageComponent implements OnInit, OnDestroy {
       this.productService.loadByCategory$('apple'),
       this.productService.loadProducts$(),
       this.productService.loadProducts$()
-    ).subscribe(([apple, samsung, huawei]) => {
-      this.isLoading = false;
-      this.appleProducts = apple;
-      this.samsungProducts = samsung;
-      this.huaweiProducts = huawei;
+    ).subscribe({
+      next: ([apple, samsung, huawei]) => {
+        this.isLoading = false;
+        this.appleProducts = apple;
+        this.samsungProducts = samsung;
+        this.huaweiProducts = huawei;
+      },
+      error: (error) => {
+        this.hasError = true;
+        this.errorMessage = error.message;
+        this.isLoading = false;
+      },
     });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  makeErrorHandler(): void {
-    this.hasError = !this.hasError;
-    this.errorMessage = 'Some error message goes here..';
   }
 }

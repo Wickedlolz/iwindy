@@ -7,6 +7,9 @@
     [formGroup]="registerFormGroup"
     (ngSubmit)="handleOnSubmit()"
   >
+    <p class="alert" *ngIf="errorMessage.length > 0">
+      {{ errorMessage }}
+    </p>
     <label for="email">Email</label>
     <ng-container
       *ngIf="

@@ -30,10 +30,10 @@
         <!-- <span>2,987,559 hits</span> -->
       </li>
       <li class="features__likes">
-        <a href="#">
+        <button [disabled]="!(isLoggedIn$ | async)">
           <strong> <i class="fa-solid fa-heart"></i> 400 </strong>
           <span>Become a fan</span>
-        </a>
+        </button>
       </li>
       <li class="features__display">
         <i class="fa-solid fa-mobile-screen"></i>
@@ -57,17 +57,23 @@
       </li>
     </ul>
   </div>
-  <div class="actions">
+  <div class="actions" *ngIf="isLoggedIn$ | async">
     <ul class="list" role="list">
       <li class="list__item">
         <i class="fa-solid fa-cart-shopping"></i>
         <a href="#">Add to Cart</a>
       </li>
-      <li class="list__item">
+      <li
+        class="list__item"
+        *ngIf="(currentUser$ | async)?._id === product.creator._id"
+      >
         <i class="fa-solid fa-pen-to-square"></i>
         <a href="#">Edit</a>
       </li>
-      <li class="list__item">
+      <li
+        class="list__item"
+        *ngIf="(currentUser$ | async)?._id === product.creator._id"
+      >
         <i class="fa-sharp fa-solid fa-trash"></i>
         <a href="#">Delete</a>
       </li>
@@ -82,7 +88,7 @@
       allowfullscreen
     ></iframe>
   </div>
-  <form class="form" method="post">
+  <form class="form" method="post" *ngIf="isLoggedIn$ | async">
     <label for="comment">Commnet</label>
     <input
       type="text"

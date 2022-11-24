@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { mergeMap, Subscription, switchMap, tap } from 'rxjs';
-import { IProduct } from '../../../core/interfaces';
+import { mergeMap, Observable, Subscription, switchMap, tap } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
+import { IProduct, IUser } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 
 @Component({
@@ -15,11 +16,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   productId!: string;
   product!: IProduct;
 
+  currentUser$: Observable<IUser | undefined> = this.authService.currentUser$;
+  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
+
   private subscription!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    private authService: AuthService,
     private titleService: Title
   ) {}
 
@@ -38,6 +43,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         next: (product) => {
           this.titleService.setTitle(product.model + ' | iWindy');
           this.product = product;
+          console.log(product);
           this.isLoading = false;
         },
         error: (error) => {

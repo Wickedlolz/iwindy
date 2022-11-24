@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { IUser } from '../interfaces';
 import { UserService } from '../user.service';
 
@@ -9,21 +11,15 @@ import { UserService } from '../user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  get isLoggedIn(): boolean {
-    return this.userService.isLoggedIn;
-  }
+  currentUser$: Observable<IUser | undefined> = this.authService.currentUser$;
+  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
 
-  get currentUser(): IUser | null {
-    return this.userService.user;
-  }
-
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
-  handleLogOutClick($event: MouseEvent): void {
-    $event.preventDefault();
-    this.userService.logout$().subscribe({
+  handleLogout(): void {
+    this.authService.logout$().subscribe({
       next: () => {
         this.router.navigate(['/home']);
       },

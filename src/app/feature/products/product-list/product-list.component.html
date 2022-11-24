@@ -1,7 +1,11 @@
+<app-notification
+  *ngIf="hasError"
+  [errorMessage]="errorMessage"
+></app-notification>
 <section class="container">
   <div class="aside">
+    <h2 class="title">Search</h2>
     <form class="search-form" (submit)="handleSearch($event)">
-      <h2 class="title">Search</h2>
       <input
         type="search"
         name="search"

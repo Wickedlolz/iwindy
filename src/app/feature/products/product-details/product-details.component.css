@@ -70,6 +70,7 @@
 .details .article-info .features .features__likes {
   grid-area: likes;
   height: 100px;
+  margin-inline: auto;
 }
 
 .details .article-info .features .features__display {
@@ -143,13 +144,19 @@
 .details .article-info .features .features__likes span {
   display: block;
   padding-top: 7px;
-  text-align: center;
   font-size: 25px;
   color: #fff;
 }
 
-.details .article-info .features .features__likes a {
-  text-decoration: none;
+.details .article-info .features .features__likes button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.details .article-info .features .features__likes button:disabled {
+  cursor: default;
 }
 
 .details .article-info .features .features__display i,
@@ -180,6 +187,9 @@
     #cf99ed,
     #cb71de
   );
+
+  display: flex;
+  justify-content: center;
 }
 
 .details .actions .list .list__item:nth-child(1),
@@ -304,4 +314,8 @@
 
 .details .reviews .list .list__item .comment-header .comment-header__time i {
   margin-right: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  /* TOOD: makes responsive design   */
 }

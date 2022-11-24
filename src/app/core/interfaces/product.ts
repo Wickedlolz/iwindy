@@ -1,3 +1,5 @@
+import { IUser } from './user';
+
 export interface IProduct {
   _id?: string;
   model: string;
@@ -16,7 +18,7 @@ export interface IProduct {
   batteryType: string;
   image: string;
   video: string;
-  creator: string;
+  creator: IUser;
   category: string;
   createdAt?: string;
   updatedAt?: string;

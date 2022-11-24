@@ -9,3 +9,8 @@ export interface IUser {
   myProducts: IProduct[];
   buyed: IProduct[];
 }
+
+export interface IUserDto {
+  email: string;
+  password: string;
+}

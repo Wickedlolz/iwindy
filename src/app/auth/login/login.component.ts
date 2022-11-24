@@ -8,6 +8,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/user.service';
+import { AuthService } from '../auth.service';
 import { emailValidator } from '../util';
 
 @Component({
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
   errorMessage: string = '';
 
   constructor(
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private titleService: Title,
     private formBuilder: FormBuilder
@@ -43,8 +44,8 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.password,
     };
 
-    this.userService.login$(body.email, body.password).subscribe({
-      next: () => {
+    this.authService.login$(body.email, body.password).subscribe({
+      next: (user) => {
         this.router.navigate(['/home']);
       },
       error: (error) => (this.errorMessage = error.error.message),

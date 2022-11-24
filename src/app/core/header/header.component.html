@@ -9,13 +9,7 @@
       <li class="nav-list__item">
         <a routerLink="/home" routerLinkActive="active">Home</a>
       </li>
-      <li class="nav-list__item" *ngIf="!isLoggedIn">
-        <a routerLink="/login" routerLinkActive="active">Login</a>
-      </li>
-      <li class="nav-list__item" *ngIf="!isLoggedIn">
-        <a routerLink="/register" routerLinkActive="active">Register</a>
-      </li>
-      <li class="nav-list__item" *ngIf="isLoggedIn">
+      <li class="nav-list__item">
         <a
           routerLink="/products"
           routerLinkActive="active"
@@ -23,7 +17,13 @@
           >Products</a
         >
       </li>
-      <li class="nav-list__item" *ngIf="isLoggedIn">
+      <li class="nav-list__item" *ngIf="!(isLoggedIn$ | async)">
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+      </li>
+      <li class="nav-list__item" *ngIf="!(isLoggedIn$ | async)">
+        <a routerLink="/register" routerLinkActive="active">Register</a>
+      </li>
+      <li class="nav-list__item" *ngIf="isLoggedIn$ | async">
         <a
           routerLink="/products/create"
           routerLinkActive="active"
@@ -31,15 +31,15 @@
           >Create</a
         >
       </li>
-      <li class="nav-list__item" *ngIf="isLoggedIn">
-        <a (click)="handleLogOutClick($event)">Log Out</a>
+      <li class="nav-list__item" *ngIf="isLoggedIn$ | async">
+        <a href="javascript:void(0)" (click)="handleLogout()">Log Out</a>
       </li>
-      <li class="nav-list__item cart" *ngIf="isLoggedIn">
+      <li class="nav-list__item cart" *ngIf="isLoggedIn$ | async">
         <a routerLink="/profile" routerLinkActive="active">
           <i class="fa-solid fa-circle-user"></i>
         </a>
       </li>
-      <li class="nav-list__item cart" *ngIf="isLoggedIn">
+      <li class="nav-list__item cart" *ngIf="isLoggedIn$ | async">
         <a routerLink="/cart" routerLinkActive="active">
           <i class="fa-solid fa-cart-shopping"></i>
         </a>

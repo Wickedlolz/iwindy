@@ -8,6 +8,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/user.service';
+import { AuthService } from '../auth.service';
 import { emailValidator, passwordMatch } from '../util';
 
 @Component({
@@ -25,6 +26,8 @@ export class RegisterComponent implements OnInit {
     return this.registerFormGroup.controls['passwords'] as FormGroup;
   }
 
+  errorMessage: string = '';
+
   registerFormGroup: FormGroup = this.formBuilder.group({
     email: new FormControl('', [Validators.required, emailValidator]),
     passwords: new FormGroup({
@@ -39,7 +42,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private titleService: Title,
     private formBuilder: FormBuilder,
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -53,11 +56,11 @@ export class RegisterComponent implements OnInit {
       password: this.registerFormGroup.value.passwords.password,
     };
 
-    this.userService.register$(body.email, body.password).subscribe({
+    this.authService.register$(body.email, body.password).subscribe({
       next: (user) => {
         this.router.navigate(['/home']);
       },
-      error: (error) => alert(error),
+      error: (error) => (this.errorMessage = error.message),
     });
   }
 }
