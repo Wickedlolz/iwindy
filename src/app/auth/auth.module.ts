@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -26,11 +25,4 @@ import { AuthService } from './auth.service';
     ReactiveFormsModule,
   ],
 })
-export class AuthModule {
-  static forRoot(): ModuleWithProviders<AuthModule> {
-    return {
-      ngModule: AuthModule,
-      providers: [AuthService],
-    };
-  }
-}
+export class AuthModule {}

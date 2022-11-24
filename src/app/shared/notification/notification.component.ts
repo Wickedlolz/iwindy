@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NotificationComponent implements OnInit {
   @Input() errorMessage!: string;
+  @Input() isErrorMessage!: boolean;
 
   constructor() {}
 

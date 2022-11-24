@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap, Observable, Subscription, switchMap, tap } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/core/auth.service';
 import { IProduct, IUser } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 

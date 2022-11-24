@@ -7,8 +7,7 @@ import {
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/core/user.service';
-import { AuthService } from '../auth.service';
+import { AuthService } from 'src/app/core/auth.service';
 import { emailValidator, passwordMatch } from '../util';
 
 @Component({
@@ -60,7 +59,7 @@ export class RegisterComponent implements OnInit {
       next: (user) => {
         this.router.navigate(['/home']);
       },
-      error: (error) => (this.errorMessage = error.message),
+      // error: (error) => (this.errorMessage = error.message),
     });
   }
 }

@@ -19,21 +19,14 @@ export class ProductService {
   }
 
   loadByCategory$(category: string): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(
-      apiUrl + '/products/category/' + category,
-      { withCredentials: true }
-    );
+    return this.http.get<IProduct[]>(apiUrl + '/products/category/' + category);
   }
 
   loadById$(productId: string): Observable<IProduct> {
-    return this.http.get<IProduct>(apiUrl + '/products/' + productId, {
-      withCredentials: true,
-    });
+    return this.http.get<IProduct>(apiUrl + '/products/' + productId);
   }
 
   create$(productData: IProduct): Observable<IProduct> {
-    return this.http.post<IProduct>(apiUrl + '/products', productData, {
-      withCredentials: true,
-    });
+    return this.http.post<IProduct>(apiUrl + '/products', productData);
   }
 }

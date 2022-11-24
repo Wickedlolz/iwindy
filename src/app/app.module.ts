@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { AuthModule } from './auth/auth.module';
 import { PagesModule } from './feature/pages/pages.module';
+import { AuthService } from './core/auth.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,10 +15,18 @@ import { PagesModule } from './feature/pages/pages.module';
     AppRoutingModule,
     HttpClientModule,
     CoreModule.forRoot(),
-    AuthModule.forRoot(),
     PagesModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (authService: AuthService) => {
+        return () => authService.authenticate();
+      },
+      deps: [AuthService],
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

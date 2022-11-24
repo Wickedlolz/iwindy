@@ -14,9 +14,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
   selectedCategory: string = 'all';
   isLoading: boolean = true;
 
-  hasError: boolean = false;
-  errorMessage: string = '';
-
   private subscription!: Subscription;
 
   constructor(
@@ -32,8 +29,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       },
       error: (error) => {
-        this.hasError = true;
-        this.errorMessage = error.message;
         this.isLoading = false;
       },
     });
@@ -50,8 +45,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         },
         error: (error) => {
-          this.hasError = true;
-          this.errorMessage = error.message;
           this.isLoading = false;
         },
       });
@@ -63,14 +56,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         },
         error: (error) => {
-          this.hasError = true;
-          this.errorMessage = error.message;
           this.isLoading = false;
         },
       });
     }
   }
 
+  // TODO!: add forms module and handle search <--
   handleSearch($event: SubmitEvent): void {
     $event.preventDefault();
     const formData = new FormData($event.target as HTMLFormElement);

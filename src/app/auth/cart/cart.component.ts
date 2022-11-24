@@ -7,6 +7,8 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+  // TODO!: implement load user items in cart and functionality <--
+
   constructor(private titleService: Title) {}
 
   ngOnInit(): void {

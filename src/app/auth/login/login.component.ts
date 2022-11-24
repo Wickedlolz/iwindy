@@ -7,8 +7,11 @@ import {
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/core/user.service';
-import { AuthService } from '../auth.service';
+import { AuthService } from 'src/app/core/auth.service';
+import {
+  MessageBusService,
+  MessageType,
+} from 'src/app/core/message-bus.service';
 import { emailValidator } from '../util';
 
 @Component({
@@ -31,7 +34,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private titleService: Title,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private messageBus: MessageBusService
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +51,12 @@ export class LoginComponent implements OnInit {
     this.authService.login$(body.email, body.password).subscribe({
       next: (user) => {
         this.router.navigate(['/home']);
+
+        this.messageBus.notifyForMessage({
+          text: 'Successfully logged in.',
+          type: MessageType.Success,
+        });
       },
-      error: (error) => (this.errorMessage = error.error.message),
     });
   }
 }

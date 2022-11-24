@@ -18,10 +18,10 @@
         >
       </li>
       <li class="nav-list__item" *ngIf="!(isLoggedIn$ | async)">
-        <a routerLink="/login" routerLinkActive="active">Login</a>
+        <a routerLink="/user/login" routerLinkActive="active">Login</a>
       </li>
       <li class="nav-list__item" *ngIf="!(isLoggedIn$ | async)">
-        <a routerLink="/register" routerLinkActive="active">Register</a>
+        <a routerLink="/user/register" routerLinkActive="active">Register</a>
       </li>
       <li class="nav-list__item" *ngIf="isLoggedIn$ | async">
         <a
@@ -35,15 +35,20 @@
         <a href="javascript:void(0)" (click)="handleLogout()">Log Out</a>
       </li>
       <li class="nav-list__item cart" *ngIf="isLoggedIn$ | async">
-        <a routerLink="/profile" routerLinkActive="active">
+        <a routerLink="/user/profile" routerLinkActive="active">
           <i class="fa-solid fa-circle-user"></i>
         </a>
       </li>
       <li class="nav-list__item cart" *ngIf="isLoggedIn$ | async">
-        <a routerLink="/cart" routerLinkActive="active">
+        <a routerLink="/user/cart" routerLinkActive="active">
           <i class="fa-solid fa-cart-shopping"></i>
         </a>
       </li>
     </ul>
   </nav>
 </div>
+<app-notification
+  *ngIf="!!message"
+  [errorMessage]="message"
+  [isErrorMessage]="isMessageError"
+></app-notification>

@@ -1,8 +1,12 @@
-<div class="container" appHideNotification>
-  <div class="notification">
+<div class="container">
+  <div
+    class="notification"
+    [ngClass]="{ error: isErrorMessage, success: !isErrorMessage }"
+  >
     <p class="message">
       {{ errorMessage }}
     </p>
-    <i class="fa-regular fa-circle-xmark"></i>
+    <i *ngIf="isErrorMessage" class="fa-solid fa-triangle-exclamation"></i>
+    <i *ngIf="!isErrorMessage" class="fa-solid fa-circle-check"></i>
   </div>
 </div>
