@@ -36,6 +36,10 @@
   caret-color: blue;
 }
 
+.create .create-form input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
 .create .create-form select {
   outline: none;
   border-radius: 10px;
@@ -83,6 +87,14 @@
   cursor: pointer;
 
   transition: background-color 300ms ease-in-out;
+}
+
+.create .create-form .buttons .create-btn:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+.create .create-form .buttons .create-btn:disabled:hover {
+  background-color: gray;
 }
 
 .create .create-form .buttons .cancel-btn:hover {

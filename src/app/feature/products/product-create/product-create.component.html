@@ -58,6 +58,14 @@
       minlength="15"
       placeholder="2022, September 16"
     />
+    <ng-container *ngIf="productWeight.touched && productWeight.invalid">
+      <p class="alert" *ngIf="productWeight.errors?.['required']">
+        Weight is required!
+      </p>
+      <p class="alert" *ngIf="productWeight.errors?.['minlength']">
+        Weight should be at least 11 characters long.
+      </p>
+    </ng-container>
     <label for="weight">Weight</label>
     <input
       type="text"
@@ -69,6 +77,14 @@
       class="weight"
       placeholder="240g, 7.9mm thickness"
     />
+    <ng-container *ngIf="productOs.touched && productOs.invalid">
+      <p class="alert" *ngIf="productOs.errors?.['required']">
+        OS is required!
+      </p>
+      <p class="alert" *ngIf="productOs.errors?.['minlength']">
+        OS should be at least 3 characters long.
+      </p>
+    </ng-container>
     <label for="os">OS</label>
     <input
       type="text"
@@ -80,6 +96,14 @@
       class="os"
       placeholder="iOS"
     />
+    <ng-container *ngIf="productMemory.touched && productMemory.invalid">
+      <p class="alert" *ngIf="productMemory.errors?.['required']">
+        Memory is required!
+      </p>
+      <p class="alert" *ngIf="productMemory.errors?.['minlength']">
+        Memory should be at least 3 characters long.
+      </p>
+    </ng-container>
     <label for="memory">External Memory</label>
     <input
       type="text"
@@ -91,6 +115,16 @@
       class="memory"
       placeholder="128GB/256GB/1TB storage, no card slot"
     />
+    <ng-container
+      *ngIf="productDisplaySize.touched && productDisplaySize.invalid"
+    >
+      <p class="alert" *ngIf="productDisplaySize.errors?.['required']">
+        Display Size is required!
+      </p>
+      <p class="alert" *ngIf="productDisplaySize.errors?.['minlength']">
+        Display Size should be at least 3 characters long.
+      </p>
+    </ng-container>
     <label for="displaySize">Display Size</label>
     <input
       type="text"
@@ -102,6 +136,18 @@
       class="displaySize"
       placeholder="6.7"
     />
+    <ng-container
+      *ngIf="
+        productDisplayResulutions.touched && productDisplayResulutions.invalid
+      "
+    >
+      <p class="alert" *ngIf="productDisplayResulutions.errors?.['required']">
+        Display Resolution is required!
+      </p>
+      <p class="alert" *ngIf="productDisplayResulutions.errors?.['minlength']">
+        Display Resolution should be at least 9 characters long.
+      </p>
+    </ng-container>
     <label for="displayResolutions">Display Resolution</label>
     <input
       type="text"
@@ -113,6 +159,14 @@
       class="displayResolutions"
       placeholder="1290x2796 pixels"
     />
+    <ng-container *ngIf="productCameraMP.touched && productCameraMP.invalid">
+      <p class="alert" *ngIf="productCameraMP.errors?.['required']">
+        Camera MP is required!
+      </p>
+      <p class="alert" *ngIf="productCameraMP.errors?.['minlength']">
+        Camera MP should be at least 2 characters long.
+      </p>
+    </ng-container>
     <label for="cameraMP">Camera MP</label>
     <input
       type="number"
@@ -124,6 +178,16 @@
       class="cameraMP"
       placeholder="48"
     />
+    <ng-container
+      *ngIf="productCameraVideo.touched && productCameraVideo.invalid"
+    >
+      <p class="alert" *ngIf="productCameraVideo.errors?.['required']">
+        Camera Video is required!
+      </p>
+      <p class="alert" *ngIf="productCameraVideo.errors?.['minlength']">
+        Camera Video should be at least 3 characters long.
+      </p>
+    </ng-container>
     <label for="cameraVideo">Camera Video Pixels</label>
     <input
       type="text"
@@ -135,6 +199,14 @@
       class="cameraVideo"
       placeholder="2160"
     />
+    <ng-container *ngIf="productRam.touched && productRam.invalid">
+      <p class="alert" *ngIf="productRam.errors?.['required']">
+        RAM is required!
+      </p>
+      <p class="alert" *ngIf="productRam.errors?.['minlength']">
+        RAM should be at least 1 characters long.
+      </p>
+    </ng-container>
     <label for="ram">RAM Memory</label>
     <input
       type="number"
@@ -146,6 +218,14 @@
       class="ram"
       placeholder="6"
     />
+    <ng-container *ngIf="productChipset.touched && productChipset.invalid">
+      <p class="alert" *ngIf="productChipset.errors?.['required']">
+        Chipset is required!
+      </p>
+      <p class="alert" *ngIf="productChipset.errors?.['minlength']">
+        Chipset should be at least 4 characters long.
+      </p>
+    </ng-container>
     <label for="chipset">Chipset</label>
     <input
       type="text"
@@ -157,6 +237,14 @@
       class="chipset"
       placeholder="Apple A16 Bionic"
     />
+    <ng-container *ngIf="productMah.touched && productMah.invalid">
+      <p class="alert" *ngIf="productMah.errors?.['required']">
+        Battery MAH is required!
+      </p>
+      <p class="alert" *ngIf="productMah.errors?.['minlength']">
+        Battery MAH should be at least 3 characters long.
+      </p>
+    </ng-container>
     <label for="batteryMAH">Battery MAH</label>
     <input
       type="number"
@@ -178,6 +266,11 @@
       <option value="li-ion" selected>Li-Ion</option>
       <option value="li-po">Li-Po</option>
     </select>
+    <ng-container *ngIf="productImage.touched && productImage.invalid">
+      <p class="alert" *ngIf="productImage.errors?.['required']">
+        Image is required!
+      </p>
+    </ng-container>
     <label for="image">Product Image</label>
     <!-- <input type="file" name="image" class="image" /> -->
     <input
@@ -189,6 +282,11 @@
       class="image"
       placeholder="Image URL here"
     />
+    <ng-container *ngIf="productVideo.touched && productVideo.invalid">
+      <p class="alert" *ngIf="productVideo.errors?.['required']">
+        Youtube URL is required!
+      </p>
+    </ng-container>
     <label for="video">YouTube Review</label>
     <input
       type="url"

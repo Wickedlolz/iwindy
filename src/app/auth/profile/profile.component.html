@@ -14,7 +14,7 @@
           <p>Listed products: {{ currentUser.myProducts.length }}</p>
         </li>
         <li class="info__item">
-          <p>Buyed products: 0</p>
+          <p>Buyed products: {{ currentUser.buyed.length }}</p>
         </li>
       </ul>
     </div>
@@ -47,12 +47,12 @@
             </p>
           </div>
           <div class="actions">
-            <button class="view">
+            <a [routerLink]="'/products/' + product._id" class="view">
               <i class="fa-solid fa-eye"></i>
-            </button>
-            <button class="edit">
+            </a>
+            <a [routerLink]="'/products/edit/' + product._id" class="edit">
               <i class="fa-solid fa-pen-to-square"></i>
-            </button>
+            </a>
           </div>
         </article>
       </li>

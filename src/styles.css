@@ -126,3 +126,9 @@ h5 {
 .logo-clr {
   color: rgb(236, 31, 76);
 }
+
+@media screen and (max-width: 600px) {
+  html {
+    width: 550px;
+  }
+}

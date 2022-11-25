@@ -73,6 +73,9 @@
     </ul>
   </div>
   <div class="products-container">
+    <p class="not-found" *ngIf="!isLoading && products.length === 0">
+      No products found from {{ selectedCategory }}.
+    </p>
     <ul class="products" role="list" *ngIf="!isLoading">
       <li class="product" *ngFor="let product of products">
         <a [routerLink]="['/products', product._id]">
