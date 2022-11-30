@@ -35,10 +35,9 @@
 }
 
 .container .aside .search-btn {
-  /* width: 25%; */
-  border: 1px solid #0071e7;
+  border: 1px solid red;
   border-radius: 50%;
-  background-color: #0071e7;
+  background-color: red;
   color: #fff;
   padding: 3px 8px;
   margin-left: 15px;
@@ -48,13 +47,13 @@
 }
 
 .container .aside .search-btn:hover {
-  background-color: #2585eb;
+  background-color: #da6961;
 }
 
 .container .aside .categories .category button {
   width: 100%;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-bottom: 8px;
   background-color: transparent;
   cursor: pointer;
@@ -63,7 +62,7 @@
 }
 
 .container .aside .categories .category button:hover {
-  background-color: #0071e7;
+  background-color: red;
   color: #fff;
 }
 
@@ -73,13 +72,14 @@
 }
 
 .container .products-container .products {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
 }
 
 .active {
-  background-color: #0071e7 !important;
+  background-color: red !important;
   color: #fff;
 }
 
@@ -89,77 +89,48 @@
   text-decoration: none;
 }
 
-.container .products-container .products .card {
-  width: 220px;
-  height: 250px;
-  margin-top: 15px;
-  background-color: #fff;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  transform: scale(1);
-  transition: all 300ms ease-in-out;
-  position: relative;
-  cursor: pointer;
-}
-
-.container .products-container .products .card::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.container .products-container .products .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1);
-  z-index: 2;
+.container .products-container .products .product .product-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .container .products-container .products .card .card__img {
   width: 100%;
-  height: 100%;
+  height: 300px;
   object-fit: cover;
-  position: absolute;
-  top: 0px;
-  left: 0px;
 }
 
-.container .products-container .products .card .head {
-  position: relative;
-  height: 40%;
+.container .products-container .products .card .desc {
+  background-color: #fff;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-.container .products-container .products .card .head,
-.container .products-container .products .card .content {
-  z-index: 1;
-  position: relative;
+.container .products-container .products .card .desc .desc__title {
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
-.container .products-container .products .card .head .head__tag {
-  position: absolute;
-  left: 18px;
-  top: 24px;
-  right: unset;
-
-  padding: 4px 12px;
-  border-radius: 6px;
-  background-color: #845ec2;
+.container .products-container .products .card .desc .desc__category {
+  background-color: #000;
+  width: 80px;
   color: #fff;
-  letter-spacing: 1.1px;
+  font-weight: bold;
+  padding: 2px 5px;
+  margin-inline: auto;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
 }
 
-.container .products-container .products .card .content {
-  padding: 18px;
-  height: 60%;
+.container .products-container .products .card .desc .desc__price {
+  font-size: 20px;
 }
 
-.container .products-container .products .card .content .content__title {
-  color: #fff;
+.container .products-container .products .product .product-link:hover .desc {
+  background-color: red;
 }
 
 .loading p {

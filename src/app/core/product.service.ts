@@ -13,9 +13,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   loadProducts$(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(apiUrl + '/products', {
-      withCredentials: true,
-    });
+    return this.http.get<IProduct[]>(apiUrl + '/products');
   }
 
   loadLatest$(): Observable<IProduct[]> {

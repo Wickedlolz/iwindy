@@ -10,14 +10,8 @@ import { ProductService } from 'src/app/core/product.service';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit, OnDestroy {
-  appleProducts: IProduct[] = [];
-  samsungProducts: IProduct[] = [];
-  huaweiProducts: IProduct[] = [];
   latestProducts: IProduct[] = [];
   isLoading: boolean = true;
-
-  hasError: boolean = false;
-  errorMessage: string = '';
 
   constructor(
     private productService: ProductService,
