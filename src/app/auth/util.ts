@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export function emailValidator(
   control: AbstractControl
@@ -14,7 +14,9 @@ export function emailValidator(
   return null;
 }
 
-export function passwordMatch(passwordFormControl: AbstractControl) {
+export function passwordMatch(
+  passwordFormControl: AbstractControl
+): ValidatorFn {
   return (rePasswordFormControl: AbstractControl) => {
     if (passwordFormControl.value !== rePasswordFormControl.value) {
       return {

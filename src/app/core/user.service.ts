@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IUser } from './interfaces';
+import { IProduct, IUser } from './interfaces';
 
 const apiUrl = environment.apiUrl;
 
@@ -14,5 +14,9 @@ export class UserService {
 
   getProfile$(): Observable<IUser> {
     return this.http.get<IUser>(apiUrl + '/users/profile');
+  }
+
+  getCartItems$(): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(apiUrl + '/users/cart');
   }
 }

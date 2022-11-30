@@ -59,23 +59,26 @@
   </div>
   <div class="actions" *ngIf="isLoggedIn$ | async">
     <ul class="list" role="list">
-      <li class="list__item">
+      <li
+        class="list__item"
+        *ngIf="(currentUser$ | async)?._id !== product.creator._id"
+      >
         <i class="fa-solid fa-cart-shopping"></i>
-        <a href="#">Add to Cart</a>
+        <a href="javascript:void(0)">Add to Cart</a>
       </li>
       <li
         class="list__item"
         *ngIf="(currentUser$ | async)?._id === product.creator._id"
       >
         <i class="fa-solid fa-pen-to-square"></i>
-        <a href="#">Edit</a>
+        <a href="javascript:void(0)">Edit</a>
       </li>
       <li
         class="list__item"
         *ngIf="(currentUser$ | async)?._id === product.creator._id"
       >
         <i class="fa-sharp fa-solid fa-trash"></i>
-        <a href="#">Delete</a>
+        <a href="javascript:void(0)">Delete</a>
       </li>
     </ul>
   </div>

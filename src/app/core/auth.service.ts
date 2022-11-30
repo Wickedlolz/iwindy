@@ -20,7 +20,7 @@ export class AuthService {
   login$(email: string, password: string): Observable<IUser | null> {
     return this.http
       .post<IUser>(
-        apiUrl + '/users/login',
+        apiUrl + '/auth/login',
         { email, password },
         { observe: 'response' }
       )
@@ -28,14 +28,14 @@ export class AuthService {
   }
 
   register$(email: string, password: string): Observable<IUser> {
-    return this.http.post<IUser>(apiUrl + '/users/register', {
+    return this.http.post<IUser>(apiUrl + '/auth/register', {
       email,
       password,
     });
   }
 
   logout$(): Observable<{ message: string }> {
-    return this.http.get<{ message: string }>(apiUrl + '/users/logout');
+    return this.http.get<{ message: string }>(apiUrl + '/auth/logout');
   }
 
   authenticate(): Observable<IUser> {

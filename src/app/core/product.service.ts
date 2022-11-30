@@ -18,6 +18,10 @@ export class ProductService {
     });
   }
 
+  loadLatest$(): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(apiUrl + '/products/latest');
+  }
+
   loadByCategory$(category: string): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(apiUrl + '/products/category/' + category);
   }

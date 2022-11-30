@@ -1,7 +1,9 @@
 <section class="cart">
   <h1 class="title">Shopping Cart</h1>
-  <ul class="items" role="list">
-    <li class="item">
+  <app-loading *ngIf="isLoading"></app-loading>
+  <p *ngIf="cartItems.length === 0">No products added yet.</p>
+  <ul class="items" role="list" *ngIf="cartItems.length > 0">
+    <li class="item" *ngFor="let product of cartItems">
       <article class="product">
         <img
           src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -13,7 +15,12 @@
           <span class="warranty">Warranty: 12 months</span>
         </div>
         <div class="quantity">
-          <select name="productQuantity" class="product-quantity">
+          <select
+            name="productQuantity"
+            #quantity
+            (change)="onSelected(quantity.value, product)"
+            class="product-quantity"
+          >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -29,21 +36,6 @@
             <option value="13">13</option>
             <option value="14">14</option>
             <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24">24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
           </select>
           <span class="quantity__text">Quantity.</span>
         </div>
@@ -54,62 +46,9 @@
           ></a>
         </div>
       </article>
-      <p class="product__total-price"><span>Total</span>: 1600$</p>
-    </li>
-    <li class="item">
-      <article class="product">
-        <img
-          src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-          alt=""
-          class="product__img"
-        />
-        <div class="desc">
-          <h2 class="desc__title">iPhone 14 Pro Max 128GB Dark</h2>
-          <span class="warranty">Warranty: 12 months</span>
-        </div>
-        <div class="quantity">
-          <select name="productQuantity" class="product-quantity">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24">24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
-          </select>
-          <span class="quantity__text">Quantity.</span>
-        </div>
-        <div class="info">
-          <p class="info__price">1600$</p>
-          <a href="#" class="info__delete-btn"
-            ><i class="fa-solid fa-trash"></i
-          ></a>
-        </div>
-      </article>
-      <p class="product__total-price"><span>Total</span>: 1600$</p>
+      <p class="product__total-price">
+        <span>Total</span>: {{ product.quantity || product.price }}$
+      </p>
     </li>
   </ul>
   <div class="order">

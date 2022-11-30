@@ -19,6 +19,10 @@ const routes: Routes = [
     path: ':productId',
     component: ProductDetailsComponent,
   },
+  // {
+  //   path: '/edit/:productId',
+  //   component:
+  // }
 ];
 
 export const ProductsRoutingModule = RouterModule.forChild(routes);

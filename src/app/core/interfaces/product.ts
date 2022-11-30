@@ -22,4 +22,5 @@ export interface IProduct {
   category: string;
   createdAt?: string;
   updatedAt?: string;
+  quantity?: number;
 }

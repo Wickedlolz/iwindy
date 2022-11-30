@@ -1,91 +1,95 @@
-<app-loading *ngIf="isLoading"></app-loading>
-<app-notification
-  *ngIf="hasError"
-  [errorMessage]="errorMessage"
-></app-notification>
-<section class="products" *ngIf="!isLoading">
-  <img
-    class="products__img"
-    src="/assets/images/martin-engel-crblx-CmCns-unsplash.jpg"
-    alt="iPhone"
-  />
-  <div class="content">
-    <h1 class="content__title"><span class="logo-clr">iW</span>indy</h1>
-    <p class="content_desc">Welcome to iWindy eCommerce Shop.</p>
-    <p class="content_desc">
-      Here you can find device you looking for or device you will want.
-    </p>
-  </div>
-</section>
-<h2 class="title" *ngIf="!isLoading">Apple Products</h2>
-<section class="container" *ngIf="!isLoading">
-  <carousel [height]="310" [cellWidth]="300" [borderRadius]="14" [loop]="true">
-    <div class="carousel-cell" *ngFor="let product of appleProducts">
-      <a [routerLink]="['/products', product._id]" class="card-link">
-        <article class="card">
-          <img
-            class="card__img"
-            [src]="product.image"
-            loading="lazy"
-            [alt]="product.category"
-          />
-          <div class="head">
-            <span class="head__tag">{{ product.category }}</span>
-          </div>
+<article class="home">
+  <section class="hero">
+    <article class="heading">
+      <img
+        class="heading__img"
+        src="/assets/images/martin-engel-crblx-CmCns-unsplash.jpg"
+        alt="iPhone"
+      />
+      <div class="content">
+        <h1 class="content__title"><span class="logo-clr">iW</span>indy</h1>
+        <p class="content__desc">Welcome to iWindy eCommerce Shop.</p>
+        <p class="content__desc">
+          Here you can find device you looking for or device you will want.
+        </p>
+      </div>
+    </article>
+    <article class="description">
+      <p class="text">
+        We stand for top quality products. Our genuine developers always
+        optimized website. Don't miss to use our cheap abd best products.
+      </p>
+    </article>
+  </section>
 
-          <div class="content">
-            <h2 class="content__title">{{ product.model }}</h2>
+  <section class="latest">
+    <div class="heading">
+      <h2 class="title">Latest <span class="sub-title">Products</span></h2>
+      <div class="horizontal-line"></div>
+    </div>
+    <app-loading *ngIf="isLoading"></app-loading>
+
+    <ul class="products-list" role="list" *ngIf="!isLoading">
+      <li class="product-item" *ngFor="let product of latestProducts">
+        <a class="product-link" [routerLink]="'/products/' + product._id">
+          <article class="product">
+            <img
+              class="product__img"
+              [src]="product.image"
+              [alt]="product.model"
+            />
+            <div class="desc">
+              <h3 class="desc__title">{{ product.model }}</h3>
+              <p class="desc__category">{{ product.category }}</p>
+              <p class="desc__price">${{ product.price }}</p>
+            </div>
+          </article>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="services">
+    <ul role="list" class="services-list">
+      <li class="service-item">
+        <article class="service">
+          <i class="fa-solid fa-gear"></i>
+
+          <div class="desc">
+            <h2 class="desc__title">MODERN DESIGN</h2>
+            <p class="desc__text">
+              Lorem Ipsum is simply dummy text of the printing and printing
+              industry unknown printer.
+            </p>
           </div>
         </article>
-      </a>
-    </div>
-  </carousel>
-</section>
-<h2 class="title" *ngIf="!isLoading">Samsung Products</h2>
-<section class="container" *ngIf="!isLoading">
-  <carousel [height]="310" [cellWidth]="300" [borderRadius]="14" [loop]="true">
-    <div class="carousel-cell" *ngFor="let product of samsungProducts">
-      <a [routerLink]="['/products', product._id]" class="card-link">
-        <article class="card">
-          <img
-            class="card__img"
-            [src]="product.image"
-            loading="lazy"
-            [alt]="product.category"
-          />
-          <div class="head">
-            <span class="head__tag">{{ product.category }}</span>
-          </div>
-
-          <div class="content">
-            <h2 class="content__title">{{ product.model }}</h2>
+      </li>
+      <li class="service-item">
+        <article class="service">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <div class="desc">
+            <h2 class="desc__title">FREE SHIPPING</h2>
+            <p class="desc__text">
+              Lorem Ipsum is simply dummy text of the printing and printing
+              industry unknown printer.
+            </p>
           </div>
         </article>
-      </a>
-    </div>
-  </carousel>
-</section>
-<h2 class="title" *ngIf="!isLoading">Huawei Products</h2>
-<section class="container" *ngIf="!isLoading">
-  <carousel [height]="310" [cellWidth]="300" [borderRadius]="14" [loop]="true">
-    <div class="carousel-cell" *ngFor="let product of huaweiProducts">
-      <a [routerLink]="['/products', product._id]" class="card-link">
-        <article class="card">
-          <img
-            class="card__img"
-            [src]="product.image"
-            loading="lazy"
-            [alt]="product.category"
-          />
-          <div class="head">
-            <span class="head__tag">{{ product.category }}</span>
-          </div>
-
-          <div class="content">
-            <h2 class="content__title">{{ product.model }}</h2>
+      </li>
+      <li class="service-item">
+        <article class="service">
+          <i class="fa-solid fa-circle-info"></i>
+          <div class="desc">
+            <h2 class="desc__title">
+              24/7 LIVE <span class="bolded">SUPPORT</span>
+            </h2>
+            <p class="desc__text">
+              Lorem Ipsum is simply dummy text of the printing and printing
+              industry unknown printer.
+            </p>
           </div>
         </article>
-      </a>
-    </div>
-  </carousel>
-</section>
+      </li>
+    </ul>
+  </section>
+</article>

@@ -13,21 +13,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
   appleProducts: IProduct[] = [];
   samsungProducts: IProduct[] = [];
   huaweiProducts: IProduct[] = [];
+  latestProducts: IProduct[] = [];
   isLoading: boolean = true;
-  images: IImage[] = [
-    {
-      path: '/assets/images/apple-products.jpg',
-      name: 'apple',
-    },
-    {
-      path: '/assets/images/samsung_en.png',
-      name: 'samsung',
-    },
-    {
-      path: '/assets/images/huawei.jpeg',
-      name: 'huawei',
-    },
-  ];
 
   hasError: boolean = false;
   errorMessage: string = '';
@@ -41,20 +28,13 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.titleService.setTitle('Home | iWindy');
-    this.subscription = zip(
-      this.productService.loadByCategory$('apple'),
-      this.productService.loadProducts$(),
-      this.productService.loadProducts$()
-    ).subscribe({
-      next: ([apple, samsung, huawei]) => {
+
+    this.subscription = this.productService.loadLatest$().subscribe({
+      next: (products) => {
+        this.latestProducts = products;
         this.isLoading = false;
-        this.appleProducts = apple;
-        this.samsungProducts = samsung;
-        this.huaweiProducts = huawei;
       },
       error: (error) => {
-        this.hasError = true;
-        this.errorMessage = error.message;
         this.isLoading = false;
       },
     });
