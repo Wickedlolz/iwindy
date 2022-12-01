@@ -21,11 +21,12 @@
 }
 
 .success {
-  background-color: #00ff00;
+  background-color: #32cd32;
 }
 
 .container .notification .message {
   letter-spacing: 1px;
+  font-size: 18px;
 }
 
 .container .notification i {
