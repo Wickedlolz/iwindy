@@ -1,14 +1,21 @@
 <section class="container">
   <div class="aside">
     <h2 class="title">Search</h2>
-    <form class="search-form" (submit)="handleSearch($event)">
+    <form
+      #searchForm="ngForm"
+      class="search-form"
+      (ngSubmit)="handleSearch(searchForm)"
+    >
       <input
         type="search"
         name="search"
+        #search="ngModel"
+        required
+        ngModel
         class="input"
         placeholder="Search product"
       />
-      <button class="search-btn">
+      <button class="search-btn" [disabled]="searchForm.invalid">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </form>
@@ -77,28 +84,6 @@
       No products found from {{ selectedCategory }}.
     </p>
     <ul class="products" role="list" *ngIf="!isLoading">
-      <!-- <li class="product" *ngFor="let product of products">
-        <a [routerLink]="['/products', product._id]">
-          <article class="card">
-            <img
-              loading="lazy"
-              class="card__img"
-              [src]="product.image"
-              [alt]="product.model"
-            />
-            <div class="head">
-              <span class="head__tag">{{
-                product.category.toLocaleUpperCase()
-              }}</span>
-            </div>
-
-            <div class="content">
-              <h2 class="content__title">{{ product.model }}</h2>
-            </div>
-          </article>
-        </a>
-      </li> -->
-
       <li class="product" *ngFor="let product of products">
         <a class="product-link" [routerLink]="'/products/' + product._id">
           <article class="card">
@@ -108,7 +93,9 @@
               [alt]="product.model"
             />
             <div class="desc">
-              <h3 class="desc__title">{{ product.model }}</h3>
+              <h3 class="desc__title">
+                {{ product.model }}
+              </h3>
               <p class="desc__category">{{ product.category }}</p>
               <p class="desc__price">${{ product.price }}</p>
             </div>
@@ -116,6 +103,7 @@
         </a>
       </li>
     </ul>
+
     <app-loading *ngIf="isLoading"></app-loading>
   </div>
 </section>

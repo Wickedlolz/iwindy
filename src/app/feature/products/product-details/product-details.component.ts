@@ -43,7 +43,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         next: (product) => {
           this.titleService.setTitle(product.model + ' | iWindy');
           this.product = product;
-          console.log(product);
           this.isLoading = false;
         },
         error: (error) => {

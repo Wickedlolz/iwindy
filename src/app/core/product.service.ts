@@ -31,4 +31,10 @@ export class ProductService {
   create$(productData: IProduct): Observable<IProduct> {
     return this.http.post<IProduct>(apiUrl + '/products', productData);
   }
+
+  searchProducts$(searchedValue: string): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(
+      apiUrl + `/products?search=${searchedValue}`
+    );
+  }
 }

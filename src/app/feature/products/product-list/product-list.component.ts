@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { IProduct } from '../../../core/interfaces';
@@ -62,12 +63,23 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
   }
 
-  // TODO!: add forms module and handle search <--
-  handleSearch($event: SubmitEvent): void {
-    $event.preventDefault();
-    const formData = new FormData($event.target as HTMLFormElement);
-    const searchText = formData.get('search');
-    console.log(searchText);
+  handleSearch(searchForm: NgForm): void {
+    if (searchForm.invalid) {
+      return;
+    }
+
+    const { search } = searchForm.value;
+
+    this.isLoading = true;
+    this.productService.searchProducts$(search).subscribe({
+      next: (products) => {
+        this.products = products;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.isLoading = false;
+      },
+    });
   }
 
   ngOnDestroy(): void {

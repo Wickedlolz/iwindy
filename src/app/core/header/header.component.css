@@ -39,11 +39,11 @@
 }
 
 .header nav .nav-list .nav-list__item a:hover {
-  background-color: #4a4453;
+  background-color: red;
   color: #fff;
 }
 
 .active {
-  background-color: #4a4453;
+  background-color: red;
   color: #fff !important;
 }

@@ -99,8 +99,7 @@
 .home .latest .products-list .product .desc {
   background-color: #eee;
   text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
 }
 
 .home .latest .products-list .product .desc .desc__title {
