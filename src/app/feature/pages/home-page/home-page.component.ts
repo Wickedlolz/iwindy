@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription, zip } from 'rxjs';
-import { IProduct, IImage } from 'src/app/core/interfaces';
+import { IProduct } from 'src/app/core/interfaces';
 import { ProductService } from 'src/app/core/product.service';
 
 @Component({

@@ -1,145 +1,162 @@
 <!-- <app-loading *ngIf="isLoading"></app-loading> -->
 
 <section class="details" *ngIf="!isLoading; else loadingIndicator">
-  <div class="article-info">
-    <h1 class="article-info__title">{{ product.model }}</h1>
-    <div class="article-info__image">
-      <img loading="lazy" [src]="product.image" [alt]="product.model" />
+  <img
+    class="heading-img"
+    src="/assets/images/banner-2.jpg"
+    alt="Banner"
+    loading="lazy"
+  />
+  <article class="product">
+    <h2 class="title">Product Detail</h2>
+    <div class="box">
+      <img
+        class="product-img"
+        src="https://i.pravatar.cc/"
+        alt="Random image"
+        loading="lazy"
+      />
+      <div class="desc">
+        <ul class="desc-list" role="list">
+          <li>
+            <p><b>Brand</b>: Apple</p>
+          </li>
+          <li>
+            <p><b>Product Code</b>: 14</p>
+          </li>
+          <li>
+            <p><b>Reward Points</b>: 0</p>
+          </li>
+          <li>
+            <p><b>Availability</b>: Out Of Stock</p>
+          </li>
+        </ul>
+        <p class="price">Price: $587.50</p>
+        <form class="form">
+          <label for="qty">Quantity</label>
+          <input type="number" name="qty" id="qty" placeholder="1" />
+          <button class="btn">Add to cart</button>
+        </form>
+      </div>
     </div>
-    <ul class="features" role="list">
-      <li class="features__specs">
-        <span class="features__specs-release"
-          ><i class="fa-regular fa-calendar"></i> Released
-          {{ product.released }}</span
-        >
-        <span class="features__specs-weight">
-          <i class="fa-solid fa-mobile-screen"></i> {{ product.weight }}
-        </span>
-        <span class="features__specs-system">
-          <i class="fa-solid fa-code"></i> {{ product.os }}
-        </span>
-        <span class="features__specs-storage">
-          <i class="fa-solid fa-memory"></i>
-          {{ product.memory }}
-        </span>
+  </article>
+  <article class="additional-info">
+    <h3 class="title">Additional Information</h3>
+    <table>
+      <tbody>
+        <tr>
+          <td>Size</td>
+          <td>Large, Medium, Small, X-Large</td>
+        </tr>
+        <tr>
+          <td>Color</td>
+          <td>Orange, Yellow</td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+  <article class="description">
+    <h3 class="title">Details</h3>
+    <p class="text">
+      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+      doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+      inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+      Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+      fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+      sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit
+      amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
+      incidunt ut labore et dolore magnam aliquam quaerat voluptatem
+    </p>
+  </article>
+  <article class="related-products">
+    <!-- TODO!: make carousel list for related products -->
+    <div class="heading">
+      <h3 class="title"><span class="logo-clr">Related</span> Products</h3>
+      <div class="horizontal-line"></div>
+    </div>
+    <ul class="products-list" role="list" *ngIf="!isLoading">
+      <li class="product-item">
+        <a class="product-link" [routerLink]="'/products/' + product._id">
+          <article class="product">
+            <img
+              class="product__img"
+              src="https://i.pravatar.cc/"
+              alt="image"
+            />
+            <div class="desc">
+              <h3 class="desc__title">product model</h3>
+              <p class="desc__category">category</p>
+              <p class="desc__price">$product price</p>
+            </div>
+          </article>
+        </a>
       </li>
-      <li class="features__price">
-        <strong
-          ><i class="fa-solid fa-dollar-sign"></i> {{ product.price }}</strong
-        >
-        <!-- <span>2,987,559 hits</span> -->
+      <li class="product-item">
+        <a class="product-link" [routerLink]="'/products/' + product._id">
+          <article class="product">
+            <img
+              class="product__img"
+              src="https://i.pravatar.cc/"
+              alt="image"
+            />
+            <div class="desc">
+              <h3 class="desc__title">product model</h3>
+              <p class="desc__category">category</p>
+              <p class="desc__price">$product price</p>
+            </div>
+          </article>
+        </a>
       </li>
-      <li class="features__likes">
-        <button [disabled]="!(isLoggedIn$ | async)">
-          <strong> <i class="fa-solid fa-heart"></i> 400 </strong>
-          <span>Become a fan</span>
-        </button>
+      <li class="product-item">
+        <a class="product-link" [routerLink]="'/products/' + product._id">
+          <article class="product">
+            <img
+              class="product__img"
+              src="https://i.pravatar.cc/"
+              alt="image"
+            />
+            <div class="desc">
+              <h3 class="desc__title">product model</h3>
+              <p class="desc__category">category</p>
+              <p class="desc__price">$product price</p>
+            </div>
+          </article>
+        </a>
       </li>
-      <li class="features__display">
-        <i class="fa-solid fa-mobile-screen"></i>
-        <strong>{{ product.displaySize }}"</strong>
-        <span>{{ product.displayResolutions }}</span>
+      <li class="product-item">
+        <a class="product-link" [routerLink]="'/products/' + product._id">
+          <article class="product">
+            <img
+              class="product__img"
+              src="https://i.pravatar.cc/"
+              alt="image"
+            />
+            <div class="desc">
+              <h3 class="desc__title">product model</h3>
+              <p class="desc__category">category</p>
+              <p class="desc__price">$product price</p>
+            </div>
+          </article>
+        </a>
       </li>
-      <li class="features__camera">
-        <i class="fa-solid fa-camera"></i>
-        <strong>{{ product.cameraMP }}MP</strong>
-        <span>{{ product.cameraVideo }}p</span>
-      </li>
-      <li class="features__ram">
-        <i class="fa-solid fa-microchip"></i>
-        <strong>{{ product.ram }}GB RAM</strong>
-        <span>{{ product.chipset }}</span>
-      </li>
-      <li class="features__battery">
-        <i class="fa-solid fa-battery-full"></i>
-        <strong>{{ product.batteryMAH }}mAh</strong>
-        <span>{{ product.batteryType.toLocaleUpperCase() }}</span>
-      </li>
-    </ul>
-  </div>
-  <div class="actions" *ngIf="isLoggedIn$ | async">
-    <ul class="list" role="list">
-      <li
-        class="list__item"
-        *ngIf="(currentUser$ | async)?._id !== product.creator._id"
-      >
-        <i class="fa-solid fa-cart-shopping"></i>
-        <a href="javascript:void(0)">Add to Cart</a>
-      </li>
-      <li
-        class="list__item"
-        *ngIf="(currentUser$ | async)?._id === product.creator._id"
-      >
-        <i class="fa-solid fa-pen-to-square"></i>
-        <a href="javascript:void(0)">Edit</a>
-      </li>
-      <li
-        class="list__item"
-        *ngIf="(currentUser$ | async)?._id === product.creator._id"
-      >
-        <i class="fa-sharp fa-solid fa-trash"></i>
-        <a href="javascript:void(0)">Delete</a>
-      </li>
-    </ul>
-  </div>
-  <div class="video">
-    <iframe
-      src="https://www.youtube.com/embed/H4SXsmXZlwk"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
-  </div>
-  <form class="form" method="post" *ngIf="isLoggedIn$ | async">
-    <label for="comment">Commnet</label>
-    <input
-      type="text"
-      name="comment"
-      id="comment"
-      placeholder="What's your opinion?"
-    />
-    <button>Send <i class="fa-regular fa-paper-plane"></i></button>
-  </form>
-  <div class="reviews">
-    <h3 class="reviews__title">
-      {{ product.model.toLocaleUpperCase() }} - USER OPINIONS AND REVIEWS
-    </h3>
-    <ul role="list" class="list">
-      <li class="list__item">
-        <div class="comment-header">
-          <span class="comment-header__author"
-            ><i class="fa-solid fa-user"></i> blazko95</span
-          >
-          <span class="comment-header__time"
-            ><i class="fa-regular fa-clock"></i>15 hours ago</span
-          >
-        </div>
-        <p>
-          The older iphone models like the iphone 6/7/8 all had the battery
-          percentage indicator. Apple just removed it on the iphone x series.
-          and again readded it with ios 16. Your only argument is that they will
-          copy the battery % indicator, like lol w...
-        </p>
-      </li>
-      <li class="list__item">
-        <div class="comment-header">
-          <span class="comment-header__author"
-            ><i class="fa-solid fa-user"></i> blazko95</span
-          >
-          <span class="comment-header__time"
-            ><i class="fa-regular fa-clock"></i>15 hours ago</span
-          >
-        </div>
-        <p>
-          The older iphone models like the iphone 6/7/8 all had the battery
-          percentage indicator. Apple just removed it on the iphone x series.
-          and again readded it with ios 16. Your only argument is that they will
-          copy the battery % indicator, like lol w...
-        </p>
+      <li class="product-item">
+        <a class="product-link" [routerLink]="'/products/' + product._id">
+          <article class="product">
+            <img
+              class="product__img"
+              src="https://i.pravatar.cc/"
+              alt="image"
+            />
+            <div class="desc">
+              <h3 class="desc__title">product model</h3>
+              <p class="desc__category">category</p>
+              <p class="desc__price">$product price</p>
+            </div>
+          </article>
+        </a>
       </li>
     </ul>
-  </div>
+  </article>
 </section>
 
 <ng-template #loadingIndicator>
