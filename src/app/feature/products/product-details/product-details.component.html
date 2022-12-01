@@ -1,5 +1,3 @@
-<!-- <app-loading *ngIf="isLoading"></app-loading> -->
-
 <section class="details" *ngIf="!isLoading; else loadingIndicator">
   <img
     class="heading-img"
@@ -69,7 +67,6 @@
     </p>
   </article>
   <article class="related-products">
-    <!-- TODO!: make carousel list for related products -->
     <div class="heading">
       <h3 class="title"><span class="logo-clr">Related</span> Products</h3>
       <div class="horizontal-line"></div>
@@ -82,6 +79,7 @@
               class="product__img"
               src="https://i.pravatar.cc/"
               alt="image"
+              loading="lazy"
             />
             <div class="desc">
               <h3 class="desc__title">product model</h3>
@@ -98,6 +96,7 @@
               class="product__img"
               src="https://i.pravatar.cc/"
               alt="image"
+              loading="lazy"
             />
             <div class="desc">
               <h3 class="desc__title">product model</h3>
@@ -114,6 +113,7 @@
               class="product__img"
               src="https://i.pravatar.cc/"
               alt="image"
+              loading="lazy"
             />
             <div class="desc">
               <h3 class="desc__title">product model</h3>
@@ -130,6 +130,7 @@
               class="product__img"
               src="https://i.pravatar.cc/"
               alt="image"
+              loading="lazy"
             />
             <div class="desc">
               <h3 class="desc__title">product model</h3>
@@ -146,6 +147,7 @@
               class="product__img"
               src="https://i.pravatar.cc/"
               alt="image"
+              loading="lazy"
             />
             <div class="desc">
               <h3 class="desc__title">product model</h3>

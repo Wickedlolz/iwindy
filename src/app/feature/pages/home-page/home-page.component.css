@@ -56,11 +56,11 @@
   margin-bottom: 100px;
 }
 
-.home .latest .heading {
+.heading {
   margin-bottom: 20px;
 }
 
-.home .latest .heading .title {
+.heading .title {
   width: 180px;
   font-size: 16px;
   text-transform: uppercase;
@@ -68,12 +68,12 @@
   margin-left: 10px;
 }
 
-.home .latest .heading .title .sub-title {
+.heading .title .sub-title {
   color: rgb(236, 31, 76);
   margin-right: 10px;
 }
 
-.home .latest .heading .horizontal-line {
+.heading .horizontal-line {
   display: inline-block;
   width: calc(100% - 190px);
   height: 20px;
@@ -173,4 +173,15 @@
 
 .home .services .services-list .service .desc {
   text-align: center;
+}
+
+.home .manufactures {
+  padding-bottom: 25px;
+}
+
+.home .manufactures .clients-list {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+  margin-right: 50px;
 }

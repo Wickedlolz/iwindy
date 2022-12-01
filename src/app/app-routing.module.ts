@@ -1,4 +1,4 @@
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './feature/pages/home-page/home-page.component';
 import { NotFoundPageComponent } from './feature/pages/not-found-page/not-found-page.component';
 
@@ -29,4 +29,6 @@ const routes: Routes = [
   },
 ];
 
-export const AppRoutingModule = RouterModule.forRoot(routes);
+export const AppRoutingModule = RouterModule.forRoot(routes, {
+  preloadingStrategy: PreloadAllModules,
+});

@@ -1,4 +1,5 @@
 <app-loading *ngIf="isLoading"></app-loading>
+<app-thumbnail></app-thumbnail>
 <section class="profile" *ngIf="!isLoading">
   <article class="account">
     <h2 class="title">Account information</h2>
@@ -8,7 +9,7 @@
           <p>Email adress: {{ currentUser.email }}</p>
         </li>
         <li class="info__item">
-          <p>Created At: {{ currentUser.createdAt | date: "fullDate" }}</p>
+          <p>Created At: {{ currentUser.createdAt | date : "fullDate" }}</p>
         </li>
         <li class="info__item">
           <p>Listed products: {{ currentUser.myProducts.length }}</p>
@@ -43,7 +44,7 @@
             <h3 class="details__title">{{ product.model }}</h3>
             <p class="details__price">{{ product.price }}$</p>
             <p class="details__createdAt">
-              Created at: {{ product.createdAt | date: "fullDate" }}
+              Created at: {{ product.createdAt | date : "fullDate" }}
             </p>
           </div>
           <div class="actions">
