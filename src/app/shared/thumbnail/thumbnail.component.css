@@ -1,0 +1,14 @@
+.thumb {
+  width: 90%;
+  height: 300px;
+  margin-inline: auto;
+  margin-bottom: 15px;
+  border-top: 2px solid red;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
