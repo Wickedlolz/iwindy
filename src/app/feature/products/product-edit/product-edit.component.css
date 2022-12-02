@@ -1,0 +1,153 @@
+.update {
+  width: 90%;
+  margin-inline: auto;
+}
+
+.update .title {
+  width: 300px;
+  margin-inline: auto;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 2;
+  margin-bottom: 30px;
+
+  border-bottom: 1px solid rgb(138, 134, 134);
+}
+
+.update .update-form {
+  width: 50%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 20% 79%;
+  gap: 10px;
+}
+
+.update .update-form label {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.update .update-form input,
+.update .update-form textarea {
+  outline: none;
+  border-radius: 10px;
+  padding: 3px;
+  caret-color: blue;
+}
+
+.update .update-form input[type="checkbox"] {
+  width: 20px;
+}
+
+.update .update-form input.ng-invalid.ng-touched,
+.update .update-form textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.update .update-form select {
+  outline: none;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.update .update-form select:last-of-type {
+  margin-bottom: 20px;
+}
+
+.update .update-form .buttons {
+  grid-column: span 2;
+  display: flex;
+}
+
+.update .update-form .buttons .create-btn {
+  width: 30%;
+  margin-inline: auto;
+  margin-bottom: 100px;
+
+  padding: 7px 10px;
+  background-color: #000;
+  color: #fff;
+  font-size: 22px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  transition: background-color 300ms ease-in-out;
+}
+
+.update .update-form .buttons .cancel-btn {
+  width: 30%;
+  margin-inline: auto;
+  margin-bottom: 100px;
+
+  padding: 7px 10px;
+  background-color: gray;
+  color: #fff;
+  font-size: 22px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  transition: background-color 300ms ease-in-out;
+}
+
+.update .update-form .buttons .create-btn:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+.update .update-form .buttons .create-btn:disabled:hover {
+  background-color: gray;
+}
+
+.update .update-form .buttons .cancel-btn:hover {
+  background-color: #707377;
+}
+
+.update .update-form .buttons .create-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.alert {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  background-color: #ff0026;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .update .update-form {
+    display: unset;
+  }
+
+  .update .update-form label,
+  .update .update-form input,
+  .update .update-form select {
+    display: block;
+    margin-inline: auto;
+    width: 90%;
+  }
+
+  .update .update-form textarea {
+    width: 90%;
+    margin-inline: auto;
+    display: block;
+  }
+
+  .update .update-form .buttons {
+    display: unset;
+    margin-inline: auto;
+  }
+
+  .update .update-form .buttons .create-btn,
+  .update .update-form .buttons .cancel-btn {
+    display: block;
+    margin-bottom: 10px;
+  }
+}

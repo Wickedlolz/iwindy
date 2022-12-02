@@ -1,1 +1,185 @@
-<p>product-edit works!</p>
+<app-thumbnail></app-thumbnail>
+<app-loading *ngIf="isLoading"></app-loading>
+<section class="update" *ngIf="!isLoading">
+  <h1 class="title">Update a Product</h1>
+  <form
+    class="update-form"
+    #productUpdateGroup="ngForm"
+    (ngSubmit)="handleUpdate(productUpdateGroup)"
+  >
+    <ng-container *ngIf="productBrand.touched && productBrand.invalid">
+      <p class="alert" *ngIf="productBrand.errors?.['required']">
+        Brand is required!
+      </p>
+      <p class="alert" *ngIf="productBrand.errors?.['minlength']">
+        Brand should be at least 3 characters long.
+      </p>
+    </ng-container>
+    <label for="brand">Brand</label>
+    <input
+      type="text"
+      name="brand"
+      #productBrand="ngModel"
+      [ngModel]="product.brand"
+      required
+      minlength="3"
+      id="brand"
+    />
+
+    <ng-container *ngIf="productName.touched && productName.invalid">
+      <p class="alert" *ngIf="productName.errors?.['required']">
+        Name is required!
+      </p>
+      <p class="alert" *ngIf="productName.errors?.['minlength']">
+        Name must be at least 5 characters long.
+      </p>
+    </ng-container>
+    <label for="name">Name</label>
+    <input
+      type="text"
+      name="name"
+      #productName="ngModel"
+      [ngModel]="product.name"
+      id="name"
+      required
+      minlength="5"
+    />
+    <ng-container *ngIf="productPrice.touched && productPrice.invalid">
+      <p class="alert" *ngIf="productPrice.errors?.['required']">
+        Price is required!
+      </p>
+    </ng-container>
+    <label for="price">Price</label>
+    <input
+      type="number"
+      name="price"
+      #productPrice="ngModel"
+      [ngModel]="product.price"
+      required
+      id="price"
+    />
+    <label for="discount">Discount</label>
+    <input
+      type="checkbox"
+      name="discount"
+      #productDiscount="ngModel"
+      [ngModel]="product.discount"
+      id="discount"
+    />
+    <ng-container *ngIf="productQuantity.touched && productQuantity.invalid">
+      <p class="alert" *ngIf="productQuantity.errors?.['required']">
+        Quantity is required!
+      </p>
+      <p class="alert" *ngIf="productQuantity.errors?.['minlength']">
+        Quantity should be at least 1 characters long.
+      </p>
+    </ng-container>
+    <label for="quantity">Quantity</label>
+    <input
+      type="number"
+      name="quantity"
+      id="quantity"
+      #productQuantity="ngModel"
+      [ngModel]="product.quantity"
+      required
+      minlength="1"
+    />
+
+    <ng-container
+      *ngIf="productDescription.touched && productDescription.invalid"
+    >
+      <p class="alert" *ngIf="productDescription.errors?.['required']">
+        Description is required!
+      </p>
+      <p class="alert" *ngIf="productDescription.errors?.['minlength']">
+        Description should be at least 10 characters long.
+      </p>
+    </ng-container>
+    <label for="description">Description</label>
+    <textarea
+      name="description"
+      id="description"
+      cols="30"
+      rows="10"
+      #productDescription="ngModel"
+      [ngModel]="product.description"
+      required
+      minlength="10"
+    ></textarea>
+
+    <ng-container *ngIf="productSizes.touched && productSizes.invalid">
+      <p class="alert" *ngIf="productSizes.errors?.['required']">
+        Sizes is required!
+      </p>
+    </ng-container>
+    <label for="sizes">Sizes</label>
+    <!-- <input type="file" name="image" class="image" /> -->
+    <input
+      type="text"
+      name="sizes"
+      #productSizes="ngModel"
+      [ngModel]="product.sizes.join(', ')"
+      required
+      id="sizes"
+      placeholder="Separate sizes with ','"
+    />
+
+    <ng-container *ngIf="productColors.touched && productColors.invalid">
+      <p class="alert" *ngIf="productColors.errors?.['required']">
+        Colors is required!
+      </p>
+    </ng-container>
+    <label for="colors">Colors</label>
+    <input
+      type="text"
+      name="colors"
+      #productColors="ngModel"
+      [ngModel]="product.colors.join(', ')"
+      required
+      id="colors"
+      placeholder="Separate sizes with ' , '"
+    />
+
+    <ng-container *ngIf="productImage.touched && productImage.invalid">
+      <p class="alert" *ngIf="productImage.errors?.['required']">
+        Image is required!
+      </p>
+    </ng-container>
+    <label for="image">Product Image</label>
+    <!-- <input type="file" name="image" class="image" /> -->
+    <input
+      type="url"
+      name="image"
+      #productImage="ngModel"
+      [ngModel]="product.image"
+      required
+      id="image"
+    />
+
+    <label for="category">Select Category</label>
+    <select
+      name="category"
+      #productCategory="ngModel"
+      [ngModel]="product.category"
+      class="category"
+    >
+      <option value="t-shirt" selected>T-Shirt</option>
+      <option value="shorts">Shirts</option>
+      <option value="jeans">Jeans</option>
+      <option value="jackets">Jackets</option>
+      <option value="shoes">Shoes</option>
+      <option value="sleepwear">Sleep Wear</option>
+      <option value="sweats">Sweats</option>
+      <option value="dresses">Dresses</option>
+      <option value="other">Other</option>
+    </select>
+    <div class="buttons">
+      <button class="cancel-btn" type="button" (click)="navigateBack()">
+        Cancel
+      </button>
+      <button class="create-btn" [disabled]="productUpdateGroup.invalid">
+        Update
+      </button>
+    </div>
+  </form>
+</section>

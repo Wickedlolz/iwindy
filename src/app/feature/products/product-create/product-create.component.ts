@@ -21,8 +21,6 @@ export class ProductCreateComponent implements OnInit {
   }
 
   handleCreate(productCreateForm: NgForm): void {
-    console.log(productCreateForm.value);
-
     if (productCreateForm.invalid) {
       return;
     }

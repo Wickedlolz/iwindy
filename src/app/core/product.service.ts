@@ -32,6 +32,13 @@ export class ProductService {
     return this.http.post<IProduct>(apiUrl + '/products', productData);
   }
 
+  update$(productId: string, newProductData: IProduct): Observable<IProduct> {
+    return this.http.put<IProduct>(
+      apiUrl + '/products/' + productId,
+      newProductData
+    );
+  }
+
   searchProducts$(searchedValue: string): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(
       apiUrl + `/products?search=${searchedValue}`

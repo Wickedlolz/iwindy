@@ -37,6 +37,10 @@
   caret-color: blue;
 }
 
+.create .create-form input[type="checkbox"] {
+  width: 20px;
+}
+
 .create .create-form input.ng-invalid.ng-touched,
 .create .create-form textarea.ng-invalid.ng-touched {
   border: 1px solid red;
@@ -128,6 +132,12 @@
     display: block;
     margin-inline: auto;
     width: 90%;
+  }
+
+  .create .create-form textarea {
+    width: 90%;
+    margin-inline: auto;
+    display: block;
   }
 
   .create .create-form .buttons {
