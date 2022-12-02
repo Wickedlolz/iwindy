@@ -56,6 +56,14 @@
       required
       id="price"
     />
+    <label for="discount">Discount</label>
+    <input
+      type="checkbox"
+      name="discount"
+      #productDiscount="ngModel"
+      ngModel
+      id="discount"
+    />
     <ng-container *ngIf="productQuantity.touched && productQuantity.invalid">
       <p class="alert" *ngIf="productQuantity.errors?.['required']">
         Quantity is required!

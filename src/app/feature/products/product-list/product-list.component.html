@@ -32,42 +32,66 @@
       </li>
       <li class="category">
         <button
-          [ngClass]="selectedCategory === 'apple' ? 'active' : ''"
-          (click)="handleChangeCategory('apple')"
+          [ngClass]="selectedCategory === 't-shirt' ? 'active' : ''"
+          (click)="handleChangeCategory('t-shirt')"
         >
-          Apple
+          T-Shirts
         </button>
       </li>
       <li class="category">
         <button
-          [ngClass]="selectedCategory === 'samsung' ? 'active' : ''"
-          (click)="handleChangeCategory('samsung')"
+          [ngClass]="selectedCategory === 'shirts' ? 'active' : ''"
+          (click)="handleChangeCategory('shirts')"
         >
-          Samsung
+          Shirts
         </button>
       </li>
       <li class="category">
         <button
-          [ngClass]="selectedCategory === 'huawei' ? 'active' : ''"
-          (click)="handleChangeCategory('huawei')"
+          [ngClass]="selectedCategory === 'jeans' ? 'active' : ''"
+          (click)="handleChangeCategory('jeans')"
         >
-          Huawei
+          Jeans
         </button>
       </li>
       <li class="category">
         <button
-          [ngClass]="selectedCategory === 'xiaomi' ? 'active' : ''"
-          (click)="handleChangeCategory('xiaomi')"
+          [ngClass]="selectedCategory === 'jackets' ? 'active' : ''"
+          (click)="handleChangeCategory('jackets')"
         >
-          Xiaomi
+          Jackets
         </button>
       </li>
       <li class="category">
         <button
-          [ngClass]="selectedCategory === 'nokia' ? 'active' : ''"
-          (click)="handleChangeCategory('nokia')"
+          [ngClass]="selectedCategory === 'shoes' ? 'active' : ''"
+          (click)="handleChangeCategory('shoes')"
         >
-          Nokia
+          Shoes
+        </button>
+      </li>
+      <li class="category">
+        <button
+          [ngClass]="selectedCategory === 'sleepwear' ? 'active' : ''"
+          (click)="handleChangeCategory('sleepwear')"
+        >
+          Sleep Wear
+        </button>
+      </li>
+      <li class="category">
+        <button
+          [ngClass]="selectedCategory === 'sweats' ? 'active' : ''"
+          (click)="handleChangeCategory('sweats')"
+        >
+          Sweats
+        </button>
+      </li>
+      <li class="category">
+        <button
+          [ngClass]="selectedCategory === 'dresses' ? 'active' : ''"
+          (click)="handleChangeCategory('dresses')"
+        >
+          Dresses
         </button>
       </li>
       <li class="category">
@@ -94,7 +118,9 @@
                 {{ product.name }}
               </h3>
               <p class="desc__category">{{ product.category }}</p>
-              <p class="desc__price">${{ product.price }}</p>
+              <p class="desc__price" [ngClass]="{ discount: product.discount }">
+                ${{ product.price }}
+              </p>
             </div>
           </article>
         </a>

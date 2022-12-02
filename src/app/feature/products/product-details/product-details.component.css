@@ -47,6 +47,10 @@
   margin-bottom: 15px;
 }
 
+.details .product .box .desc .price.discount {
+  color: red;
+}
+
 .details .product .box .desc .form {
   margin-bottom: 25px;
 }
@@ -178,6 +182,10 @@
 
 .details .related-products .products-list .product .desc .desc__price {
   font-size: 20px;
+}
+
+.details .related-products .products-list .product .desc .desc__price.discount {
+  color: red;
 }
 
 .details .related-products .products-list .product-link:hover .desc {

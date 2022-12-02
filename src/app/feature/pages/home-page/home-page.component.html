@@ -41,7 +41,9 @@
             <div class="desc">
               <h3 class="desc__title">{{ product.name }}</h3>
               <p class="desc__category">{{ product.category }}</p>
-              <p class="desc__price">${{ product.price }}</p>
+              <p class="desc__price" [ngClass]="{ discount: product.discount }">
+                ${{ product.price }}
+              </p>
             </div>
           </article>
         </a>

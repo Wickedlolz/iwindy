@@ -13,7 +13,7 @@
   border-right: 2px solid gray;
   border-bottom: 2px solid gray;
   padding: 5px;
-  height: 500px;
+  height: 550px;
   max-height: 700px;
 
   border-radius: 4px;
@@ -156,6 +156,20 @@
 
 .container .products-container .products .product .product-link:hover .desc {
   background-color: red;
+}
+
+.container
+  .products-container
+  .products
+  .product
+  .product-link:hover
+  .desc
+  .desc__price.discount {
+  background-color: #fff;
+}
+
+.container .products-container .products .card .desc .desc__price.discount {
+  color: red;
 }
 
 .loading p {

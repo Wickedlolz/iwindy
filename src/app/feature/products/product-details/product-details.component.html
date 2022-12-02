@@ -34,7 +34,9 @@
             </p>
           </li>
         </ul>
-        <p class="price">Price: ${{ product.price }}</p>
+        <p class="price" [ngClass]="{ discount: product.discount }">
+          Price: ${{ product.price }}
+        </p>
         <form class="form">
           <label for="qty">Quantity</label>
           <input type="number" name="qty" id="qty" placeholder="1" />
@@ -119,7 +121,9 @@
             <div class="desc">
               <h3 class="desc__title">{{ product.name }}</h3>
               <p class="desc__category">{{ product.category }}</p>
-              <p class="desc__price">${{ product.price }}</p>
+              <p class="desc__price" [ngClass]="{ discount: product.discount }">
+                ${{ product.price }}
+              </p>
             </div>
           </article>
         </a>

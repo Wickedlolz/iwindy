@@ -135,6 +135,14 @@
   font-size: 20px;
 }
 
+.home .latest .products-list .product .desc .desc__price.discount {
+  color: red;
+}
+
+.home .latest .products-list .product-link:hover .desc .desc__price.discount {
+  background-color: #fff;
+}
+
 .home .latest .products-list .product-link:hover .desc {
   background-color: red;
 }

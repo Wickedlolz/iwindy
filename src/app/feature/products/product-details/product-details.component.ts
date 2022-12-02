@@ -70,7 +70,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     let result: boolean = false;
     this.currentUser$
       .subscribe((user) => {
-        result = this.product.likes.includes(user!._id);
+        result = this.product.likes.includes(user!._id) || false;
       })
       .unsubscribe();
 

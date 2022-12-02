@@ -8,6 +8,7 @@ export interface IProduct {
   description: string;
   image: string;
   price: number;
+  discount: boolean;
   creator: IUser;
   colors: string[];
   sizes: string[];
