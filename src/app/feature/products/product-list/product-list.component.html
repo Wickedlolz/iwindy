@@ -88,14 +88,10 @@
       <li class="product" *ngFor="let product of products">
         <a class="product-link" [routerLink]="'/products/' + product._id">
           <article class="card">
-            <img
-              class="card__img"
-              [src]="product.image"
-              [alt]="product.model"
-            />
+            <img class="card__img" [src]="product.image" [alt]="product.name" />
             <div class="desc">
               <h3 class="desc__title">
-                {{ product.model }}
+                {{ product.name }}
               </h3>
               <p class="desc__category">{{ product.category }}</p>
               <p class="desc__price">${{ product.price }}</p>

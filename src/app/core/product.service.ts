@@ -37,4 +37,15 @@ export class ProductService {
       apiUrl + `/products?search=${searchedValue}`
     );
   }
+
+  likeProduct$(productId: string): Observable<IProduct> {
+    return this.http.post<IProduct>(apiUrl + '/products/like/' + productId, {});
+  }
+
+  dislikeProduct$(productId: string): Observable<IProduct> {
+    return this.http.post<IProduct>(
+      apiUrl + '/products/dislike/' + productId,
+      {}
+    );
+  }
 }

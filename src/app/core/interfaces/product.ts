@@ -1,26 +1,18 @@
 import { IUser } from './user';
 
 export interface IProduct {
-  _id?: string;
-  model: string;
-  price: number;
-  released: string;
-  weight: string;
-  os: string;
-  memory: string;
-  displaySize: number;
-  displayResolutions: string;
-  cameraMP: number;
-  cameraVideo: string;
-  ram: number;
-  chipset: string;
-  batteryMAH: number;
-  batteryType: string;
+  _id: string;
+  brand: string;
+  name: string;
+  quantity: number;
+  description: string;
   image: string;
-  video: string;
+  price: number;
   creator: IUser;
+  colors: string[];
+  sizes: string[];
+  likes: string[];
   category: string;
-  createdAt?: string;
-  updatedAt?: string;
-  quantity?: number;
+  createdAt: string;
+  updatedAt: string;
 }

@@ -4,7 +4,6 @@ import { ProductCreateComponent } from './product-create/product-create.componen
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { RouterModule } from '@angular/router';
-import { IvyCarouselModule } from 'angular14-responsive-carousel';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductsRoutingModule } from './products-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +19,6 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
   imports: [
     CommonModule,
     RouterModule,
-    IvyCarouselModule,
     SharedModule,
     ProductsRoutingModule,
     FormsModule,

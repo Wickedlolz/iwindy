@@ -22,6 +22,11 @@ export class ProductCreateComponent implements OnInit {
 
   handleCreate(productCreateForm: NgForm): void {
     console.log(productCreateForm.value);
+
+    if (productCreateForm.invalid) {
+      return;
+    }
+
     this.productService.create$(productCreateForm.value).subscribe(() => {
       this.router.navigate(['/products']);
     });

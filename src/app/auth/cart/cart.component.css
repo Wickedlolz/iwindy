@@ -136,7 +136,7 @@
 .cart .order .order-now {
   width: 100%;
   color: #fff;
-  background-color: #095fb2;
+  background-color: #000;
   font-weight: bold;
   outline: none;
   border: #095fb2;
@@ -149,7 +149,7 @@
 }
 
 .cart .order .order-now:hover {
-  background-color: #1f7cd3;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .cart .product__total-price {

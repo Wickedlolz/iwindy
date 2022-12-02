@@ -5,6 +5,7 @@
         class="heading__img"
         src="/assets/images/banner-2.jpg"
         alt="iPhone"
+        loading="lazy"
       />
       <div class="content">
         <h1 class="content__title">Winter Season Sale</h1>
@@ -34,10 +35,11 @@
             <img
               class="product__img"
               [src]="product.image"
-              [alt]="product.model"
+              [alt]="product.name"
+              loading="lazy"
             />
             <div class="desc">
-              <h3 class="desc__title">{{ product.model }}</h3>
+              <h3 class="desc__title">{{ product.name }}</h3>
               <p class="desc__category">{{ product.category }}</p>
               <p class="desc__price">${{ product.price }}</p>
             </div>
@@ -48,6 +50,8 @@
   </section>
 
   <section class="services">
+    <!-- TODO: use angular animation to make icons on hover to turn around -->
+
     <ul role="list" class="services-list">
       <li class="service-item">
         <article class="service">
@@ -98,22 +102,46 @@
     </div>
     <ul class="clients-list" role="list">
       <li class="client">
-        <img src="/assets/images/clients/1.png" alt="Client Image" />
+        <img
+          src="/assets/images/clients/1.png"
+          loading="lazy"
+          alt="Client Image"
+        />
       </li>
       <li class="client">
-        <img src="/assets/images/clients/2.png" alt="Client Image" />
+        <img
+          src="/assets/images/clients/2.png"
+          loading="lazy"
+          alt="Client Image"
+        />
       </li>
       <li class="client">
-        <img src="/assets/images/clients/3.png" alt="Client Image" />
+        <img
+          src="/assets/images/clients/3.png"
+          loading="lazy"
+          alt="Client Image"
+        />
       </li>
       <li class="client">
-        <img src="/assets/images/clients/4.png" alt="Client Image" />
+        <img
+          src="/assets/images/clients/4.png"
+          loading="lazy"
+          alt="Client Image"
+        />
       </li>
       <li class="client">
-        <img src="/assets/images/clients/14.png" alt="Client Image" />
+        <img
+          src="/assets/images/clients/14.png"
+          loading="lazy"
+          alt="Client Image"
+        />
       </li>
       <li class="client">
-        <img src="/assets/images/clients/35.png" alt="Client Image" />
+        <img
+          src="/assets/images/clients/35.png"
+          loading="lazy"
+          alt="Client Image"
+        />
       </li>
     </ul>
   </section>

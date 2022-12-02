@@ -5,24 +5,42 @@
     #productCreateGroup="ngForm"
     (ngSubmit)="handleCreate(productCreateGroup)"
   >
-    <ng-container *ngIf="productModel.touched && productModel.invalid">
-      <p class="alert" *ngIf="productModel.errors?.['required']">
-        Model is required!
+    <ng-container *ngIf="productBrand.touched && productBrand.invalid">
+      <p class="alert" *ngIf="productBrand.errors?.['required']">
+        Brand is required!
       </p>
-      <p class="alert" *ngIf="productModel.errors?.['minlength']">
-        Model must be at least 5 characters long.
+      <p class="alert" *ngIf="productBrand.errors?.['minlength']">
+        Brand should be at least 3 characters long.
       </p>
     </ng-container>
-    <label for="model">Model</label>
+    <label for="brand">Brand</label>
     <input
       type="text"
-      name="model"
-      #productModel="ngModel"
+      name="brand"
+      #productBrand="ngModel"
       ngModel
-      class="model"
+      required
+      minlength="3"
+      id="brand"
+    />
+
+    <ng-container *ngIf="productName.touched && productName.invalid">
+      <p class="alert" *ngIf="productName.errors?.['required']">
+        Name is required!
+      </p>
+      <p class="alert" *ngIf="productName.errors?.['minlength']">
+        Name must be at least 5 characters long.
+      </p>
+    </ng-container>
+    <label for="name">Name</label>
+    <input
+      type="text"
+      name="name"
+      #productName="ngModel"
+      ngModel
+      id="name"
       required
       minlength="5"
-      placeholder="iPhone 14 Pro Max"
     />
     <ng-container *ngIf="productPrice.touched && productPrice.invalid">
       <p class="alert" *ngIf="productPrice.errors?.['required']">
@@ -36,236 +54,82 @@
       #productPrice="ngModel"
       ngModel
       required
-      class="price"
-      placeholder="1500"
+      id="price"
     />
-    <ng-container *ngIf="productRelease.touched && productRelease.invalid">
-      <p class="alert" *ngIf="productRelease.errors?.['required']">
-        Release is required!
+    <ng-container *ngIf="productQuantity.touched && productQuantity.invalid">
+      <p class="alert" *ngIf="productQuantity.errors?.['required']">
+        Quantity is required!
       </p>
-      <p class="alert" *ngIf="productRelease.errors?.['minlength']">
-        Release should be at least 15 characters long.
+      <p class="alert" *ngIf="productQuantity.errors?.['minlength']">
+        Quantity should be at least 1 characters long.
       </p>
     </ng-container>
-    <label for="released">Released Date</label>
-    <input
-      type="text"
-      name="released"
-      class="released"
-      #productRelease="ngModel"
-      ngModel
-      required
-      minlength="15"
-      placeholder="2022, September 16"
-    />
-    <ng-container *ngIf="productWeight.touched && productWeight.invalid">
-      <p class="alert" *ngIf="productWeight.errors?.['required']">
-        Weight is required!
-      </p>
-      <p class="alert" *ngIf="productWeight.errors?.['minlength']">
-        Weight should be at least 11 characters long.
-      </p>
-    </ng-container>
-    <label for="weight">Weight</label>
-    <input
-      type="text"
-      name="weight"
-      #productWeight="ngModel"
-      ngModel
-      required
-      minlength="11"
-      class="weight"
-      placeholder="240g, 7.9mm thickness"
-    />
-    <ng-container *ngIf="productOs.touched && productOs.invalid">
-      <p class="alert" *ngIf="productOs.errors?.['required']">
-        OS is required!
-      </p>
-      <p class="alert" *ngIf="productOs.errors?.['minlength']">
-        OS should be at least 3 characters long.
-      </p>
-    </ng-container>
-    <label for="os">OS</label>
-    <input
-      type="text"
-      name="os"
-      #productOs="ngModel"
-      ngModel
-      required
-      minlength="3"
-      class="os"
-      placeholder="iOS"
-    />
-    <ng-container *ngIf="productMemory.touched && productMemory.invalid">
-      <p class="alert" *ngIf="productMemory.errors?.['required']">
-        Memory is required!
-      </p>
-      <p class="alert" *ngIf="productMemory.errors?.['minlength']">
-        Memory should be at least 3 characters long.
-      </p>
-    </ng-container>
-    <label for="memory">External Memory</label>
-    <input
-      type="text"
-      name="memory"
-      #productMemory="ngModel"
-      ngModel
-      required
-      minlength="3"
-      class="memory"
-      placeholder="128GB/256GB/1TB storage, no card slot"
-    />
-    <ng-container
-      *ngIf="productDisplaySize.touched && productDisplaySize.invalid"
-    >
-      <p class="alert" *ngIf="productDisplaySize.errors?.['required']">
-        Display Size is required!
-      </p>
-      <p class="alert" *ngIf="productDisplaySize.errors?.['minlength']">
-        Display Size should be at least 3 characters long.
-      </p>
-    </ng-container>
-    <label for="displaySize">Display Size</label>
-    <input
-      type="text"
-      name="displaySize"
-      #productDisplaySize="ngModel"
-      ngModel
-      required
-      minlength="3"
-      class="displaySize"
-      placeholder="6.7"
-    />
-    <ng-container
-      *ngIf="
-        productDisplayResulutions.touched && productDisplayResulutions.invalid
-      "
-    >
-      <p class="alert" *ngIf="productDisplayResulutions.errors?.['required']">
-        Display Resolution is required!
-      </p>
-      <p class="alert" *ngIf="productDisplayResulutions.errors?.['minlength']">
-        Display Resolution should be at least 9 characters long.
-      </p>
-    </ng-container>
-    <label for="displayResolutions">Display Resolution</label>
-    <input
-      type="text"
-      name="displayResolutions"
-      #productDisplayResulutions="ngModel"
-      ngModel
-      required
-      minlength="9"
-      class="displayResolutions"
-      placeholder="1290x2796 pixels"
-    />
-    <ng-container *ngIf="productCameraMP.touched && productCameraMP.invalid">
-      <p class="alert" *ngIf="productCameraMP.errors?.['required']">
-        Camera MP is required!
-      </p>
-      <p class="alert" *ngIf="productCameraMP.errors?.['minlength']">
-        Camera MP should be at least 2 characters long.
-      </p>
-    </ng-container>
-    <label for="cameraMP">Camera MP</label>
+    <label for="quantity">Quantity</label>
     <input
       type="number"
-      name="cameraMP"
-      #productCameraMP="ngModel"
-      ngModel
-      required
-      minlength="2"
-      class="cameraMP"
-      placeholder="48"
-    />
-    <ng-container
-      *ngIf="productCameraVideo.touched && productCameraVideo.invalid"
-    >
-      <p class="alert" *ngIf="productCameraVideo.errors?.['required']">
-        Camera Video is required!
-      </p>
-      <p class="alert" *ngIf="productCameraVideo.errors?.['minlength']">
-        Camera Video should be at least 3 characters long.
-      </p>
-    </ng-container>
-    <label for="cameraVideo">Camera Video Pixels</label>
-    <input
-      type="text"
-      name="cameraVideo"
-      #productCameraVideo="ngModel"
-      ngModel
-      required
-      minlength="3"
-      class="cameraVideo"
-      placeholder="2160"
-    />
-    <ng-container *ngIf="productRam.touched && productRam.invalid">
-      <p class="alert" *ngIf="productRam.errors?.['required']">
-        RAM is required!
-      </p>
-      <p class="alert" *ngIf="productRam.errors?.['minlength']">
-        RAM should be at least 1 characters long.
-      </p>
-    </ng-container>
-    <label for="ram">RAM Memory</label>
-    <input
-      type="number"
-      name="ram"
-      #productRam="ngModel"
+      name="quantity"
+      id="quantity"
+      #productQuantity="ngModel"
       ngModel
       required
       minlength="1"
-      class="ram"
-      placeholder="6"
     />
-    <ng-container *ngIf="productChipset.touched && productChipset.invalid">
-      <p class="alert" *ngIf="productChipset.errors?.['required']">
-        Chipset is required!
+
+    <ng-container
+      *ngIf="productDescription.touched && productDescription.invalid"
+    >
+      <p class="alert" *ngIf="productDescription.errors?.['required']">
+        Description is required!
       </p>
-      <p class="alert" *ngIf="productChipset.errors?.['minlength']">
-        Chipset should be at least 4 characters long.
+      <p class="alert" *ngIf="productDescription.errors?.['minlength']">
+        Description should be at least 10 characters long.
       </p>
     </ng-container>
-    <label for="chipset">Chipset</label>
+    <label for="description">Description</label>
+    <textarea
+      name="description"
+      id="description"
+      cols="30"
+      rows="10"
+      #productDescription="ngModel"
+      ngModel
+      required
+      minlength="10"
+    ></textarea>
+
+    <ng-container *ngIf="productSizes.touched && productSizes.invalid">
+      <p class="alert" *ngIf="productSizes.errors?.['required']">
+        Sizes is required!
+      </p>
+    </ng-container>
+    <label for="sizes">Sizes</label>
+    <!-- <input type="file" name="image" class="image" /> -->
     <input
       type="text"
-      name="chipset"
-      #productChipset="ngModel"
+      name="sizes"
+      #productSizes="ngModel"
       ngModel
       required
-      minlength="4"
-      class="chipset"
-      placeholder="Apple A16 Bionic"
+      id="sizes"
+      placeholder="Separate sizes with ','"
     />
-    <ng-container *ngIf="productMah.touched && productMah.invalid">
-      <p class="alert" *ngIf="productMah.errors?.['required']">
-        Battery MAH is required!
-      </p>
-      <p class="alert" *ngIf="productMah.errors?.['minlength']">
-        Battery MAH should be at least 3 characters long.
+
+    <ng-container *ngIf="productColors.touched && productColors.invalid">
+      <p class="alert" *ngIf="productColors.errors?.['required']">
+        Colors is required!
       </p>
     </ng-container>
-    <label for="batteryMAH">Battery MAH</label>
+    <label for="colors">Colors</label>
     <input
-      type="number"
-      name="batteryMAH"
-      #productMah="ngModel"
+      type="text"
+      name="colors"
+      #productColors="ngModel"
       ngModel
       required
-      minlength="3"
-      class="batteryMAH"
-      placeholder="4323"
+      id="colors"
+      placeholder="Separate sizes with ' , '"
     />
-    <label for="batteryType">Battery Type</label>
-    <select
-      name="batteryType"
-      #productBatteryType="ngModel"
-      [ngModel]="'li-ion'"
-      class="batteryType"
-    >
-      <option value="li-ion" selected>Li-Ion</option>
-      <option value="li-po">Li-Po</option>
-    </select>
+
     <ng-container *ngIf="productImage.touched && productImage.invalid">
       <p class="alert" *ngIf="productImage.errors?.['required']">
         Image is required!
@@ -279,37 +143,24 @@
       #productImage="ngModel"
       ngModel
       required
-      class="image"
-      placeholder="Image URL here"
+      id="image"
     />
-    <ng-container *ngIf="productVideo.touched && productVideo.invalid">
-      <p class="alert" *ngIf="productVideo.errors?.['required']">
-        Youtube URL is required!
-      </p>
-    </ng-container>
-    <label for="video">YouTube Review</label>
-    <input
-      type="url"
-      name="video"
-      #productVideo="ngModel"
-      ngModel
-      required
-      class="image"
-      placeholder="YouTube URL here"
-    />
+
     <label for="category">Select Category</label>
     <select
       name="category"
       #productCategory="ngModel"
-      [ngModel]="'samsung'"
+      [ngModel]="'other'"
       class="category"
     >
-      <option value="samsung" selected>Samsung</option>
-      <option value="apple">Apple</option>
-      <option value="huawei">Huawei</option>
-      <option value="xiaomi">Xiaomi</option>
-      <option value="motorola">Motorola</option>
-      <option value="nokia">Nokia</option>
+      <option value="t-shirt" selected>T-Shirt</option>
+      <option value="shorts">Shirts</option>
+      <option value="jeans">Jeans</option>
+      <option value="jackets">Jackets</option>
+      <option value="shoes">Shoes</option>
+      <option value="sleepwear">Sleep Wear</option>
+      <option value="sweats">Sweats</option>
+      <option value="dresses">Dresses</option>
       <option value="other">Other</option>
     </select>
     <div class="buttons">

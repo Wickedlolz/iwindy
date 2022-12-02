@@ -37,11 +37,11 @@
         <article class="product">
           <img
             [src]="product.image"
-            [alt]="product.model"
+            [alt]="product.name"
             class="product__img"
           />
           <div class="details">
-            <h3 class="details__title">{{ product.model }}</h3>
+            <h3 class="details__title">{{ product.name }}</h3>
             <p class="details__price">{{ product.price }}$</p>
             <p class="details__createdAt">
               Created at: {{ product.createdAt | date : "fullDate" }}
