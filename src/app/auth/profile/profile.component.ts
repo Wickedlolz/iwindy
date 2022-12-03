@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit {
       next: (user) => {
         this.currentUser = user;
         this.isLoading = false;
-        console.log(this.currentUser);
       },
       error: (error) => {
         console.error(error);

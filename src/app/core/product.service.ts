@@ -55,4 +55,8 @@ export class ProductService {
       {}
     );
   }
+
+  delete$(productId: string): Observable<IProduct> {
+    return this.http.delete<IProduct>(apiUrl + '/products/' + productId);
+  }
 }

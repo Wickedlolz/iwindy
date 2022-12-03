@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductsRoutingModule } from './products-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { ProductDeleteModalComponent } from './product-delete-modal/product-delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     ProductDetailsComponent,
     ProductListComponent,
     ProductEditComponent,
+    ProductDeleteModalComponent,
   ],
   imports: [
     CommonModule,

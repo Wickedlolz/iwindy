@@ -1,0 +1,9 @@
+<article class="delete-modal">
+  <div class="container">
+    <p class="text">Are you sure you want to delete {{ product.name }}?</p>
+    <div class="actions">
+      <button class="no-btn" (click)="handleNoClick()">No</button>
+      <button class="yes-btn" (click)="handleDelete()">Yes</button>
+    </div>
+  </div>
+</article>

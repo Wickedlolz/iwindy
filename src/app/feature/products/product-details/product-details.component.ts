@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, Observable, of, Subscription, switchMap, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/auth.service';
 import { IProduct, IUser } from '../../../core/interfaces';
@@ -20,6 +20,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   currentUser$: Observable<IUser | undefined> = this.authService.currentUser$;
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
   isLiked: boolean = false;
+  isDeleteModalVisible: boolean = false;
 
   private subscription!: Subscription;
 
@@ -27,7 +28,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private productService: ProductService,
     private authService: AuthService,
-    private titleService: Title
+    private titleService: Title,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +85,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         this.product = product;
         this.isLiked = this.checkIfIsLiked();
       },
-      error: (error) => console.error(error),
     });
   }
 
@@ -93,7 +94,19 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         this.product = product;
         this.isLiked = this.checkIfIsLiked();
       },
-      error: (error) => console.error(error),
     });
+  }
+
+  toggleDeleteModal(): void {
+    this.isDeleteModalVisible = !this.isDeleteModalVisible;
+  }
+
+  handleDelete($event: boolean): void {
+    if ($event) {
+      this.isDeleteModalVisible = false;
+      this.router.navigate(['/products']);
+    } else {
+      this.isDeleteModalVisible = false;
+    }
   }
 }
