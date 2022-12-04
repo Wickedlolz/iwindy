@@ -1,54 +1,36 @@
 <app-thumbnail></app-thumbnail>
 <section class="cart">
+  <app-order-modal *ngIf="isOrderModalVisible"></app-order-modal>
   <h1 class="title">Shopping Cart</h1>
   <app-loading *ngIf="isLoading"></app-loading>
   <p *ngIf="cartItems.length === 0">No products added yet.</p>
-  <ul class="items" role="list" *ngIf="cartItems.length > 0">
+  <ul class="items" role="list" *ngIf="!isLoading && cartItems.length > 0">
     <li class="item" *ngFor="let product of cartItems">
       <article class="product">
         <img
-          src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-          alt=""
+          [src]="product.productId.image"
+          [alt]="product.productId.name"
           class="product__img"
         />
         <div class="desc">
-          <h2 class="desc__title">iPhone 14 Pro Max 128GB Dark</h2>
+          <h2 class="desc__title">{{ product.productId.name }}</h2>
           <span class="warranty">Warranty: 12 months</span>
         </div>
         <div class="quantity">
-          <select
-            name="productQuantity"
-            #quantity
-            (change)="onSelected(quantity.value, product)"
-            class="product-quantity"
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-          </select>
-          <span class="quantity__text">Quantity.</span>
+          <p class="quantity__text">Quantity: {{ product.quantity }}</p>
         </div>
         <div class="info">
-          <p class="info__price">1600$</p>
-          <a href="#" class="info__delete-btn"
+          <p class="info__price">{{ product.productId.price }}$</p>
+          <a
+            href="javascript:void(0)"
+            class="info__delete-btn"
+            (click)="handleRemoveItem(product)"
             ><i class="fa-solid fa-trash"></i
           ></a>
         </div>
       </article>
       <p class="product__total-price">
-        <span>Total</span>: {{ product.quantity || product.price }}$
+        <span>Total</span>: {{ product.productId.price * product.quantity }}$
       </p>
     </li>
   </ul>
@@ -57,15 +39,13 @@
     <ul class="order__payments" role="list">
       <li class="payment">
         <span class="payment__text">All products:</span>
-        <span class="payment__price">1600$</span>
+        <span class="payment__price">{{ calcTotalPrice() }}$</span>
       </li>
     </ul>
     <div class="total">
       <p class="total__text">Total:</p>
-      <p class="total__price">1600$</p>
+      <p class="total__price">{{ calcTotalPrice() }}$</p>
     </div>
-    <button class="order-now">Order Now</button>
+    <button class="order-now" (click)="handleOrderNow()">Order Now</button>
   </div>
 </section>
-
-<!-- TODO!: redesign  page -->

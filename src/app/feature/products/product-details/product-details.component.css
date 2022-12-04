@@ -53,6 +53,10 @@
   width: 40px;
 }
 
+.details .product .box .desc .form input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
 .details .product .box .desc .form .btn {
   margin-left: 5px;
   border: 1px solid #000;
@@ -60,6 +64,11 @@
   background-color: #000;
   color: #fff;
   cursor: pointer;
+}
+
+.details .product .box .desc .form .btn:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
 
 .details .product .box .desc .actions {

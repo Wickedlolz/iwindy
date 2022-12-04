@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { IProduct } from 'src/app/core/interfaces';
+import { ICart } from 'src/app/core/interfaces';
 import { UserService } from 'src/app/core/user.service';
 
 @Component({
@@ -9,9 +9,9 @@ import { UserService } from 'src/app/core/user.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  // TODO!: implement load user items in cart and functionality <--
-  cartItems: IProduct[] = [];
+  cartItems: ICart[] = [];
   isLoading: boolean = true;
+  isOrderModalVisible: boolean = false;
 
   constructor(private titleService: Title, private userService: UserService) {}
 
@@ -25,12 +25,39 @@ export class CartComponent implements OnInit {
       },
       error: (error) => {
         this.isLoading = false;
-        alert(error.message);
       },
     });
   }
 
-  onSelected(value: string, product: IProduct) {
-    product.quantity = product.price * Number(value);
+  handleRemoveItem(product: ICart): void {
+    this.userService.removeFromCart$(product).subscribe({
+      next: () => {
+        const index = this.cartItems.findIndex((x) => x._id === product._id);
+        this.cartItems.splice(index, 1);
+      },
+    });
+  }
+
+  handleOrderNow(): void {
+    this.userService.makeOrder$().subscribe({
+      next: (cartItems) => {
+        this.cartItems = cartItems;
+        this.isOrderModalVisible = true;
+
+        setTimeout(() => {
+          this.isOrderModalVisible = false;
+        }, 4000);
+      },
+    });
+  }
+
+  calcTotalPrice(): number {
+    let total = 0;
+
+    this.cartItems.forEach((item) => {
+      total += item.productId.price * item.quantity;
+    });
+
+    return total;
   }
 }

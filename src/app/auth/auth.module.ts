@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderModalComponent } from './order-modal/order-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     ProfileComponent,
     CartComponent,
+    OrderModalComponent,
   ],
   imports: [
     CommonModule,

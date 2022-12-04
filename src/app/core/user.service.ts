@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IProduct, IUser } from './interfaces';
+import { ICart, IProduct, IUser } from './interfaces';
 
 const apiUrl = environment.apiUrl;
 
@@ -16,7 +16,22 @@ export class UserService {
     return this.http.get<IUser>(apiUrl + '/users/profile');
   }
 
-  getCartItems$(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(apiUrl + '/users/cart');
+  getCartItems$(): Observable<ICart[]> {
+    return this.http.get<ICart[]>(apiUrl + '/users/cart');
+  }
+
+  addToCart$(productId: string, quantity: number): Observable<ICart> {
+    return this.http.post<ICart>(apiUrl + '/users/cart/add', {
+      productId,
+      quantity,
+    });
+  }
+
+  removeFromCart$(product: ICart): Observable<ICart> {
+    return this.http.delete<ICart>(apiUrl + '/users/cart/' + product._id);
+  }
+
+  makeOrder$(): Observable<ICart[]> {
+    return this.http.post<ICart[]>(apiUrl + '/users/cart/order', {});
   }
 }

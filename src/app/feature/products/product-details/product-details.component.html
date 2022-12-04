@@ -37,11 +37,28 @@
         <p class="price" [ngClass]="{ discount: product.discount }">
           Price: ${{ product.price }}
         </p>
-        <!-- TODO!: handle this form and add product to user cart -->
-        <form class="form" *ngIf="isLoggedIn$ | async">
+        <form
+          class="form"
+          *ngIf="
+            (isLoggedIn$ | async) &&
+            (currentUser$ | async)?._id !== product.creator._id
+          "
+          #addToCartFromGroup="ngForm"
+          (ngSubmit)="handleAddToCart(addToCartFromGroup)"
+        >
           <label for="qty">Quantity</label>
-          <input type="number" name="qty" id="qty" placeholder="1" />
-          <button class="btn">Add to cart</button>
+          <input
+            type="number"
+            name="qty"
+            #productQuantity="ngModel"
+            ngModel
+            required
+            id="qty"
+            placeholder="1"
+          />
+          <button class="btn" [disabled]="addToCartFromGroup.invalid">
+            Add to cart
+          </button>
         </form>
         <ul class="actions" role="list" *ngIf="isLoggedIn$ | async">
           <li

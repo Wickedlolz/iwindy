@@ -1,8 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, Observable, of, Subscription, switchMap, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/auth.service';
+import {
+  MessageBusService,
+  MessageType,
+} from 'src/app/core/message-bus.service';
+import { UserService } from 'src/app/core/user.service';
 import { IProduct, IUser } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 
@@ -29,7 +35,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private authService: AuthService,
     private titleService: Title,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    private messageBusService: MessageBusService
   ) {}
 
   ngOnInit(): void {
@@ -108,5 +116,20 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     } else {
       this.isDeleteModalVisible = false;
     }
+  }
+
+  handleAddToCart(addToCartFromGroup: NgForm): void {
+    if (addToCartFromGroup.invalid) {
+      return;
+    }
+
+    this.userService
+      .addToCart$(this.productId, addToCartFromGroup.value.qty)
+      .subscribe((cartItem) => {
+        this.messageBusService.notifyForMessage({
+          text: 'Successfully added to Cart',
+          type: MessageType.Success,
+        });
+      });
   }
 }
