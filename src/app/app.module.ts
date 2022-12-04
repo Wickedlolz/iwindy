@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PagesModule } from './feature/pages/pages.module';
 import { AuthService } from './core/auth.service';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { AuthService } from './core/auth.service';
     HttpClientModule,
     CoreModule.forRoot(),
     PagesModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [
     {

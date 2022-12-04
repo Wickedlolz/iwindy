@@ -1,8 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IProduct } from './interfaces';
+
+export interface IPaginatedResponse<T> {
+  results: T[];
+  totalResults: number;
+}
 
 const apiUrl = environment.apiUrl;
 
@@ -12,8 +17,24 @@ const apiUrl = environment.apiUrl;
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  loadProducts$(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(apiUrl + '/products');
+  loadProducts$(): Observable<IPaginatedResponse<IProduct>> {
+    return this.http.get<IPaginatedResponse<IProduct>>(apiUrl + '/products');
+  }
+
+  loadProductPaginatedList$(
+    searchTerm: string = '',
+    startIndex: number,
+    limit: number
+  ): Observable<IPaginatedResponse<IProduct>> {
+    return this.http.get<IPaginatedResponse<IProduct>>(apiUrl + '/products', {
+      params: new HttpParams({
+        fromObject: {
+          name: searchTerm,
+          startIndex,
+          limit,
+        },
+      }),
+    });
   }
 
   loadLatest$(): Observable<IProduct[]> {

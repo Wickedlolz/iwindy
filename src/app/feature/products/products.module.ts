@@ -6,7 +6,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductsRoutingModule } from './products-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductDeleteModalComponent } from './product-delete-modal/product-delete-modal.component';
 
@@ -24,6 +24,7 @@ import { ProductDeleteModalComponent } from './product-delete-modal/product-dele
     SharedModule,
     ProductsRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class ProductsModule {}

@@ -108,6 +108,10 @@
 
 /* Card Component */
 
+.container .products-container .products {
+  margin-bottom: 35px;
+}
+
 .container .products-container .products .product a {
   text-decoration: none;
 }
@@ -182,4 +186,26 @@
   vertical-align: middle;
   margin-top: 200px;
   text-transform: uppercase;
+}
+
+.pagination {
+  width: 250px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination button {
+  outline: none;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  border: 1px solid #000;
+  background-color: inherit;
+  color: #000;
+  cursor: not-allowed;
 }

@@ -2,23 +2,15 @@
 <section class="container">
   <div class="aside">
     <h2 class="title">Search</h2>
-    <form
-      #searchForm="ngForm"
-      class="search-form"
-      (ngSubmit)="handleSearch(searchForm)"
-    >
+    <form [formGroup]="searchFormGroup" class="search-form">
       <input
         type="search"
         name="search"
-        #search="ngModel"
         required
-        ngModel
+        formControlName="search"
         class="input"
         placeholder="Search product"
       />
-      <button class="search-btn" [disabled]="searchForm.invalid">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
     </form>
     <h2 class="title">Categories</h2>
     <ul class="categories" role="list">
@@ -127,6 +119,33 @@
       </li>
     </ul>
 
+    <nav class="pagination">
+      <button
+        class="prev-page"
+        [disabled]="currentPage === 0"
+        (click)="handlePageBack()"
+      >
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <p>
+        Showing
+        <b
+          >{{ currentPage * pageSize + 1 }}-{{
+            (currentPage + 1) * pageSize > totalResults
+              ? totalResults
+              : (currentPage + 1) * pageSize
+          }}</b
+        >
+        of <b>{{ totalResults }}</b> results
+      </p>
+      <button
+        class="next-page"
+        [disabled]="(currentPage + 1) * pageSize >= totalResults"
+        (click)="handlePageForward()"
+      >
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </nav>
     <app-loading *ngIf="isLoading"></app-loading>
   </div>
 </section>
