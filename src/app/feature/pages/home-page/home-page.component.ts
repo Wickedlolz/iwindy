@@ -26,7 +26,7 @@ export class HomePageComponent implements OnInit {
     private actions$: Actions
   ) {}
 
-  private subscription!: Subscription;
+  // private subscription!: Subscription;
 
   ngOnInit(): void {
     this.titleService.setTitle('Home | iWindy');
