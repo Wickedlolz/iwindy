@@ -14,8 +14,6 @@ export class ProfileComponent implements OnInit {
 
   constructor(private userService: UserService, private titleService: Title) {}
 
-  // TODO!: implement show user created products <--
-
   ngOnInit(): void {
     this.titleService.setTitle('Profile | iWindy');
     this.userService.getProfile$().subscribe({

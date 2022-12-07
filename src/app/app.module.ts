@@ -8,6 +8,11 @@ import { CoreModule } from './core/core.module';
 import { PagesModule } from './feature/pages/pages.module';
 import { AuthService } from './core/auth.service';
 import { StoreModule } from '@ngrx/store';
+import { IRootState, loadLatestReducer } from './+store';
+import { EffectsModule } from '@ngrx/effects';
+import { Effects } from './+store/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +22,11 @@ import { StoreModule } from '@ngrx/store';
     HttpClientModule,
     CoreModule.forRoot(),
     PagesModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot<IRootState>({
+      latestProducts: loadLatestReducer,
+    }),
+    EffectsModule.forRoot([Effects]),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   providers: [
     {

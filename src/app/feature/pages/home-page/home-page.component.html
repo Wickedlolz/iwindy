@@ -28,8 +28,8 @@
     </div>
     <app-loading *ngIf="isLoading"></app-loading>
 
-    <ul class="products-list" role="list" *ngIf="!isLoading">
-      <li class="product-item" *ngFor="let product of latestProducts">
+    <ul class="products-list" role="list" *ngIf="latest$ | async as products">
+      <li class="product-item" *ngFor="let product of products">
         <a class="product-link" [routerLink]="'/products/' + product._id">
           <article class="product">
             <img

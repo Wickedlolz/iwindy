@@ -190,6 +190,15 @@
   color: red;
 }
 
+.details
+  .related-products
+  .products-list
+  .product:hover
+  .desc
+  .desc__price.discount {
+  background-color: #fff;
+}
+
 .details .related-products .products-list .product-link:hover .desc {
   background-color: red;
 }
