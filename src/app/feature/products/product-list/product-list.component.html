@@ -97,55 +97,67 @@
     </ul>
   </div>
   <div class="products-container">
-    <p class="not-found" *ngIf="!isLoading && products.length === 0">
-      No products found from {{ selectedCategory }}.
-    </p>
-    <ul class="products" role="list" *ngIf="!isLoading">
-      <li class="product" *ngFor="let product of products">
-        <a class="product-link" [routerLink]="'/products/' + product._id">
-          <article class="card">
-            <img class="card__img" [src]="product.image" [alt]="product.name" />
-            <div class="desc">
-              <h3 class="desc__title">
-                {{ product.name }}
-              </h3>
-              <p class="desc__category">{{ product.category }}</p>
-              <p class="desc__price" [ngClass]="{ discount: product.discount }">
-                ${{ product.price }}
-              </p>
-            </div>
-          </article>
-        </a>
-      </li>
-    </ul>
-
-    <nav class="pagination">
-      <button
-        class="prev-page"
-        [disabled]="currentPage === 0"
-        (click)="handlePageBack()"
+    <ng-container *ngIf="products$ | async">
+      <p
+        class="not-found"
+        *ngIf="!isLoading && (products$ | async)!.length === 0"
       >
-        <i class="fa-solid fa-chevron-left"></i>
-      </button>
-      <p>
-        Showing
-        <b
-          >{{ currentPage * pageSize + 1 }}-{{
-            (currentPage + 1) * pageSize > totalResults
-              ? totalResults
-              : (currentPage + 1) * pageSize
-          }}</b
-        >
-        of <b>{{ totalResults }}</b> results
+        No products found from {{ selectedCategory }}.
       </p>
-      <button
-        class="next-page"
-        [disabled]="(currentPage + 1) * pageSize >= totalResults"
-        (click)="handlePageForward()"
-      >
-        <i class="fa-solid fa-chevron-right"></i>
-      </button>
-    </nav>
-    <app-loading *ngIf="isLoading"></app-loading>
+      <ul class="products" role="list" *ngIf="!isLoading">
+        <li class="product" *ngFor="let product of products$ | async">
+          <a class="product-link" [routerLink]="'/products/' + product._id">
+            <article class="card">
+              <img
+                class="card__img"
+                [src]="product.image"
+                [alt]="product.name"
+              />
+              <div class="desc">
+                <h3 class="desc__title">
+                  {{ product.name }}
+                </h3>
+                <p class="desc__category">{{ product.category }}</p>
+                <p
+                  class="desc__price"
+                  [ngClass]="{ discount: product.discount }"
+                >
+                  ${{ product.price }}
+                </p>
+              </div>
+            </article>
+          </a>
+        </li>
+      </ul>
+
+      <nav class="pagination">
+        <button
+          class="prev-page"
+          [disabled]="currentPage === 0"
+          (click)="handlePageBack()"
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <p>
+          Showing
+          <b
+            >{{ currentPage * pageSize + 1 }}-{{
+              (currentPage + 1) * pageSize > (totalResults | async)!
+                ? (totalResults | async)
+                : (currentPage + 1) * pageSize
+            }}</b
+          >
+          of <b>{{ totalResults | async }}</b> results
+        </p>
+        <button
+          class="next-page"
+          [disabled]="(currentPage + 1) * pageSize >= (totalResults | async)!"
+          (click)="handlePageForward()"
+        >
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </nav>
+      <app-loading *ngIf="isLoading"></app-loading>
+    </ng-container>
   </div>
 </section>

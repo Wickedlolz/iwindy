@@ -52,12 +52,13 @@
   </section>
 
   <section class="services">
-    <!-- TODO: use angular animation to make icons on hover to turn around -->
-
     <ul role="list" class="services-list">
-      <li class="service-item">
+      <li class="service-item" (mouseenter)="rotate('designState')">
         <article class="service">
-          <i class="fa-solid fa-gear"></i>
+          <i
+            [@rotatedState]="servicesState.designState"
+            class="fa-solid fa-gear"
+          ></i>
 
           <div class="desc">
             <h2 class="desc__title">MODERN DESIGN</h2>
@@ -68,9 +69,12 @@
           </div>
         </article>
       </li>
-      <li class="service-item">
+      <li class="service-item" (mouseenter)="rotate('shippingState')">
         <article class="service">
-          <i class="fa-solid fa-cart-shopping"></i>
+          <i
+            [@rotatedState]="servicesState.shippingState"
+            class="fa-solid fa-cart-shopping"
+          ></i>
           <div class="desc">
             <h2 class="desc__title">FREE SHIPPING</h2>
             <p class="desc__text">
@@ -80,9 +84,12 @@
           </div>
         </article>
       </li>
-      <li class="service-item">
+      <li class="service-item" (mouseenter)="rotate('supportState')">
         <article class="service">
-          <i class="fa-solid fa-circle-info"></i>
+          <i
+            [@rotatedState]="servicesState.supportState"
+            class="fa-solid fa-circle-info"
+          ></i>
           <div class="desc">
             <h2 class="desc__title">
               24/7 LIVE <span class="bolded">SUPPORT</span>

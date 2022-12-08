@@ -6,15 +6,22 @@ import {
   Validators,
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
 import {
   BehaviorSubject,
   combineLatest,
   debounceTime,
+  Observable,
   startWith,
   Subscription,
   switchMap,
   tap,
 } from 'rxjs';
+import {
+  IProductsModuleState,
+  productsByCategoryLoaded,
+  productsLoaded,
+} from '../+store';
 import { IProduct } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 
@@ -24,7 +31,9 @@ import { ProductService } from '../../../core/product.service';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit, OnDestroy {
-  products!: IProduct[];
+  products$: Observable<IProduct[] | undefined> = this.store.select(
+    (state) => state.products.productsList.results
+  );
   selectedCategory: string = 'all';
   isLoading: boolean = true;
 
@@ -38,12 +47,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   readonly pageSize = 12;
   currentPage: number = 0;
-  totalResults: number = 0;
+  totalResults: Observable<number> = this.store.select(
+    (state) => state.products.productsList.totalResults
+  );
 
   constructor(
     private productService: ProductService,
     private titleService: Title,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private store: Store<IProductsModuleState>
   ) {}
 
   ngOnInit(): void {
@@ -67,8 +79,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe((result) => {
-        this.products = result.results;
-        this.totalResults = result.totalResults;
+        this.selectedCategory = 'all';
+        this.store.dispatch(
+          productsLoaded({
+            products: result.results,
+            totalResults: result.totalResults,
+          })
+        );
         this.isLoading = false;
       });
   }
@@ -86,7 +103,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
         )
         .subscribe({
           next: (result) => {
-            this.products = result.results;
+            this.store.dispatch(
+              productsByCategoryLoaded({ products: result.results })
+            );
             this.selectedCategory = category;
             this.isLoading = false;
           },
@@ -97,7 +116,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     } else {
       this.productService.loadByCategory$(category).subscribe({
         next: (products) => {
-          this.products = products;
+          this.store.dispatch(productsByCategoryLoaded({ products }));
           this.selectedCategory = category;
           this.isLoading = false;
         },

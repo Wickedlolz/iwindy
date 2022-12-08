@@ -7,6 +7,6 @@ const initialState = null;
 export const loadLatestReducer = createReducer<IProduct[] | null>(
   initialState,
   on(loadLatestSuccess, (state, action) => {
-    return [...action.products];
+    return action.products;
   })
 );

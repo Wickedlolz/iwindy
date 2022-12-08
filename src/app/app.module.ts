@@ -1,6 +1,7 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
     }),
     EffectsModule.forRoot([Effects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    BrowserAnimationsModule,
   ],
   providers: [
     {

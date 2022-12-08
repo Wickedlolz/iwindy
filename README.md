@@ -12,11 +12,17 @@
 
 ## Functionality
 
-1. Guest user can see home page, products page, in products page can search by product name or only products by category product details page, login, register.
+1. Guest user can see home page, products page, in products page can search by product name or only products by category, product details page, login, register.
 2. Logged users extend functionality to see other pages and option to create product, like, add to cart, shopping cart and see own created products.
 3. Logged users who is owners of some product extend functionlity with edit/delete.
 
 ## Client is deployed on [vercel](https://vercel.com/) and can check it [Live Demo](https://iwindy.vercel.app/)
+
+## How to run it local:
+
+1.  Clone client and [iWindy REST API](https://github.com/Wickedlolz/iwindy-server)
+2.  npm install / yarn install for client and api
+3.  for running rest api check in repo how to run it.
 
 <hr />
 

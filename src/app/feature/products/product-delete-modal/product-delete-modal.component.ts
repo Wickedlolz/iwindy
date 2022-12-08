@@ -8,7 +8,8 @@ import { ProductService } from 'src/app/core/product.service';
   styleUrls: ['./product-delete-modal.component.css'],
 })
 export class ProductDeleteModalComponent implements OnInit {
-  @Input() product!: IProduct;
+  @Input() productId!: string;
+  @Input() productName!: string;
   @Output() handleDeleteAction = new EventEmitter();
 
   constructor(private productService: ProductService) {}
@@ -16,7 +17,7 @@ export class ProductDeleteModalComponent implements OnInit {
   ngOnInit(): void {}
 
   handleDelete(): void {
-    this.productService.delete$(this.product._id).subscribe({
+    this.productService.delete$(this.productId).subscribe({
       next: (product) => {
         this.handleDeleteAction.emit(true);
       },

@@ -2,13 +2,24 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { forkJoin, Observable, of, Subscription, switchMap, tap } from 'rxjs';
+import { Store } from '@ngrx/store';
+import {
+  forkJoin,
+  map,
+  Observable,
+  of,
+  Subscription,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs';
 import { AuthService } from 'src/app/core/auth.service';
 import {
   MessageBusService,
   MessageType,
 } from 'src/app/core/message-bus.service';
 import { UserService } from 'src/app/core/user.service';
+import { IProductsModuleState, productDetailsLoaded } from '../+store';
 import { IProduct, IUser } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 
@@ -20,12 +31,14 @@ import { ProductService } from '../../../core/product.service';
 export class ProductDetailsComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   productId!: string;
-  product!: IProduct;
+  product$: Observable<IProduct | undefined> = this.store.select(
+    (state) => state.products.productDetails
+  );
   relatedProducts!: IProduct[];
 
   currentUser$: Observable<IUser | undefined> = this.authService.currentUser$;
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
-  isLiked: boolean = false;
+  isLiked!: Observable<boolean | undefined>;
   isDeleteModalVisible: boolean = false;
 
   private subscription!: Subscription;
@@ -37,7 +50,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private router: Router,
     private userService: UserService,
-    private messageBusService: MessageBusService
+    private messageBusService: MessageBusService,
+    private store: Store<IProductsModuleState>
   ) {}
 
   ngOnInit(): void {
@@ -61,9 +75,20 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       .subscribe({
         next: ({ product, related }) => {
           this.titleService.setTitle(product.name + ' | iWindy');
-          this.product = product;
-          this.relatedProducts = related;
-          this.isLiked = this.checkIfIsLiked();
+          this.store.dispatch(productDetailsLoaded({ product }));
+          this.isLiked = this.currentUser$.pipe(
+            map((user) => user?._id),
+            switchMap((userId) =>
+              this.product$.pipe(
+                map((product) => product?.likes.includes(userId || '')),
+                take(1)
+              )
+            )
+          );
+
+          this.relatedProducts = related.filter(
+            (p) => p._id !== this.productId
+          );
           this.isLoading = false;
         },
         error: (error) => {
@@ -76,22 +101,19 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  checkIfIsLiked(): boolean {
-    let result: boolean = false;
-    this.currentUser$
-      .subscribe((user) => {
-        result = this.product.likes.includes(user!._id) || false;
-      })
-      .unsubscribe();
-
-    return result;
-  }
-
   handleLike(): void {
     this.productService.likeProduct$(this.productId).subscribe({
       next: (product) => {
-        this.product = product;
-        this.isLiked = this.checkIfIsLiked();
+        this.store.dispatch(productDetailsLoaded({ product }));
+        this.isLiked = this.currentUser$.pipe(
+          map((user) => user?._id),
+          switchMap((userId) =>
+            this.product$.pipe(
+              map((product) => product?.likes.includes(userId || '')),
+              take(1)
+            )
+          )
+        );
       },
     });
   }
@@ -99,8 +121,16 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   handleDislike(): void {
     this.productService.dislikeProduct$(this.productId).subscribe({
       next: (product) => {
-        this.product = product;
-        this.isLiked = this.checkIfIsLiked();
+        this.store.dispatch(productDetailsLoaded({ product }));
+        this.isLiked = this.currentUser$.pipe(
+          map((user) => user?._id),
+          switchMap((userId) =>
+            this.product$.pipe(
+              map((product) => product?.likes.includes(userId || '')),
+              take(1)
+            )
+          )
+        );
       },
     });
   }
