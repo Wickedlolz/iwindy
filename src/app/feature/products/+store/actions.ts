@@ -19,5 +19,6 @@ export const productDetailsLoaded = createAction(
 
 const productCreateDomain = '[ProductCreateComponent]';
 export const createProduct = createAction(
-  `${productCreateDomain} Create Product`
+  `${productCreateDomain} Create Product`,
+  props<{ product: IProduct }>()
 );

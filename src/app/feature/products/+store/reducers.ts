@@ -5,10 +5,11 @@ import {
   productsByCategoryLoaded,
   productsLoaded,
   productDetailsLoaded,
+  createProduct,
 } from '.';
 
 const productListInitialState: IProductsListState = {
-  results: undefined,
+  results: [],
   totalResults: 0,
 };
 
@@ -25,6 +26,12 @@ export const productsListReducer = createReducer<IProductsListState>(
     return {
       ...state,
       results: action.products,
+    };
+  }),
+  on(createProduct, (state, action) => {
+    return {
+      ...state,
+      results: [...state.results, action.product],
     };
   })
 );

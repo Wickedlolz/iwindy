@@ -1,8 +1,10 @@
 # iWindy eCommerce Shop
 
+## Angular project created for project defense @ SoftUni Angular course 2022
+
 [iWindy REST API](https://github.com/Wickedlolz/iwindy-server)
 
-## Technologies used
+## Technologies and tools used
 
 - <img src="https://angular.io/assets/images/logos/angular/angular.svg" style="width: 20px; height: 20px" alt="Angular" /> Angular
 - Angular Animations

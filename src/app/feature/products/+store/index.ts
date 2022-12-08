@@ -5,7 +5,7 @@ export * from './actions';
 export * from './reducers';
 
 export interface IProductsListState {
-  results: IProduct[] | undefined;
+  results: IProduct[];
   totalResults: number | 0;
 }
 

@@ -1,48 +1,50 @@
 <app-thumbnail></app-thumbnail>
-<section class="details" *ngIf="!isLoading; else loadingIndicator">
+<section
+  class="details"
+  *ngIf="!isLoading && (product$ | async) as product; else loadingIndicator"
+>
   <app-product-delete-modal
     *ngIf="isDeleteModalVisible"
-    [productId]="product!._id"
-    [productName]="product!.name"
+    [product]="product"
     (handleDeleteAction)="handleDelete($event)"
   ></app-product-delete-modal>
   <article class="product">
-    <h2 class="title">{{ product!.name }}</h2>
+    <h2 class="title">{{ product.name }}</h2>
     <div class="box">
       <img
         class="product-img"
-        [src]="product!.image"
-        [alt]="product!.name"
+        [src]="product.image"
+        [alt]="product.name"
         loading="lazy"
       />
       <div class="desc">
         <ul class="desc-list" role="list">
           <li>
-            <p><b>Brand</b>: {{ product!.brand }}</p>
+            <p><b>Brand</b>: {{ product.brand }}</p>
           </li>
           <li>
-            <p><b>Product Code</b>: {{ product!._id }}</p>
+            <p><b>Product Code</b>: {{ product._id }}</p>
           </li>
           <li>
-            <p><b>Reward Points</b>: {{ product!.likes.length }}</p>
+            <p><b>Reward Points</b>: {{ product.likes.length }}</p>
           </li>
           <li>
-            <p *ngIf="product!.quantity === 0">
+            <p *ngIf="product.quantity === 0">
               <b>Availability</b>: Out Of Stock
             </p>
-            <p *ngIf="product!.quantity > 0">
-              <b>Availability</b>: {{ product!.quantity }}
+            <p *ngIf="(product$ | async)!.quantity > 0">
+              <b>Availability</b>: {{ product.quantity }}
             </p>
           </li>
         </ul>
-        <p class="price" [ngClass]="{ discount: product!.discount }">
-          Price: ${{ product!.price }}
+        <p class="price" [ngClass]="{ discount: product.discount }">
+          Price: ${{ product.price }}
         </p>
         <form
           class="form"
           *ngIf="
             (isLoggedIn$ | async) &&
-            (currentUser$ | async)?._id !== product!.creator._id
+            (currentUser$ | async)?._id !== product.creator?._id
           "
           #addToCartFromGroup="ngForm"
           (ngSubmit)="handleAddToCart(addToCartFromGroup)"
@@ -65,7 +67,7 @@
           <li
             *ngIf="
               !(isLiked | async) &&
-              (currentUser$ | async)?._id !== product!.creator._id
+              (currentUser$ | async)?._id !== product.creator?._id
             "
           >
             <button class="like-btn" (click)="handleLike()">
@@ -75,22 +77,19 @@
           <li
             *ngIf="
               (isLiked | async) &&
-              (currentUser$ | async)?._id !== product!.creator._id
+              (currentUser$ | async)?._id !== product.creator?._id
             "
           >
             <button class="dislike-btn" (click)="handleDislike()">
               <i class="fa-solid fa-heart"></i>
             </button>
           </li>
-          <li *ngIf="(currentUser$ | async)?._id === product!.creator._id">
-            <a
-              class="edit-link"
-              [routerLink]="'/products/edit/' + product!._id"
-            >
+          <li *ngIf="(currentUser$ | async)?._id === product.creator?._id">
+            <a class="edit-link" [routerLink]="'/products/edit/' + product._id">
               <i class="fa-solid fa-pen-to-square"></i>
             </a>
           </li>
-          <li *ngIf="(currentUser$ | async)?._id === product!.creator._id">
+          <li *ngIf="(currentUser$ | async)?._id === product.creator?._id">
             <button class="delete-btn" (click)="toggleDeleteModal()">
               <i class="fa-solid fa-trash"></i>
             </button>
@@ -105,11 +104,11 @@
       <tbody>
         <tr>
           <td>Size</td>
-          <td>{{ product!.sizes.join(", ") }}</td>
+          <td>{{ product.sizes.join(", ") }}</td>
         </tr>
         <tr>
           <td>Color</td>
-          <td>{{ product!.colors.join(", ") }}</td>
+          <td>{{ product.colors.join(", ") }}</td>
         </tr>
       </tbody>
     </table>
@@ -117,7 +116,7 @@
   <article class="description">
     <h3 class="title">Details</h3>
     <p class="text">
-      {{ product!.description }}
+      {{ product.description }}
     </p>
   </article>
   <article class="related-products">
