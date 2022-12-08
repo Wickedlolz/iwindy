@@ -31,9 +31,11 @@ import { ProductService } from '../../../core/product.service';
 export class ProductDetailsComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   productId!: string;
-  product$: Observable<IProduct | undefined> = this.store.select(
-    (state) => state.products.productDetails
-  );
+  product!: IProduct | undefined;
+
+  product$: Observable<IProduct | undefined> = this.store
+    .select((state) => state.products.productDetails)
+    .pipe(tap((product) => (this.product = product)));
   relatedProducts!: IProduct[];
 
   currentUser$: Observable<IUser | undefined> = this.authService.currentUser$;
@@ -77,13 +79,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           this.titleService.setTitle(product.name + ' | iWindy');
           this.store.dispatch(productDetailsLoaded({ product }));
           this.isLiked = this.currentUser$.pipe(
-            map((user) => user?._id),
-            switchMap((userId) =>
-              this.product$.pipe(
-                map((product) => product?.likes.includes(userId || '')),
-                take(1)
-              )
-            )
+            map((user) => this.product?.likes.includes(user?._id || ''))
           );
 
           this.relatedProducts = related.filter(
@@ -106,13 +102,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       next: (product) => {
         this.store.dispatch(productDetailsLoaded({ product }));
         this.isLiked = this.currentUser$.pipe(
-          map((user) => user?._id),
-          switchMap((userId) =>
-            this.product$.pipe(
-              map((product) => product?.likes.includes(userId || '')),
-              take(1)
-            )
-          )
+          map((user) => this.product?.likes.includes(user?._id || ''))
         );
       },
     });
@@ -123,13 +113,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       next: (product) => {
         this.store.dispatch(productDetailsLoaded({ product }));
         this.isLiked = this.currentUser$.pipe(
-          map((user) => user?._id),
-          switchMap((userId) =>
-            this.product$.pipe(
-              map((product) => product?.likes.includes(userId || '')),
-              take(1)
-            )
-          )
+          map((user) => this.product?.likes.includes(user?._id || ''))
         );
       },
     });
