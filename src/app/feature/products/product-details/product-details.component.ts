@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import {
   forkJoin,
   map,
@@ -10,7 +9,6 @@ import {
   of,
   Subscription,
   switchMap,
-  take,
   tap,
 } from 'rxjs';
 import { AuthService } from 'src/app/core/auth.service';
@@ -19,7 +17,6 @@ import {
   MessageType,
 } from 'src/app/core/message-bus.service';
 import { UserService } from 'src/app/core/user.service';
-import { IProductsModuleState, productDetailsLoaded } from '../+store';
 import { IProduct, IUser } from '../../../core/interfaces';
 import { ProductService } from '../../../core/product.service';
 
@@ -31,9 +28,7 @@ import { ProductService } from '../../../core/product.service';
 export class ProductDetailsComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   productId!: string;
-  product$: Observable<IProduct | undefined> = this.store.select(
-    (state) => state.products.productDetails
-  );
+  product!: IProduct;
   relatedProducts!: IProduct[];
 
   currentUser$: Observable<IUser | undefined> = this.authService.currentUser$;
@@ -50,8 +45,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private router: Router,
     private userService: UserService,
-    private messageBusService: MessageBusService,
-    private store: Store<IProductsModuleState>
+    private messageBusService: MessageBusService
   ) {}
 
   ngOnInit(): void {
@@ -75,15 +69,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       .subscribe({
         next: ({ product, related }) => {
           this.titleService.setTitle(product.name + ' | iWindy');
-          this.store.dispatch(productDetailsLoaded({ product }));
+          this.product = product;
           this.isLiked = this.currentUser$.pipe(
-            map((user) => user?._id),
-            switchMap((userId) =>
-              this.product$.pipe(
-                map((product) => product?.likes.includes(userId || '')),
-                take(1)
-              )
-            )
+            map((user) => this.product.likes.includes(user?._id || ''))
           );
 
           this.relatedProducts = related.filter(
@@ -104,15 +92,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   handleLike(): void {
     this.productService.likeProduct$(this.productId).subscribe({
       next: (product) => {
-        this.store.dispatch(productDetailsLoaded({ product }));
+        this.product = product;
         this.isLiked = this.currentUser$.pipe(
-          map((user) => user?._id),
-          switchMap((userId) =>
-            this.product$.pipe(
-              map((product) => product?.likes.includes(userId || '')),
-              take(1)
-            )
-          )
+          map((user) => this.product.likes.includes(user?._id || ''))
         );
       },
     });
@@ -121,15 +103,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   handleDislike(): void {
     this.productService.dislikeProduct$(this.productId).subscribe({
       next: (product) => {
-        this.store.dispatch(productDetailsLoaded({ product }));
+        this.product = product;
         this.isLiked = this.currentUser$.pipe(
-          map((user) => user?._id),
-          switchMap((userId) =>
-            this.product$.pipe(
-              map((product) => product?.likes.includes(userId || '')),
-              take(1)
-            )
-          )
+          map((user) => this.product.likes.includes(user?._id || ''))
         );
       },
     });

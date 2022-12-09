@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { createProduct } from '../+store';
 import { ProductService } from '../../../core/product.service';
 
 @Component({
@@ -15,8 +13,7 @@ export class ProductCreateComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private titleService: Title,
-    private router: Router,
-    private store: Store
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +28,6 @@ export class ProductCreateComponent implements OnInit {
     this.productService
       .create$(productCreateForm.value)
       .subscribe((product) => {
-        this.store.dispatch(createProduct({ product }));
         this.router.navigate(['/products']);
       });
   }

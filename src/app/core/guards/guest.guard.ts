@@ -17,7 +17,7 @@ export class GuestGuard implements CanActivate {
           return true;
         }
 
-        return this.router.createUrlTree(['/user/login']);
+        return this.router.createUrlTree(['/home']);
       })
     );
   }

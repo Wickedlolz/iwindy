@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { IProduct } from 'src/app/core/interfaces';
 import { ProductService } from 'src/app/core/product.service';
 

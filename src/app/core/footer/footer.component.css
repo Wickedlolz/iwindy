@@ -1,40 +1,52 @@
-.info {
-  height: 50px;
+.footer {
   width: 90%;
-  margin-right: auto;
-  margin-left: auto;
+  padding: 20px;
+  margin-inline: auto;
+  background-color: #000;
+  color: #fff;
+
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
-.info .credentials {
-  font-size: 18px;
-  padding-right: 20px;
+.footer .navigation {
+  margin-left: 20px;
 }
 
-.info .socials {
-  display: flex;
-  gap: 30px;
+.footer .navigation .nav-list a,
+.footer .my-account .acc-list a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 14px;
 }
 
-.info .socials .social-link {
-  font-size: 20px;
+.footer .navigation .nav-list a:hover,
+.footer .my-account .acc-list a:hover {
+  text-decoration: underline;
+  color: gray;
 }
 
-.info .socials .social-link i.fa-github {
-  color: black;
-  scale: 1;
-  transition: scale 300ms ease-in-out;
+.footer .content {
+  width: 600px;
+  text-align: center;
 }
 
-.info .socials .social-link i.fa-linkedin {
-  color: blue;
-  scale: 1;
-  transition: scale 300ms ease-in-out;
+.footer .content h2 {
+  cursor: default;
 }
 
-.info .socials .social-link i.fa-github:hover,
-.info .socials .social-link i.fa-linkedin:hover {
-  scale: 1.5;
+.footer .content h2 i {
+  color: rgb(236, 31, 76);
+}
+
+.footer .content .divider {
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+  margin-bottom: 10px;
+}
+
+.footer .content .text {
+  color: gray;
+  cursor: default;
 }

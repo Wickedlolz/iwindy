@@ -196,3 +196,30 @@
   margin-left: 50px;
   margin-right: 50px;
 }
+
+@media screen and (max-width: 600px) {
+  .home .latest {
+    height: 1400px;
+  }
+
+  .home .latest .products-list {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 10px;
+  }
+
+  .home .latest .products-list .product-item {
+    max-height: unset;
+  }
+
+  .home .services .services-list {
+    display: unset;
+  }
+
+  .home .manufactures .clients-list {
+    display: unset;
+  }
+
+  .home .manufactures .clients-list .client img {
+    margin-inline: auto;
+  }
+}

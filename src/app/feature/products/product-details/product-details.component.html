@@ -1,8 +1,5 @@
 <app-thumbnail></app-thumbnail>
-<section
-  class="details"
-  *ngIf="!isLoading && (product$ | async) as product; else loadingIndicator"
->
+<section class="details" *ngIf="!isLoading; else loadingIndicator">
   <app-product-delete-modal
     *ngIf="isDeleteModalVisible"
     [product]="product"
@@ -32,7 +29,7 @@
             <p *ngIf="product.quantity === 0">
               <b>Availability</b>: Out Of Stock
             </p>
-            <p *ngIf="(product$ | async)!.quantity > 0">
+            <p *ngIf="product.quantity > 0">
               <b>Availability</b>: {{ product.quantity }}
             </p>
           </li>

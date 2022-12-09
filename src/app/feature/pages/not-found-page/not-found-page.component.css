@@ -83,7 +83,8 @@
 
 .text a {
   text-decoration: none;
-  color: #000;
+  color: rgb(236, 31, 76);
+  font-weight: bold;
 }
 
 .text a:hover {

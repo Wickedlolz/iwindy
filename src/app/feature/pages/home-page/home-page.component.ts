@@ -5,10 +5,10 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IRootState, loadLatest } from 'src/app/+store';
 import { IProduct } from 'src/app/core/interfaces';
 import { ProductService } from 'src/app/core/product.service';
@@ -45,20 +45,14 @@ export class HomePageComponent implements OnInit {
     supportState: 'default',
   };
 
-  constructor(
-    private productService: ProductService,
-    private titleService: Title,
-    private store: Store<IRootState>
-  ) {}
+  constructor(private titleService: Title, private store: Store<IRootState>) {}
 
   ngOnInit(): void {
     this.titleService.setTitle('Home | iWindy');
 
     this.latest$
-      .subscribe((products) => {
-        if (!products) {
-          this.store.dispatch(loadLatest());
-        }
+      .subscribe(() => {
+        this.store.dispatch(loadLatest());
 
         this.isLoading = false;
       })
