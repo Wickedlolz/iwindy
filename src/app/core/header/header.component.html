@@ -17,6 +17,9 @@
           >Products</a
         >
       </li>
+      <li class="nav-list__item">
+        <a routerLink="/contact-us" routerLinkActive="active">Contact Us</a>
+      </li>
       <li class="nav-list__item" *ngIf="!(isLoggedIn$ | async)">
         <a routerLink="/user/login" routerLinkActive="active">Login</a>
       </li>

@@ -139,7 +139,7 @@
               loading="lazy"
             />
             <div class="desc">
-              <h3 class="desc__title">{{ product.name }}</h3>
+              <h3 class="desc__title">{{ product.name | shorten : 45 }}</h3>
               <p class="desc__category">{{ product.category }}</p>
               <p class="desc__price" [ngClass]="{ discount: product.discount }">
                 ${{ product.price }}

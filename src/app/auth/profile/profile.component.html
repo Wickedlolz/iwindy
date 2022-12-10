@@ -1,6 +1,9 @@
 <app-thumbnail></app-thumbnail>
-<app-loading *ngIf="isLoading"></app-loading>
-<section class="profile" *ngIf="!isLoading">
+<app-loading *ngIf="isLoading$ | async"></app-loading>
+<section
+  class="profile"
+  *ngIf="!(isLoading$ | async) && (currentUser$ | async) as currentUser"
+>
   <article class="account">
     <h2 class="title">Account information</h2>
     <div class="account-info">
@@ -41,7 +44,7 @@
             class="product__img"
           />
           <div class="details">
-            <h3 class="details__title">{{ product.name }}</h3>
+            <h3 class="details__title">{{ product.name | shorten : 45 }}</h3>
             <p class="details__price">{{ product.price }}$</p>
             <p class="details__createdAt">
               Created at: {{ product.createdAt | date : "fullDate" }}

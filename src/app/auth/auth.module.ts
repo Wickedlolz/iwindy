@@ -9,6 +9,12 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderModalComponent } from './order-modal/order-modal.component';
+import { StoreModule } from '@ngrx/store';
+import { IAuthState } from './+store';
+import { cartReducer, profileReducer } from './+store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { ProfileEffects } from './+store/profile.effects';
+import { CartEffect } from './+store/cart.effects';
 
 @NgModule({
   declarations: [
@@ -25,6 +31,11 @@ import { OrderModalComponent } from './order-modal/order-modal.component';
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forFeature<IAuthState>('auth', {
+      profile: profileReducer,
+      cart: cartReducer,
+    }),
+    EffectsModule.forFeature([ProfileEffects, CartEffect]),
   ],
 })
 export class AuthModule {}

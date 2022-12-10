@@ -107,7 +107,7 @@
             <img class="card__img" [src]="product.image" [alt]="product.name" />
             <div class="desc">
               <h3 class="desc__title">
-                {{ product.name }}
+                {{ product.name | shorten : 45 }}
               </h3>
               <p class="desc__category">{{ product.category }}</p>
               <p class="desc__price" [ngClass]="{ discount: product.discount }">

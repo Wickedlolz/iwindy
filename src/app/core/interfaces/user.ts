@@ -1,7 +1,8 @@
+import { ICart } from './cart';
 import { IProduct } from './product';
 
 export interface IUser {
-  cart: IProduct[];
+  cart: ICart[];
   createdAt: string;
   email: string;
   updatedAt: string;

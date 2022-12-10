@@ -1,0 +1,64 @@
+.google_map {
+  width: 90%;
+  margin-inline: auto;
+}
+
+.contact-us {
+  width: 90%;
+  margin-inline: auto;
+  background-color: #fff;
+  padding-bottom: 50px;
+}
+
+.contact-us .title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-us .content {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 28px;
+}
+
+.contact-us .content .additional-info {
+  width: 40%;
+}
+
+.contact-us .content .additional-info ul:first-of-type {
+  margin-bottom: 15px;
+}
+
+.contact-us .content .contact-form {
+  width: 60%;
+}
+
+.contact-us .content .contact-form p {
+  margin-bottom: 20px;
+}
+
+.contact-us .content .contact-form label,
+.contact-us .content .contact-form textarea {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.contact-us .content .contact-form input,
+.contact-us .content .contact-form textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+
+.contact-us .content .contact-form textarea {
+  margin-bottom: 10px;
+}
+
+.contact-us .content .contact-form .send-btn {
+  background-color: #363636;
+  color: #fff;
+  padding: 4px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}

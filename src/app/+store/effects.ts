@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { ProductService } from '../core/product.service';
-import { loadLatest, loadLatestSuccess } from '../+store';
+import { loadLatestInitialize, loadLatestSuccess } from '../+store';
 import { catchError, map, switchMap } from 'rxjs';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { catchError, map, switchMap } from 'rxjs';
 export class Effects {
   loadLatest = createEffect(() =>
     this.actions$.pipe(
-      ofType(loadLatest),
+      ofType(loadLatestInitialize),
       switchMap(() =>
         this.productService
           .loadLatest$()

@@ -96,7 +96,7 @@
 }
 
 .home .latest .products-list .product-item {
-  max-height: 350px;
+  max-height: 380px;
 }
 
 .home .latest .products-list .product .product__img {
@@ -109,7 +109,7 @@
   background-color: #eee;
   text-align: center;
   padding: 10px;
-  height: 150px;
+  height: 170px;
   max-height: 200px;
 }
 

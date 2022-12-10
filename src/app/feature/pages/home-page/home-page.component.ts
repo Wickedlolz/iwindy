@@ -9,9 +9,8 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { IRootState, loadLatest } from 'src/app/+store';
+import { IRootState, loadLatestInitialize } from 'src/app/+store';
 import { IProduct } from 'src/app/core/interfaces';
-import { ProductService } from 'src/app/core/product.service';
 
 interface IServicesState {
   designState: string;
@@ -50,13 +49,8 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle('Home | iWindy');
 
-    this.latest$
-      .subscribe(() => {
-        this.store.dispatch(loadLatest());
-
-        this.isLoading = false;
-      })
-      .unsubscribe();
+    this.store.dispatch(loadLatestInitialize());
+    this.isLoading = false;
   }
 
   rotate(type: string): void {

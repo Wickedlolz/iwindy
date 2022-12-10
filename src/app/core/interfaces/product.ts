@@ -7,7 +7,7 @@ export interface IProduct {
   quantity: number;
   description: string;
   image: string;
-  price: number;
+  price: string;
   discount: boolean;
   creator: IUser;
   colors: string[];

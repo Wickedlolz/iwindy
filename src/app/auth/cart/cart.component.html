@@ -1,11 +1,15 @@
 <app-thumbnail></app-thumbnail>
 <section class="cart">
-  <app-order-modal *ngIf="isOrderModalVisible"></app-order-modal>
+  <app-order-modal *ngIf="isOrderModalVisible$ | async"></app-order-modal>
   <h1 class="title">Shopping Cart</h1>
-  <app-loading *ngIf="isLoading"></app-loading>
-  <p *ngIf="cartItems.length === 0">No products added yet.</p>
-  <ul class="items" role="list" *ngIf="!isLoading && cartItems.length > 0">
-    <li class="item" *ngFor="let product of cartItems">
+  <app-loading *ngIf="isLoading$ | async"></app-loading>
+  <p *ngIf="(cartItems$ | async)?.length === 0">No products added yet.</p>
+  <ul
+    class="items"
+    role="list"
+    *ngIf="!(isLoading$ | async) && (cartItems$ | async)!.length > 0"
+  >
+    <li class="item" *ngFor="let product of cartItems$ | async as cartItems">
       <article class="product">
         <img
           [src]="product.productId.image"
@@ -13,7 +17,9 @@
           class="product__img"
         />
         <div class="desc">
-          <h2 class="desc__title">{{ product.productId.name }}</h2>
+          <h2 class="desc__title">
+            {{ product.productId.name | shorten : 35 }}
+          </h2>
           <span class="warranty">Warranty: 12 months</span>
         </div>
         <div class="quantity">
@@ -30,7 +36,7 @@
         </div>
       </article>
       <p class="product__total-price">
-        <span>Total</span>: {{ product.productId.price * product.quantity }}$
+        <span>Total</span>: {{ +product.productId.price * product.quantity }}$
       </p>
     </li>
   </ul>

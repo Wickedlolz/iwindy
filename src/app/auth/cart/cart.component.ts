@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { ICart } from 'src/app/core/interfaces';
 import { UserService } from 'src/app/core/user.service';
+import { IAuthModuleState } from '../+store';
+import {
+  cartItemDeleteSuccess,
+  cartOrderModalInitialize,
+  cartOrderSuccess,
+  cartPageInitialize,
+} from '../+store/actions';
 
 @Component({
   selector: 'app-cart',
@@ -9,55 +18,66 @@ import { UserService } from 'src/app/core/user.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartItems: ICart[] = [];
-  isLoading: boolean = true;
-  isOrderModalVisible: boolean = false;
+  cartItems$: Observable<ICart[] | undefined> = this.store.select(
+    (state) => state.auth.cart.currentCart
+  );
+  isLoading$: Observable<boolean> = this.store.select(
+    (state) => state.auth.cart.isLoading
+  );
+  isOrderModalVisible$: Observable<boolean> = this.store.select(
+    (state) => state.auth.cart.isOrderModalVisible
+  );
 
-  constructor(private titleService: Title, private userService: UserService) {}
+  constructor(
+    private titleService: Title,
+    private userService: UserService,
+    private store: Store<IAuthModuleState>
+  ) {}
 
   ngOnInit(): void {
-    this.isLoading = true;
     this.titleService.setTitle('Shopping Cart | iWindy');
-    this.userService.getCartItems$().subscribe({
-      next: (products) => {
-        this.cartItems = products;
-        this.isLoading = false;
-      },
-      error: (error) => {
-        this.isLoading = false;
-      },
-    });
+    this.store.dispatch(cartPageInitialize());
   }
 
   handleRemoveItem(product: ICart): void {
     this.userService.removeFromCart$(product).subscribe({
-      next: () => {
-        const index = this.cartItems.findIndex((x) => x._id === product._id);
-        this.cartItems.splice(index, 1);
+      next: (user) => {
+        this.store.dispatch(
+          cartItemDeleteSuccess({ cartItems: user.cart, isLoading: false })
+        );
       },
     });
   }
 
   handleOrderNow(): void {
+    this.store.dispatch(
+      cartOrderModalInitialize({ isOrderModalVisible: true })
+    );
+
     this.userService.makeOrder$().subscribe({
       next: (cartItems) => {
-        this.cartItems = cartItems;
-        this.isOrderModalVisible = true;
+        this.store.dispatch(cartOrderSuccess({ cartItems: cartItems }));
 
         setTimeout(() => {
-          this.isOrderModalVisible = false;
+          this.store.dispatch(
+            cartOrderModalInitialize({ isOrderModalVisible: false })
+          );
         }, 4000);
       },
     });
   }
 
   calcTotalPrice(): number {
-    let total = 0;
+    let totalPrice: number = 0;
 
-    this.cartItems.forEach((item) => {
-      total += item.productId.price * item.quantity;
-    });
+    this.cartItems$
+      .subscribe((items) => {
+        items?.forEach(
+          (item) => (totalPrice += Number(item.productId.price) * item.quantity)
+        );
+      })
+      .unsubscribe();
 
-    return total;
+    return totalPrice;
   }
 }

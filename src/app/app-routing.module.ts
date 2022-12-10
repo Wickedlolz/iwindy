@@ -1,4 +1,5 @@
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ContactUsComponent } from './feature/pages/contact-us/contact-us.component';
 import { HomePageComponent } from './feature/pages/home-page/home-page.component';
 import { NotFoundPageComponent } from './feature/pages/not-found-page/not-found-page.component';
 
@@ -22,6 +23,10 @@ const routes: Routes = [
       import('./feature/products/products.module').then(
         (m) => m.ProductsModule
       ),
+  },
+  {
+    path: 'contact-us',
+    component: ContactUsComponent,
   },
   {
     path: '**',

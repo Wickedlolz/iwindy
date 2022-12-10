@@ -1,6 +1,7 @@
 .details {
   width: 90%;
   margin-inline: auto;
+  padding-bottom: 20px;
   background-color: #fff;
   border-top: 2px solid red;
 }
@@ -161,7 +162,7 @@
   background-color: #eee;
   text-align: center;
   padding: 10px;
-  height: 160px;
+  height: 180px;
 }
 
 .details .related-products .products-list .product .desc .desc__title {

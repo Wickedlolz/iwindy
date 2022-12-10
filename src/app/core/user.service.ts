@@ -27,8 +27,8 @@ export class UserService {
     });
   }
 
-  removeFromCart$(product: ICart): Observable<ICart> {
-    return this.http.delete<ICart>(apiUrl + '/users/cart/' + product._id);
+  removeFromCart$(product: ICart): Observable<IUser> {
+    return this.http.delete<IUser>(apiUrl + '/users/cart/' + product._id);
   }
 
   makeOrder$(): Observable<ICart[]> {
