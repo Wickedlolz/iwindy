@@ -4,7 +4,6 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   selector: 'app-let-it-snow',
   templateUrl: './let-it-snow.component.html',
   styleUrls: ['./let-it-snow.component.css'],
-  animations: [],
 })
 export class LetItSnowComponent implements OnInit {
   n = 60;

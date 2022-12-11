@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, mergeMap } from 'rxjs';
+import { catchError, EMPTY, map, mergeMap } from 'rxjs';
 import { UserService } from 'src/app/core/user.service';
 import { profileLoaded, profilePageInitalized } from './actions';
 
@@ -14,7 +14,8 @@ export class ProfileEffects {
       mergeMap(() => this.userService.getProfile$()),
       map((currentProfile) =>
         profileLoaded({ profile: currentProfile, isLoading: false })
-      )
+      ),
+      catchError((error) => EMPTY)
     )
   );
 }
