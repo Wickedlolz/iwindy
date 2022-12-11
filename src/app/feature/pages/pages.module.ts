@@ -6,9 +6,16 @@ import { RouterModule } from '@angular/router';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { EventsModule } from '../events/events.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HomePageComponent, NotFoundPageComponent, ContactUsComponent],
-  imports: [CommonModule, RouterModule, SharedModule, EventsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    EventsModule,
+    FormsModule,
+  ],
 })
 export class PagesModule {}

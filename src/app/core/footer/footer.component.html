@@ -6,17 +6,17 @@
         <a routerLink="/home">Home Page</a>
       </li>
       <li>
+        <a routerLink="/products">Products Page</a>
+      </li>
+      <li>
         <a routerLink="/contact-us">Contact Us</a>
       </li>
-      <li>
-        <a routerLink="/user/cart">Your Cart</a>
-      </li>
-      <li>
+      <li *ngIf="!(isLoggedIn$ | async)">
         <a routerLink="/user/login">Login</a>
       </li>
     </ul>
   </div>
-  <div class="my-account">
+  <div class="my-account" *ngIf="isLoggedIn$ | async">
     <h3>My Account</h3>
     <ul class="acc-list" role="list">
       <li>
@@ -24,9 +24,6 @@
       </li>
       <li>
         <a routerLink="/user/cart">Your Cart</a>
-      </li>
-      <li>
-        <a routerLink="/user/login">Login</a>
       </li>
     </ul>
   </div>

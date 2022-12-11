@@ -23,7 +23,10 @@
           <p><strong>Fax</strong>: +04 (123) 456-7890</p>
         </li>
         <li>
-          <p><strong>Email</strong>: <a href="#">iwindy@gmail.com</a></p>
+          <p>
+            <strong>Email</strong>:
+            <a href="mailto: iwindy@gmail.com">iwindy@gmail.com</a>
+          </p>
         </li>
       </ul>
 
@@ -36,7 +39,10 @@
           <p><strong>Fax</strong>: +04 (113) 023-1145</p>
         </li>
         <li>
-          <p><strong>Email</strong>: <a href="#">iwindy@gmail.com</a></p>
+          <p>
+            <strong>Email</strong>:
+            <a href="mailto: iwindy@gmail.com">iwindy@gmail.com</a>
+          </p>
         </li>
       </ul>
     </div>
@@ -47,13 +53,29 @@
         illo inventore veritatis et quasi architecto beatae vitae dicta sunt
         explicabo.
       </p>
-      <form class="contact-form">
+      <form
+        class="contact-form"
+        #contactForm="ngForm"
+        (ngSubmit)="handleQuestionForm(contactForm)"
+      >
         <label for="name">Name:</label>
-        <input type="text" name="name" id="name" class="name-input" />
+        <input type="text" name="name" ngModel id="name" class="name-input" />
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" class="email-input" />
+        <input
+          type="email"
+          name="email"
+          ngModel
+          id="email"
+          class="email-input"
+        />
         <label for="message">Message:</label>
-        <textarea name="message" id="message" cols="30" rows="5"></textarea>
+        <textarea
+          name="message"
+          id="message"
+          ngModel
+          cols="30"
+          rows="5"
+        ></textarea>
         <button class="send-btn">Send message</button>
       </form>
     </div>

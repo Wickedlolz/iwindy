@@ -36,7 +36,8 @@
         </div>
       </article>
       <p class="product__total-price">
-        <span>Total</span>: {{ +product.productId.price * product.quantity }}$
+        <span>Total</span>:
+        {{ (+product.productId.price * product.quantity).toFixed(2) }}$
       </p>
     </li>
   </ul>
@@ -45,12 +46,12 @@
     <ul class="order__payments" role="list">
       <li class="payment">
         <span class="payment__text">All products:</span>
-        <span class="payment__price">{{ calcTotalPrice() }}$</span>
+        <span class="payment__price">{{ calcTotalPrice().toFixed(2) }}$</span>
       </li>
     </ul>
     <div class="total">
       <p class="total__text">Total:</p>
-      <p class="total__price">{{ calcTotalPrice() }}$</p>
+      <p class="total__price">{{ calcTotalPrice().toFixed(2) }}$</p>
     </div>
     <button class="order-now" (click)="handleOrderNow()">Order Now</button>
   </div>

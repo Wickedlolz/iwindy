@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -6,19 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
-  isAuth: boolean = false;
+  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
-
-  handleLoginClick(event: MouseEvent): void {
-    event.preventDefault();
-    this.isAuth = !this.isAuth;
-  }
-
-  handleLogOutClick($event: MouseEvent): void {
-    $event.preventDefault();
-    this.isAuth = !this.isAuth;
-  }
 }
