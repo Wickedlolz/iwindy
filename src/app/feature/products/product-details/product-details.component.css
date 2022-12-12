@@ -77,7 +77,7 @@
   gap: 15px;
 }
 
-.details .product .box .desc .actions button {
+.details .product .box .desc .actions li button {
   border: none;
   outline: none;
   background-color: transparent;
@@ -85,7 +85,7 @@
   cursor: pointer;
 }
 
-.details .product .box .desc .actions a {
+.details .product .box .desc .actions li a {
   text-decoration: none;
   outline: none;
   color: inherit;

@@ -67,7 +67,11 @@
               (currentUser$ | async)?._id !== product.creator?._id
             "
           >
-            <button class="like-btn" (click)="handleLike()">
+            <button
+              class="like-btn"
+              [disabled]="isPending"
+              (click)="handleLike()"
+            >
               <i class="fa-regular fa-heart"></i>
             </button>
           </li>
@@ -77,7 +81,11 @@
               (currentUser$ | async)?._id !== product.creator?._id
             "
           >
-            <button class="dislike-btn" (click)="handleDislike()">
+            <button
+              class="dislike-btn"
+              [disabled]="isPending"
+              (click)="handleDislike()"
+            >
               <i class="fa-solid fa-heart"></i>
             </button>
           </li>

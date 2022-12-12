@@ -35,11 +35,12 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
   isLiked!: Observable<boolean | undefined>;
   isDeleteModalVisible: boolean = false;
+  isPending: boolean = false;
 
   private subscription!: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private authService: AuthService,
     private titleService: Title,
@@ -49,7 +50,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.route.params
+    this.subscription = this.activatedRoute.params
       .pipe(
         tap((params) => {
           this.productId = params['productId'];
@@ -90,23 +91,27 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
   handleLike(): void {
+    this.isPending = true;
     this.productService.likeProduct$(this.productId).subscribe({
       next: (product) => {
         this.product = product;
         this.isLiked = this.currentUser$.pipe(
           map((user) => this.product.likes.includes(user?._id || ''))
         );
+        this.isPending = false;
       },
     });
   }
 
   handleDislike(): void {
+    this.isPending = true;
     this.productService.dislikeProduct$(this.productId).subscribe({
       next: (product) => {
         this.product = product;
         this.isLiked = this.currentUser$.pipe(
           map((user) => this.product.likes.includes(user?._id || ''))
         );
+        this.isPending = false;
       },
     });
   }
@@ -131,7 +136,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
     this.userService
       .addToCart$(this.productId, addToCartFromGroup.value.qty)
-      .subscribe((cartItem) => {
+      .subscribe(() => {
         this.messageBusService.notifyForMessage({
           text: 'Successfully added to Cart',
           type: MessageType.Success,
