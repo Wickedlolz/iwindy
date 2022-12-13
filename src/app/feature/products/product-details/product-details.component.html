@@ -56,7 +56,10 @@
             id="qty"
             placeholder="1"
           />
-          <button class="btn" [disabled]="addToCartFromGroup.invalid">
+          <button
+            class="btn"
+            [disabled]="addToCartFromGroup.invalid || isPending"
+          >
             Add to cart
           </button>
         </form>

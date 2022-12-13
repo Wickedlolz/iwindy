@@ -9,6 +9,7 @@ import {
   of,
   Subscription,
   switchMap,
+  take,
   tap,
 } from 'rxjs';
 import { AuthService } from 'src/app/core/auth.service';
@@ -96,6 +97,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       next: (product) => {
         this.product = product;
         this.isLiked = this.currentUser$.pipe(
+          take(1),
           map((user) => this.product.likes.includes(user?._id || ''))
         );
         this.isPending = false;
@@ -109,6 +111,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       next: (product) => {
         this.product = product;
         this.isLiked = this.currentUser$.pipe(
+          take(1),
           map((user) => this.product.likes.includes(user?._id || ''))
         );
         this.isPending = false;
@@ -134,6 +137,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.isPending = true;
     this.userService
       .addToCart$(this.productId, addToCartFromGroup.value.qty)
       .subscribe(() => {
@@ -141,6 +145,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           text: 'Successfully added to Cart',
           type: MessageType.Success,
         });
+        this.isPending = false;
       });
   }
 }

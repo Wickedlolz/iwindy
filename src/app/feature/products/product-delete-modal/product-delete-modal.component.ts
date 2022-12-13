@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/core/product.service';
 })
 export class ProductDeleteModalComponent implements OnInit {
   @Input() product!: IProduct;
-  @Output() handleDeleteAction = new EventEmitter();
+  @Output() handleDeleteAction = new EventEmitter<boolean>();
 
   constructor(private productService: ProductService) {}
 
@@ -18,10 +18,10 @@ export class ProductDeleteModalComponent implements OnInit {
 
   handleDelete(): void {
     this.productService.delete$(this.product._id).subscribe({
-      next: (product) => {
+      next: () => {
         this.handleDeleteAction.emit(true);
       },
-      error: (error) => {
+      error: () => {
         this.handleDeleteAction.emit(false);
       },
     });

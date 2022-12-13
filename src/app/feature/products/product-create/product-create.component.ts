@@ -25,11 +25,9 @@ export class ProductCreateComponent implements OnInit {
       return;
     }
 
-    this.productService
-      .create$(productCreateForm.value)
-      .subscribe((product) => {
-        this.router.navigate(['/products']);
-      });
+    this.productService.create$(productCreateForm.value).subscribe(() => {
+      this.router.navigate(['/products']);
+    });
   }
 
   navigateToHome(): void {

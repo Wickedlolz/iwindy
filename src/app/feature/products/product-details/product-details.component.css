@@ -85,6 +85,11 @@
   cursor: pointer;
 }
 
+.details .product .box .desc .actions li .like-btn:disabled,
+.details .product .box .desc .actions li .dislike-btn:disabled {
+  cursor: not-allowed;
+}
+
 .details .product .box .desc .actions li a {
   text-decoration: none;
   outline: none;
