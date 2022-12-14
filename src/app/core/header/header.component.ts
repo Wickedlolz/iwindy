@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   message!: string;
   isMessageError!: boolean;
+  isPending: boolean = false;
 
   private subscription!: Subscription;
 
@@ -41,11 +42,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   handleLogout(): void {
-    this.authService.logout$().subscribe({
-      next: () => {
-        this.router.navigate(['/home']);
-      },
-    });
+    if (!this.isPending) {
+      this.isPending = true;
+
+      this.authService.logout$().subscribe({
+        next: () => {
+          this.isPending = false;
+          this.router.navigate(['/home']);
+        },
+      });
+    }
   }
 
   ngOnDestroy(): void {
