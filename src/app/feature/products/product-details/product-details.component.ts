@@ -76,7 +76,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
             map((user) => this.product.likes.includes(user?._id || ''))
           );
 
-          this.relatedProducts = related.filter(
+          this.relatedProducts = related.results.filter(
             (p) => p._id !== this.productId
           );
           this.isLoading = false;

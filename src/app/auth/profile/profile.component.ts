@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
   );
 
   constructor(
-    private userService: UserService,
     private titleService: Title,
     private store: Store<IAuthModuleState>
   ) {}
@@ -29,15 +28,5 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle('Profile | iWindy');
     this.store.dispatch(profilePageInitalized());
-
-    // this.userService.getProfile$().subscribe({
-    //   next: (user) => {
-    //     this.currentUser = user;
-    //     this.isLoading = false;
-    //   },
-    //   error: (error) => {
-    //     console.error(error);
-    //   },
-    // });
   }
 }

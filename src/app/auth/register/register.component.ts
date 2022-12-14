@@ -59,7 +59,6 @@ export class RegisterComponent implements OnInit {
       next: (user) => {
         this.router.navigate(['/home']);
       },
-      // error: (error) => (this.errorMessage = error.message),
     });
   }
 }

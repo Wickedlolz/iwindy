@@ -51,11 +51,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.titleService.setTitle('Products | iWindy');
 
     this.subscription = combineLatest([
-      this.searchControl.valueChanges.pipe(
-        debounceTime(400),
-        startWith(''),
-        tap((searchTearm) => console.log('Search Term: ' + searchTearm))
-      ),
+      this.searchControl.valueChanges.pipe(debounceTime(400), startWith('')),
       this.pageChange$,
     ])
       .pipe(
@@ -75,9 +71,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
       });
   }
 
-  // TODO?: fix when change category to show correct page
   handleChangeCategory(category: string): void {
     this.isLoading = true;
+    this.currentPage = 0;
 
     if (category === 'all') {
       this.productService
@@ -89,6 +85,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (result) => {
             this.products = result.results;
+            this.totalResults = result.totalResults;
             this.selectedCategory = category;
             this.isLoading = false;
           },
@@ -97,16 +94,23 @@ export class ProductListComponent implements OnInit, OnDestroy {
           },
         });
     } else {
-      this.productService.loadByCategory$(category).subscribe({
-        next: (products) => {
-          this.products = products;
-          this.selectedCategory = category;
-          this.isLoading = false;
-        },
-        error: (error) => {
-          this.isLoading = false;
-        },
-      });
+      this.productService
+        .loadByCategoryPaginatedList$(
+          category,
+          this.currentPage * this.pageSize,
+          this.pageSize
+        )
+        .subscribe({
+          next: (result) => {
+            this.products = result.results;
+            this.totalResults = result.totalResults;
+            this.selectedCategory = category;
+            this.isLoading = false;
+          },
+          error: () => {
+            this.isLoading = false;
+          },
+        });
     }
   }
 

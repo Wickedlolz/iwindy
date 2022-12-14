@@ -41,8 +41,28 @@ export class ProductService {
     return this.http.get<IProduct[]>(apiUrl + '/products/latest');
   }
 
-  loadByCategory$(category: string): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(apiUrl + '/products/category/' + category);
+  loadByCategory$(category: string): Observable<IPaginatedResponse<IProduct>> {
+    return this.http.get<IPaginatedResponse<IProduct>>(
+      apiUrl + '/products/category/' + category
+    );
+  }
+
+  loadByCategoryPaginatedList$(
+    category: string,
+    startIndex: number,
+    limit: number
+  ): Observable<IPaginatedResponse<IProduct>> {
+    return this.http.get<IPaginatedResponse<IProduct>>(
+      apiUrl + '/products/category/' + category,
+      {
+        params: new HttpParams({
+          fromObject: {
+            startIndex,
+            limit,
+          },
+        }),
+      }
+    );
   }
 
   loadById$(productId: string): Observable<IProduct> {
