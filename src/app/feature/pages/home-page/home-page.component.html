@@ -5,7 +5,7 @@
       <img
         class="heading__img"
         src="/assets/images/banner-2.jpg"
-        alt="iPhone"
+        alt="Winter Sale"
         loading="lazy"
       />
       <div class="content">
@@ -29,7 +29,11 @@
     </div>
     <app-loading *ngIf="isLoading"></app-loading>
 
-    <ul class="products-list" role="list" *ngIf="latest$ | async as products">
+    <ul
+      class="products-list"
+      role="list"
+      *ngIf="!isLoading && (latest$ | async) as products"
+    >
       <li class="product-item" *ngFor="let product of products">
         <a class="product-link" [routerLink]="'/products/' + product._id">
           <article class="product">

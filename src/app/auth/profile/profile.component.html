@@ -49,6 +49,9 @@
             <p class="details__createdAt">
               Created at: {{ product.createdAt | date : "fullDate" }}
             </p>
+            <p class="details__createdAt">
+              Reward Points: {{ product.likes.length }}
+            </p>
           </div>
           <div class="actions">
             <a [routerLink]="'/products/' + product._id" class="view">
