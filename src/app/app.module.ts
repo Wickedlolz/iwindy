@@ -9,7 +9,7 @@ import { CoreModule } from './core/core.module';
 import { PagesModule } from './feature/pages/pages.module';
 import { AuthService } from './core/auth.service';
 import { StoreModule } from '@ngrx/store';
-import { IRootState, loadLatestReducer } from './+store';
+import { IRootState, latestReducer } from './+store';
 import { EffectsModule } from '@ngrx/effects';
 import { Effects } from './+store/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -24,7 +24,7 @@ import { environment } from '../environments/environment';
     CoreModule.forRoot(),
     PagesModule,
     StoreModule.forRoot<IRootState>({
-      latestProducts: loadLatestReducer,
+      latestProducts: latestReducer,
     }),
     EffectsModule.forRoot([Effects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
