@@ -26,6 +26,12 @@
 2.  npm install / yarn install for client and api
 3.  for running rest api check in repo how to run it.
 
+## Successully completed course
+
+- [x] **Angular**
+
+[certificate](https://softuni.bg/certificates/details/152895/860dfa42)
+
 <hr />
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
