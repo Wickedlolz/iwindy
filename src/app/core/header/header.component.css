@@ -27,7 +27,7 @@
 .header nav .nav-list .nav-list__item a {
   text-decoration: none;
   color: black;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   cursor: pointer;
@@ -36,6 +36,9 @@
   padding: 12px;
 
   transition: background-color 300ms ease-in-out;
+}
+.header nav .nav-list .nav-list__item a i {
+  font-size: 16px;
 }
 
 .header nav .nav-list .nav-list__item a:hover {
